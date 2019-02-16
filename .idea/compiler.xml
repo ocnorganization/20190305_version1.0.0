@@ -6,8 +6,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="WarehouseCF" />
+        <module name="WarehouseCF_common" />
+        <module name="WarehouseCF_manager" />
+        <module name="WarehouseCF_redis" />
+        <module name="WarehouseCF_rest" />
+        <module name="WarehouseCF_search" />
+        <module name="WarehouseCF_sso" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="WarehouseCF" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>
