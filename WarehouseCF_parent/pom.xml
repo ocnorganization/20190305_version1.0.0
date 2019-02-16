@@ -16,13 +16,19 @@
 
     </modules>
 
+
     <!-- 集中定义版本号 -->
     <properties></properties>
 
     <!-- 定义依赖 -->
     <dependencyManagement>
         <dependencies>
-
+            <!-- https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
+            <dependency>
+                <groupId>com.zaxxer</groupId>
+                <artifactId>HikariCP</artifactId>
+                <version>3.3.1</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
