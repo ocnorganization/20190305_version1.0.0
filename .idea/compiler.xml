@@ -7,7 +7,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="WarehouseCF_common" />
-        <module name="WarehouseCF_manager" />
+        <module name="WarehouseCF_manager_mapper" />
+        <module name="WarehouseCF_manager_pojo" />
+        <module name="WarehouseCF_manager_service" />
+        <module name="WarehouseCF_manager_web" />
         <module name="WarehouseCF_redis" />
         <module name="WarehouseCF_rest" />
         <module name="WarehouseCF_search" />
