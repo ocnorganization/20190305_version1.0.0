@@ -13,6 +13,7 @@
         <property name="url" value="${jdbc_url}" />
         <property name="username" value="${jdbc_user}" />
         <property name="password" value="${jdbc_password}" />
+        <property name="driverClassName" value="${jdbc_driver}" />
         <!-- 配置监控统计拦截的filters -->
         <property name="filters" value="stat" />
         <!-- 配置初始化大小、最小、最大 -->
@@ -35,11 +36,12 @@
 
         <!--<property name="asyncInit" value="true" />-->
     </bean>
-
+    <!-- SqlSessionFactory是创建SqlSession的工厂. -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="configLocation" value="classpath:mybatis/sqlMapConfig.xml"/>
         <property name="dataSource" ref="dataSource" />
     </bean>
+
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.alexmillerning.mapper"/>
     </bean>
