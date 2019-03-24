@@ -89,10 +89,26 @@ public class mEmployeeController {
      }
     //新增员工信息提交页面
     @RequestMapping("/index/getMenus/addEmployeeData/addForm")
-    public void requestAddEmployeeDataAddForm(@RequestParam(value = "staffId") String staffId,@RequestParam(value = "staffName") String staffName,@RequestParam(value = "staffGender") String staffGender,@RequestParam(value = "staffPosition") String staffPosition,@RequestParam(value = "staffPower") String staffPower){
+    @ResponseBody
+    public String requestAddEmployeeDataAddForm(@RequestParam(value = "staffId") String staffId,@RequestParam(value = "staffName") String staffName,@RequestParam(value = "staffGender") String staffGender,@RequestParam(value = "staffPosition") String staffPosition,@RequestParam(value = "staffPower") String staffPower){
+        String result;
         if(logger.isDebugEnabled()){
             logger.debug("页面[/index/getMenus/addEmployeeData/addForm]请求参数: staffId["+staffId+"] staffName["+staffName+"]");
         }
-        wStaffService.addNewStaffData(staffId,staffName,staffGender,staffPosition,Integer.parseInt(staffPower));
+        try {
+            int flag = wStaffService.addNewStaffData(staffId,staffName,staffGender,staffPosition,Integer.parseInt(staffPower));
+            result = String.valueOf(flag);
+        }catch (Exception e){
+            result = e.toString();
+
+        }
+        if(logger.isDebugEnabled()){
+            logger.debug("result:["+result+"]");
+        }
+        if(result.equals("1")) {
+            return "SUCCESS";
+        }else {
+            return result;
+        }
     }
 }

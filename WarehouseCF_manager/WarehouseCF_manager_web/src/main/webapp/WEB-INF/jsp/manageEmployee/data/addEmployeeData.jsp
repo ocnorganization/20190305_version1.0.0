@@ -83,7 +83,6 @@
     <%--</div>--%>
 <script type="text/javascript">
     function sub() {
-        alert("dfa ");
         $.ajax({
             cache: true,
             type: "POST",
@@ -94,7 +93,14 @@
                 alert("Connection error:"+request.error);
             },
             success: function(data) {
-                alert("SUCCESS!");
+                var flag = data;
+                if(flag == "SUCCESS"){
+                    alert("SUCCESS!");
+                }
+                else{
+                    alert(flag);
+                }
+
             }
         });
     }
