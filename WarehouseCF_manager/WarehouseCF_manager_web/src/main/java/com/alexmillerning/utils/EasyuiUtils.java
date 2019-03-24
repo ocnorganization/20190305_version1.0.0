@@ -1,6 +1,9 @@
 package com.alexmillerning.utils;
 
 import com.alexmillerning.pojo.WBMenus;
+import com.alexmillerning.pojo.WStaff;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
@@ -8,6 +11,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @name EasyuiUtils
+ * @author Alex
+ * @date 2019/3/22
+ * @description easyui相关的工具类
+ */
 public class EasyuiUtils {
     /**
      * 获取菜单的所有节点
@@ -60,6 +69,24 @@ public class EasyuiUtils {
             }
         }
         return newTrees;
+    }
+
+
+    /**
+     * @methodname generateJSONObj
+     * @author Alex
+     * @date 2019/3/22
+     * @param list,size
+     * @return JSONObject
+     * @description 封装JSON数据返回给页面
+     */
+    public static JSONObject generateJSONObj(List<WStaff> list, int size){
+        JSONArray jsonArray = new JSONArray(new ArrayList<>(list));
+        Map<String,Object> json = new HashMap<String,Object>();
+        json.put("total",size);
+        json.put("rows",jsonArray);
+        JSONObject jsonObject = new JSONObject(json);
+        return jsonObject;
     }
 
 }
