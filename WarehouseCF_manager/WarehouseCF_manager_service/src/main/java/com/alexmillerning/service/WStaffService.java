@@ -24,5 +24,8 @@ public interface WStaffService {
      * 按员工编号或者姓名查询员工表
      */
     List<WStaff> getWStaffListByIdorName(String staffId,String staffName);
-
+    /**
+     * 新增员工信息
+     */
+    int addNewStaffData(String staffId,String staffName,String staffGender,String staffPosition,Integer staffPower);
 }

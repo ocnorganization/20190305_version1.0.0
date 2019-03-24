@@ -100,4 +100,19 @@ public class WStaffServiceImpl implements WStaffService {
         List<WStaff> wStaffList = wStaffMapper.selectByExample(wStaffExample);
         return wStaffList;
     }
+
+    @Override
+    public int addNewStaffData(String staffId, String staffName, String staffGender, String staffPosition, Integer staffPower) {
+//        WStaffExample wStaffExample = new WStaffExample();
+//        WStaffExample.Criteria criteria = wStaffExample.createCriteria();
+//        criteria
+        WStaff wStaff = new WStaff();
+        wStaff.setStaffId(staffId);
+        wStaff.setStaffName(staffName);
+        wStaff.setStaffGender(staffGender);
+        wStaff.setStaffPosition(staffPosition);
+        wStaff.setStaffPower(staffPower);
+        return wStaffMapper.insert(wStaff);
+    }
+
 }

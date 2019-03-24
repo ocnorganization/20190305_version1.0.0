@@ -35,7 +35,7 @@ public class mEmployeeController {
     //新增员工信息页面
     @RequestMapping("/index/getMenus/addEmployeeData")
     public String  requestAddEmployeeData(){
-        return "manageEmployee/data/addEmployee";
+        return "manageEmployee/data/addEmployeeData";
     }
     //查询员工信息页面
     @RequestMapping("/index/getMenus/loadEmployeeData")
@@ -87,4 +87,12 @@ public class mEmployeeController {
         }
         return null;
      }
+    //新增员工信息提交页面
+    @RequestMapping("/index/getMenus/addEmployeeData/addForm")
+    public void requestAddEmployeeDataAddForm(@RequestParam(value = "staffId") String staffId,@RequestParam(value = "staffName") String staffName,@RequestParam(value = "staffGender") String staffGender,@RequestParam(value = "staffPosition") String staffPosition,@RequestParam(value = "staffPower") String staffPower){
+        if(logger.isDebugEnabled()){
+            logger.debug("页面[/index/getMenus/addEmployeeData/addForm]请求参数: staffId["+staffId+"] staffName["+staffName+"]");
+        }
+        wStaffService.addNewStaffData(staffId,staffName,staffGender,staffPosition,Integer.parseInt(staffPower));
+    }
 }
