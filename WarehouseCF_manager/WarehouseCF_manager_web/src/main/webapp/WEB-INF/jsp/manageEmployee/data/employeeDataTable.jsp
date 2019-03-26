@@ -29,7 +29,6 @@
     <%--表格可以适应窗口变化--%>
     <table id="user_charts" style="height:100%;width: 100%"></table>
 </div>
-</body>
 <script type="text/javascript">
     $('#user_charts').datagrid({
         toolbar:"#tb",
@@ -46,6 +45,7 @@
         ]]
     });
     function doSearch(){
+        // alert("11111");
         $('#user_charts').datagrid('load',{
             staffId:$('#staffId').val(),
             staffName:$('#staffName').val()
@@ -53,4 +53,6 @@
     }
 
 </script>
+</body>
+
 </html>

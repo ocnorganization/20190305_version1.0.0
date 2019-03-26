@@ -51,57 +51,32 @@
                     欢迎使用XXX后台管理系统
                 </div>
             </div>
-            <%--适应父组件center的大小--%>
-            <%--<div class="easyui-layout" data-options="fit:true">--%>
-                <%--<div data-options="region:'north',title:'',split:false,fit:true" style="background: #ebebeb">--%>
-                    <%--<div id="tabs" class="easyui-tabs" style="padding-left: 50px;padding-right: 50px;padding-bottom: 50px;padding-top: 10px;width: auto;height: 100%;">--%>
-                        <%--<div title="首页" style="padding:20px;background: #ffffff;">--%>
-                            <%--欢迎使用XXX后台管理系统--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-                <%--<div data-options="region:'south',title:'',split:false,fit:true" style="background: #ebebeb">--%>
-                    <%--<div id="tabs" class="easyui-tabs" style="padding-left: 50px;padding-right: 50px;padding-bottom: 50px;padding-top: 10px;width: auto;height: 65%;">--%>
-                        <%--<div title="首页" style="padding:20px;background: #ffffff;">--%>
-                            <%--欢迎使用XXX后台管理系统--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-            <%--</div>--%>
         </div>
     </body>
-</html>
-<script type="text/javascript">
-    $(function(){
-        $('#home-tree').tree({
-            url : '${path}/index/getMenus',
+    <script type="text/javascript">
+        $(function(){
+            $('#home-tree').tree({
+                <%--url : '${path}/index/getMenus',--%>
+                url : '${path}/index/getEasyUITree',
+            });
         });
-    });
-    $('#home-tree').tree({
-        onClick: function(node){
-            if($('#home-tree').tree('isLeaf',node.target)){
-                var tabs = $("#tabs");
-                var tab = tabs.tabs("getTab",node.text);
-                if(tab){
-                    tabs.tabs("select",node.text)
-                }else{
-                    // 添加一个新的标签页面板（tab panel）
-                    <%--alert('${path}/index/getMenus/addNewEmployee')--%>
-                    // tabs.css("padding","10px")
-                    tabs.tabs('add',{
-                        // fit:true,
-                        title:node.text,
-                        href:node.url,
-                        closable:true,
-                        // tools:[{
-                        //     iconCls:'icon-mini-refresh',
-                        //     handler:function(){
-                        //         alert('refresh');
-                        //     }
-                        // }]
-                    });
+        $('#home-tree').tree({
+            onClick: function(node){
+                if($('#home-tree').tree('isLeaf',node.target)){
+                    var tabs = $("#tabs");
+                    var tab = tabs.tabs("getTab",node.text);
+                    if(tab){
+                        tabs.tabs("select",node.text)
+                    }else{
+                        // 添加一个新的标签页面板（tab panel）
+                        tabs.tabs('add',{
+                            title:node.text,
+                            href:node.attributes.url,
+                            closable:true,
+                        });
+                    }
+                }
             }
-            }
-        }
-    });
-</script>
+        });
+    </script>
+</html>

@@ -11,10 +11,10 @@
     <title>添加员工权限</title>
 </head>
 <body style="background: #ffffff">
-<table id="user_chart">
+<table id="add_user_chart">
 </table>
 <script type="text/javascript">
-    $('#user_charts').datagrid({
+    $('#add_user_chart').datagrid({
         url:'datagrid_data.json',
         columns:[[
             {field:'code',title:'Code',width:100},

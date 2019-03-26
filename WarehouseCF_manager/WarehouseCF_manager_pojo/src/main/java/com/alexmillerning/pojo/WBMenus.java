@@ -74,4 +74,7 @@ public class WBMenus {
     public void setChildren(List<WBMenus> children) {
         this.children = children;
     }
+    public String toString(){
+        return "id"+id+" pid"+pid+" text"+text+" state"+state;
+    }
 }
