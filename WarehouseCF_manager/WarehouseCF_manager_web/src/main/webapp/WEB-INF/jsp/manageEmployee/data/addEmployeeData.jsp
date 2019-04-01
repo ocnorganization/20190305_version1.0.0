@@ -11,58 +11,22 @@
     <title>添加员工信息</title>
 </head>
 
-<body>
-<form id="addForm" method="post"  onsubmit="return sub();">
-    <table>
-        <tr>
-            <td>员工编号:</td>
-            <td><input name="staffId" type="text"></input></td>
-        </tr>
-        <tr>
-            <td>员工姓名:</td>
-            <td><input name="staffName" type="text"></input></td>
-        </tr>
-        <tr>
-            <td>员工性别:</td>
-            <td><input name="staffGender" type="text"></input></td>
-        </tr>
-        <tr>
-            <td>员工职位:</td>
-            <td><input name="staffPosition" type="text"></input></td>
-        </tr>
-        <tr>
-            <td>员工权限:</td>
-            <td><input name="staffPower" type="text"></input></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><input type="submit" value="添加"></input></td>
-        </tr>
-    </table>
-</form>
-<script type="text/javascript">
-    function sub() {
-        $.ajax({
-            cache: true,
-            type: "POST",
-            url:"/index/getMenus/addEmployeeData/addForm",
-            data:$('#addForm').serialize(),
-            async: false,
-            error: function(request) {
-                alert("Connection error:"+request.error);
-            },
-            success: function(data) {
-                var flag = data;
-                if(flag == "SUCCESS"){
-                    alert("SUCCESS!");
-                }
-                else{
-                    alert(flag);
-                }
+<body class="easyui-layout" style="padding-left: 50px;" data-option="fit:true">
+<div data-options="region:'north',title:'',split:false;fit:true" style="width:100%;height:100%;">
+    <div style="width: 100%;height:100%;border-radius: 15px;background: #ffffff;padding: 25px;overflow-y: auto">
+        <jsp:include page="employeeDataForm.jsp" flush="true"/>
+    </div>
+</div>
 
-            }
-        });
-    }
-</script>
+<%--<div data-options="region:'south',title:'',split:false," style="with:100%;height:30%;padding-top: 40px">--%>
+<%--<div class="easyui-layout" data-options="fit:true">--%>
+<%--<div data-options="region:'west',title:'',split:false">--%>
+<%--<div style="width: 30%;height:100%;overflow-y: auto;border-radius: 15px;background: #ffffff;">--%>
+<%--welcome--%>
+<%--</div>--%>
+<%--</div>--%>
+<%--</div>--%>
+
+</div>
 </body>
 </html>

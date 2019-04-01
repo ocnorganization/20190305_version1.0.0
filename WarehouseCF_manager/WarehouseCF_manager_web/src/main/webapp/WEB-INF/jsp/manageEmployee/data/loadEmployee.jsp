@@ -17,14 +17,14 @@
         </div>
     </div>
 
-    <div data-options="region:'south',title:'',split:false," style="with:100%;height:30%;padding-top: 40px">
-        <div class="easyui-layout" data-options="fit:true">
-            <div data-options="region:'west',title:'',split:false">
-                <div style="width: 30%;height:100%;overflow-y: auto;border-radius: 15px;background: #ffffff;">
-                    welcome
-                </div>
-            </div>
-        </div>
+    <%--<div data-options="region:'south',title:'',split:false," style="with:100%;height:30%;padding-top: 40px">--%>
+        <%--<div class="easyui-layout" data-options="fit:true">--%>
+            <%--<div data-options="region:'west',title:'',split:false">--%>
+                <%--<div style="width: 30%;height:100%;overflow-y: auto;border-radius: 15px;background: #ffffff;">--%>
+                    <%--welcome--%>
+                <%--</div>--%>
+            <%--</div>--%>
+        <%--</div>--%>
 
     </div>
 </body>
