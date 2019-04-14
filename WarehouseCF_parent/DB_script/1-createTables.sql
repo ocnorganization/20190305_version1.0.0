@@ -44,7 +44,7 @@ PRIMARY KEY(MENUID),
 UNIQUE (MENUNAME)
 );
 INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('1', '', '设计元素', 'CLOSED', '');
-INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('11', '1', '颜色', '', 'mainPage/design/color');
+INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('11', '1', '颜色', '', '/design/color/data.html');
 INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('12', '1', '品牌', '', '');
 INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('13', '1', '尺码', '', '');
 INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('14', '1', '工艺', '', '');
