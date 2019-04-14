@@ -1,4 +1,4 @@
--- 创建员工管理数据库
+--创建员工管理数据库
 create TABLE W_STAFF
 (
 STAFF_ID VARCHAR(20) NOT NULL,
@@ -8,61 +8,118 @@ STAFF_POSITION VARCHAR(50),
 STAFF_POWER INT(2) NOT NULL,
 PRIMARY KEY(STAFF_ID)
 );
--- 创建EasyUI后台菜单按钮
+--创建EasyUI后台菜单按钮
 create TABLE W_B_MENUS
 (
 ID VARCHAR(20) NOT NULL,
 PID VARCHAR(20) NULL,
 TEXT VARCHAR(50) NULL,
-STATE VARCHAR(20) NULL,
+STATUS VARCHAR(20) NULL,
 URL VARCHAR(100) NULL,
 PRIMARY KEY(ID),
 UNIQUE (TEXT)
 );
-INSERT INTO `warehousecf`.`w_b_menus` (`ID`, `PID`, `TEXT`, `STATE`, `URL`) VALUES ('1', '', '员工管理', 'closed', '');
-INSERT INTO `warehousecf`.`w_b_menus` (`ID`, `PID`, `TEXT`, `STATE`, `URL`) VALUES ('11', '1', '员工权限管理', 'closed', '');
-INSERT INTO `warehousecf`.`w_b_menus` (`ID`, `PID`, `TEXT`, `STATE`, `URL`) VALUES ('111', '11', '添加员工权限', '', '/index/getMenus/addEmployeePower');
-INSERT INTO `warehousecf`.`w_b_menus` (`ID`, `PID`, `TEXT`, `STATE`, `URL`) VALUES ('112', '11', '修改员工权限', '', '/index/getMenus/updateEmployeePower');
-INSERT INTO `warehousecf`.`w_b_menus` (`ID`, `PID`, `TEXT`, `STATE`, `URL`) VALUES ('113', '11', '删除员工', '', '');
-INSERT INTO `warehousecf`.`w_b_menus` (`ID`, `PID`, `TEXT`, `STATE`, `URL`) VALUES ('12', '1', '员工信息管理', 'closed', '');
-INSERT INTO `warehousecf`.`w_b_menus` (`ID`, `PID`, `TEXT`, `STATE`, `URL`) VALUES ('121', '12', '查询员工信息', '', '/index/getMenus/loadEmployeeData');
-INSERT INTO `warehousecf`.`w_b_menus` (`ID`, `PID`, `TEXT`, `STATE`, `URL`) VALUES ('122', '12', '添加员工信息', '', '/index/getMenus/addEmployeeData');
-INSERT INTO `warehousecf`.`w_b_menus` (`ID`, `PID`, `TEXT`, `STATE`, `URL`) VALUES ('123', '12', '删除员工信息', '', '');
-INSERT INTO `warehousecf`.`w_b_menus` (`ID`, `PID`, `TEXT`, `STATE`, `URL`) VALUES ('2', '', '数据管理', 'closed', '');
-INSERT INTO `warehousecf`.`w_b_menus` (`ID`, `PID`, `TEXT`, `STATE`, `URL`) VALUES ('21', '2', '数据信息导入', '', '');
-INSERT INTO `warehousecf`.`w_b_menus` (`ID`, `PID`, `TEXT`, `STATE`, `URL`) VALUES ('22', '2', '数据信息导出', '', '');
-
 -- 测试数据
-INSERT INTO `warehousecf`.`w_staff` (`STAFF_ID`, `STAFF_NAME`, `STAFF_GENDER`, `STAFF_POSITION`, `STAFF_POWER`) VALUES ('0001', '郑明心', '男', '项目经理', '1');
-INSERT INTO `warehousecf`.`w_staff` (`STAFF_ID`, `STAFF_NAME`, `STAFF_GENDER`, `STAFF_POSITION`, `STAFF_POWER`) VALUES ('0002', '徐曼丽', '女', '普通员工', '5');
-INSERT INTO `warehousecf`.`w_staff` (`STAFF_ID`, `STAFF_NAME`, `STAFF_GENDER`, `STAFF_POSITION`, `STAFF_POWER`) VALUES ('0003', '测试数据', '男', '测试数据111111111111111111111', '5');
-INSERT INTO `warehousecf`.`w_staff` (`STAFF_ID`, `STAFF_NAME`, `STAFF_GENDER`, `STAFF_POSITION`, `STAFF_POWER`) VALUES ('0004', '郑途', '男', '普通员工', '5');
-INSERT INTO `warehousecf`.`w_staff` (`STAFF_ID`, `STAFF_NAME`, `STAFF_GENDER`, `STAFF_POSITION`, `STAFF_POWER`) VALUES ('0005', '徐洁', '女', '普通员工', '5');
-INSERT INTO `warehousecf`.`w_staff` (`STAFF_ID`, `STAFF_NAME`, `STAFF_GENDER`, `STAFF_POSITION`, `STAFF_POWER`) VALUES ('0006', '张与', '男', '普通员工', '5');
-INSERT INTO `warehousecf`.`w_staff` (`STAFF_ID`, `STAFF_NAME`, `STAFF_GENDER`, `STAFF_POSITION`, `STAFF_POWER`) VALUES ('0007', '陆小曼', '男', '普通员工', '5');
-INSERT INTO `warehousecf`.`w_staff` (`STAFF_ID`, `STAFF_NAME`, `STAFF_GENDER`, `STAFF_POSITION`, `STAFF_POWER`) VALUES ('0008', '高文', '男', '普通员工', '5');
-INSERT INTO `warehousecf`.`w_staff` (`STAFF_ID`, `STAFF_NAME`, `STAFF_GENDER`, `STAFF_POSITION`, `STAFF_POWER`) VALUES ('0009', '付余', '男', '普通员工', '5');
-INSERT INTO `warehousecf`.`w_staff` (`STAFF_ID`, `STAFF_NAME`, `STAFF_GENDER`, `STAFF_POSITION`, `STAFF_POWER`) VALUES ('0010', '许诺', '女', '普通员工', '5');
-INSERT INTO `warehousecf`.`w_staff` (`STAFF_ID`, `STAFF_NAME`, `STAFF_GENDER`, `STAFF_POSITION`, `STAFF_POWER`) VALUES ('0011', '周寅', '男', '普通员工', '5');
-INSERT INTO `warehousecf`.`w_staff` (`STAFF_ID`, `STAFF_NAME`, `STAFF_GENDER`, `STAFF_POSITION`, `STAFF_POWER`) VALUES ('0012', '莫淑贤', '女', '普通员工', '5');
-INSERT INTO `warehousecf`.`w_staff` (`STAFF_ID`, `STAFF_NAME`, `STAFF_GENDER`, `STAFF_POSITION`, `STAFF_POWER`) VALUES ('0013', '菀茹', '女', '普通员工', '5');
-INSERT INTO `warehousecf`.`w_staff` (`STAFF_ID`, `STAFF_NAME`, `STAFF_GENDER`, `STAFF_POSITION`, `STAFF_POWER`) VALUES ('0014', '乾辉', '男', '普通员工', '5');
-INSERT INTO `warehousecf`.`w_staff` (`STAFF_ID`, `STAFF_NAME`, `STAFF_GENDER`, `STAFF_POSITION`, `STAFF_POWER`) VALUES ('0015', '罗云', '男', '普通员工', '5');
-INSERT INTO `warehousecf`.`w_staff` (`STAFF_ID`, `STAFF_NAME`, `STAFF_GENDER`, `STAFF_POSITION`, `STAFF_POWER`) VALUES ('0016', '周文', '女', '普通员工', '5');
-INSERT INTO `warehousecf`.`w_staff` (`STAFF_ID`, `STAFF_NAME`, `STAFF_GENDER`, `STAFF_POSITION`, `STAFF_POWER`) VALUES ('0017', '王强', '男', '普通员工', '5');
-INSERT INTO `warehousecf`.`w_staff` (`STAFF_ID`, `STAFF_NAME`, `STAFF_GENDER`, `STAFF_POSITION`, `STAFF_POWER`) VALUES ('0018', '余诗', '女', '普通员工', '5');
-INSERT INTO `warehousecf`.`w_staff` (`STAFF_ID`, `STAFF_NAME`, `STAFF_GENDER`, `STAFF_POSITION`, `STAFF_POWER`) VALUES ('0019', '君芝', '女', '普通员工', '5');
-INSERT INTO `warehousecf`.`w_staff` (`STAFF_ID`, `STAFF_NAME`, `STAFF_GENDER`, `STAFF_POSITION`, `STAFF_POWER`) VALUES ('0020', '龙山', '男', '普通员工', '5');
-INSERT INTO `warehousecf`.`w_staff` (`STAFF_ID`, `STAFF_NAME`, `STAFF_GENDER`, `STAFF_POSITION`, `STAFF_POWER`) VALUES ('0021', '善运', '男', '普通员工', '5');
-INSERT INTO `warehousecf`.`w_staff` (`STAFF_ID`, `STAFF_NAME`, `STAFF_GENDER`, `STAFF_POSITION`, `STAFF_POWER`) VALUES ('0022', '周文', '女', '普通员工', '5');
-INSERT INTO `warehousecf`.`w_staff` (`STAFF_ID`, `STAFF_NAME`, `STAFF_GENDER`, `STAFF_POSITION`, `STAFF_POWER`) VALUES ('0023', '王强', '男', '普通员工', '5');
-INSERT INTO `warehousecf`.`w_staff` (`STAFF_ID`, `STAFF_NAME`, `STAFF_GENDER`, `STAFF_POSITION`, `STAFF_POWER`) VALUES ('0024', '余诗', '女', '普通员工', '5');
-INSERT INTO `warehousecf`.`w_staff` (`STAFF_ID`, `STAFF_NAME`, `STAFF_GENDER`, `STAFF_POSITION`, `STAFF_POWER`) VALUES ('0025', '君芝', '女', '普通员工', '5');
-INSERT INTO `warehousecf`.`w_staff` (`STAFF_ID`, `STAFF_NAME`, `STAFF_GENDER`, `STAFF_POSITION`, `STAFF_POWER`) VALUES ('0026', '龙山', '男', '普通员工', '5');
-INSERT INTO `warehousecf`.`w_staff` (`STAFF_ID`, `STAFF_NAME`, `STAFF_GENDER`, `STAFF_POSITION`, `STAFF_POWER`) VALUES ('0027', '善运', '男', '普通员工', '5');
-INSERT INTO `warehousecf`.`w_staff` (`STAFF_ID`, `STAFF_NAME`, `STAFF_GENDER`, `STAFF_POSITION`, `STAFF_POWER`) VALUES ('0028', '周文', '女', '普通员工', '5');
-INSERT INTO `warehousecf`.`w_staff` (`STAFF_ID`, `STAFF_NAME`, `STAFF_GENDER`, `STAFF_POSITION`, `STAFF_POWER`) VALUES ('0029', '王强', '男', '普通员工', '5');
-INSERT INTO `warehousecf`.`w_staff` (`STAFF_ID`, `STAFF_NAME`, `STAFF_GENDER`, `STAFF_POSITION`, `STAFF_POWER`) VALUES ('0030', '余诗', '女', '普通员工', '5');
-INSERT INTO `warehousecf`.`w_staff` (`STAFF_ID`, `STAFF_NAME`, `STAFF_GENDER`, `STAFF_POSITION`, `STAFF_POWER`) VALUES ('0031', '君芝', '女', '普通员工', '5');
-INSERT INTO `warehousecf`.`w_staff` (`STAFF_ID`, `STAFF_NAME`, `STAFF_GENDER`, `STAFF_POSITION`, `STAFF_POWER`) VALUES ('0032', '龙山', '男', '普通员工', '5');
-INSERT INTO `warehousecf`.`w_staff` (`STAFF_ID`, `STAFF_NAME`, `STAFF_GENDER`, `STAFF_POSITION`, `STAFF_POWER`) VALUES ('0033', '善运', '男', '普通员工', '5');
+INSERT INTO W_B_MENUS (ID,PID,TEXT,STATUS,URL)VALUES('1','','员工管理','CLOSED','');
+INSERT INTO W_B_MENUS (ID,PID,TEXT,STATUS,URL)VALUES('2','','数据管理','CLOSED','');
+INSERT INTO W_B_MENUS (ID,PID,TEXT,STATUS,URL)VALUES('11','1','员工权限管理','','');
+INSERT INTO W_B_MENUS (ID,PID,TEXT,STATUS,URL)VALUES('12','1','员工信息管理','','');
+INSERT INTO W_B_MENUS (ID,PID,TEXT,STATUS,URL)VALUES('21','2','数据信息导入','','');
+INSERT INTO W_B_MENUS (ID,PID,TEXT,STATUS,URL)VALUES('22','2','数据信息导出','','');
+INSERT INTO W_B_MENUS (ID,PID,TEXT,STATUS,URL)VALUES('111','11','添加新员工','','');
+INSERT INTO W_B_MENUS (ID,PID,TEXT,STATUS,URL)VALUES('112','11','修改员工权限','','');
+INSERT INTO W_B_MENUS (ID,PID,TEXT,STATUS,URL)VALUES('113','11','删除员工','','');
+INSERT INTO W_B_MENUS (ID,PID,TEXT,STATUS,URL)VALUES('121','12','查询员工信息','','');
+INSERT INTO W_B_MENUS (ID,PID,TEXT,STATUS,URL)VALUES('122','12','添加员工信息','','');
+INSERT INTO W_B_MENUS (ID,PID,TEXT,STATUS,URL)VALUES('123','12','删除员工信息','','');
+-- 创建AdminLTE前端页面菜单按钮
+create TABLE W_F_MENUS
+(
+ID VARCHAR(20) NOT NULL,
+PID VARCHAR(20) NULL,
+TEXT VARCHAR(50) NULL,
+STATUS VARCHAR(20) NULL,
+URL VARCHAR(100) NULL,
+PRIMARY KEY(ID),
+UNIQUE (TEXT)
+);
+INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('1', '', '设计元素', 'CLOSED', '');
+INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('11', '1', '颜色', '', 'mainPage/design/color');
+INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('12', '1', '品牌', '', '');
+INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('13', '1', '尺码', '', '');
+INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('14', '1', '工艺', '', '');
+INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('15', '1', '季节', '', '');
+INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('16', '1', '部位', '', '');
+INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('2', '', '物料管理', 'CLOSED', '');
+-- 创建颜色大类
+create TABLE W_B_COLOR
+(
+COLOR_ID VARCHAR(2) NOT NULL COMMENT '大类颜色的编号',
+COLOR_NAME VARCHAR(20) NULL COMMENT '大类颜色的名称',
+COLOR_REMARK VARCHAR(100) NULL COMMENT '预留备注',
+PRIMARY KEY(COLOR_ID)
+);
+INSERT INTO `warehousecf`.`w_b_color` (`COLOR_ID`, `COLOR_NAME`, `COLOR_REMARK`) VALUES ('1', '红', NULL);
+INSERT INTO `warehousecf`.`w_b_color` (`COLOR_ID`, `COLOR_NAME`, `COLOR_REMARK`) VALUES ('2', '橙', NULL);
+INSERT INTO `warehousecf`.`w_b_color` (`COLOR_ID`, `COLOR_NAME`, `COLOR_REMARK`) VALUES ('3', '黄', NULL);
+INSERT INTO `warehousecf`.`w_b_color` (`COLOR_ID`, `COLOR_NAME`, `COLOR_REMARK`) VALUES ('4', '绿', NULL);
+INSERT INTO `warehousecf`.`w_b_color` (`COLOR_ID`, `COLOR_NAME`, `COLOR_REMARK`) VALUES ('5', '蓝', NULL);
+INSERT INTO `warehousecf`.`w_b_color` (`COLOR_ID`, `COLOR_NAME`, `COLOR_REMARK`) VALUES ('6', '靛', NULL);
+INSERT INTO `warehousecf`.`w_b_color` (`COLOR_ID`, `COLOR_NAME`, `COLOR_REMARK`) VALUES ('7', '紫', NULL);
+INSERT INTO `warehousecf`.`w_b_color` (`COLOR_ID`, `COLOR_NAME`, `COLOR_REMARK`) VALUES ('8', '黑', NULL);
+INSERT INTO `warehousecf`.`w_b_color` (`COLOR_ID`, `COLOR_NAME`, `COLOR_REMARK`) VALUES ('9', '白', NULL);
+INSERT INTO `warehousecf`.`w_b_color` (`COLOR_ID`, `COLOR_NAME`, `COLOR_REMARK`) VALUES ('10', '其他', NULL);
+
+-- 创建颜色子类
+create TABLE W_F_COLOR_BRANCH
+(
+COLOR_BRANCH_ID int(20) NOT NULL AUTO_INCREMENT COMMENT '子类颜色的编号',
+COLOR_BRANCH_NAME VARCHAR(20) NULL COMMENT '子类颜色的名称',
+COLOR_BRANCH_PARENT VARCHAR(2) NULL COMMENT '父类颜色的名称',
+COLOR_BRANCH_REMARK VARCHAR(100) NULL COMMENT '预留备注',
+PRIMARY KEY(COLOR_BRANCH_ID),
+UNIQUE (COLOR_BRANCH_NAME),
+FOREIGN KEY(COLOR_BRANCH_PARENT) REFERENCES W_B_COLOR(COLOR_ID)
+);
+-- 测试数据
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('朱红', '1', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('炎', '1', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('石榴红', '1', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('大红', '1', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('酡红', '1', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('嫣红', '1', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('粉红', '1', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('海棠红', '1', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('茜色', '1', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('枣红', '1', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('殷红', '1', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('胭脂', '1', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('赤', '1', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('绯红', '1', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('妃色', '1', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('火红', '1', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('酡颜', '1', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('银红', '1', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('品红', '1', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('洋红', '1', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('丹', '2', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('彤', '2', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('橙色', '2', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('橘黄', '2', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('杏红', '2', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('杏黄', '2', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('橙黄', '2', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('黄栌', '3', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('赤金', '3', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('鸭黄', '3', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('鹅黄', '3', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('秋香色', '3', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('琥珀', '3', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('棕色', '3', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('棕红', '3', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('棕黄', '3', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('棕黑', '3', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('褐色', '3', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('秋色', '3', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('昏黄', '3', '');
+INSERT INTO `warehousecf`.`W_F_COLOR_BRANCH` ( `COLOR_BRANCH_NAME`, `COLOR_BRANCH_PARENT`, `COLOR_BRANCH_REMARK`) VALUES ('枯黄', '3', '');

@@ -246,10 +246,10 @@
     </if>
     <include refid="Color_Column_List" />
     from W_F_COLOR_BRANCH,W_B_COLOR
-    and W_F_COLOR_BRANCH.COLOR_BRANCH_PARENT = W_B_COLOR.COLOR_ID
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
+      and W_F_COLOR_BRANCH.COLOR_BRANCH_PARENT = W_B_COLOR.COLOR_ID
     <if test="orderByClause != null" >
       order by ${orderByClause}
     </if>
