@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alexmillerning.mapper.WFColorBranchMapper" >
+  <resultMap id="BaseResultMap" type="com.alexmillerning.pojo.WFColorBranch" >
+    <id column="COLOR_BRANCH_ID" property="colorBranchId" jdbcType="INTEGER" />
+    <result column="COLOR_BRANCH_NAME" property="colorBranchName" jdbcType="VARCHAR" />
+    <result column="COLOR_BRANCH_PARENT" property="colorBranchParent" jdbcType="VARCHAR" />
+    <result column="COLOR_BRANCH_REMARK" property="colorBranchRemark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    COLOR_BRANCH_ID, COLOR_BRANCH_NAME, COLOR_BRANCH_PARENT, COLOR_BRANCH_REMARK
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.alexmillerning.pojo.WFColorBranchExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from w_f_color_branch
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <!--添加分页查询语句-->
+  <select id="selectByExampleandPage" resultMap="BaseResultMap" parameterType="com.alexmillerning.pojo.WFColorBranchExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from w_f_color_branch
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset},${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <!--添加分页查询语句-->
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from w_f_color_branch
+    where COLOR_BRANCH_ID = #{colorBranchId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from w_f_color_branch
+    where COLOR_BRANCH_ID = #{colorBranchId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.alexmillerning.pojo.WFColorBranchExample" >
+    delete from w_f_color_branch
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.alexmillerning.pojo.WFColorBranch" >
+    insert into w_f_color_branch (COLOR_BRANCH_ID, COLOR_BRANCH_NAME, COLOR_BRANCH_PARENT, 
+      COLOR_BRANCH_REMARK)
+    values (#{colorBranchId,jdbcType=INTEGER}, #{colorBranchName,jdbcType=VARCHAR}, #{colorBranchParent,jdbcType=VARCHAR}, 
+      #{colorBranchRemark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.alexmillerning.pojo.WFColorBranch" >
+    insert into w_f_color_branch
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="colorBranchId != null" >
+        COLOR_BRANCH_ID,
+      </if>
+      <if test="colorBranchName != null" >
+        COLOR_BRANCH_NAME,
+      </if>
+      <if test="colorBranchParent != null" >
+        COLOR_BRANCH_PARENT,
+      </if>
+      <if test="colorBranchRemark != null" >
+        COLOR_BRANCH_REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="colorBranchId != null" >
+        #{colorBranchId,jdbcType=INTEGER},
+      </if>
+      <if test="colorBranchName != null" >
+        #{colorBranchName,jdbcType=VARCHAR},
+      </if>
+      <if test="colorBranchParent != null" >
+        #{colorBranchParent,jdbcType=VARCHAR},
+      </if>
+      <if test="colorBranchRemark != null" >
+        #{colorBranchRemark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.alexmillerning.pojo.WFColorBranchExample" resultType="java.lang.Integer" >
+    select count(*) from w_f_color_branch
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update w_f_color_branch
+    <set >
+      <if test="record.colorBranchId != null" >
+        COLOR_BRANCH_ID = #{record.colorBranchId,jdbcType=INTEGER},
+      </if>
+      <if test="record.colorBranchName != null" >
+        COLOR_BRANCH_NAME = #{record.colorBranchName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.colorBranchParent != null" >
+        COLOR_BRANCH_PARENT = #{record.colorBranchParent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.colorBranchRemark != null" >
+        COLOR_BRANCH_REMARK = #{record.colorBranchRemark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update w_f_color_branch
+    set COLOR_BRANCH_ID = #{record.colorBranchId,jdbcType=INTEGER},
+      COLOR_BRANCH_NAME = #{record.colorBranchName,jdbcType=VARCHAR},
+      COLOR_BRANCH_PARENT = #{record.colorBranchParent,jdbcType=VARCHAR},
+      COLOR_BRANCH_REMARK = #{record.colorBranchRemark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.alexmillerning.pojo.WFColorBranch" >
+    update w_f_color_branch
+    <set >
+      <if test="colorBranchName != null" >
+        COLOR_BRANCH_NAME = #{colorBranchName,jdbcType=VARCHAR},
+      </if>
+      <if test="colorBranchParent != null" >
+        COLOR_BRANCH_PARENT = #{colorBranchParent,jdbcType=VARCHAR},
+      </if>
+      <if test="colorBranchRemark != null" >
+        COLOR_BRANCH_REMARK = #{colorBranchRemark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where COLOR_BRANCH_ID = #{colorBranchId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.alexmillerning.pojo.WFColorBranch" >
+    update w_f_color_branch
+    set COLOR_BRANCH_NAME = #{colorBranchName,jdbcType=VARCHAR},
+      COLOR_BRANCH_PARENT = #{colorBranchParent,jdbcType=VARCHAR},
+      COLOR_BRANCH_REMARK = #{colorBranchRemark,jdbcType=VARCHAR}
+    where COLOR_BRANCH_ID = #{colorBranchId,jdbcType=INTEGER}
+  </update>
+
+  <!-- 颜色分类联合查询 -->
+  <sql id="Color_Column_List" >
+    COLOR_BRANCH_ID, COLOR_BRANCH_NAME , COLOR_NAME
+  </sql>
+  <sql id="Color_Condition_List" >
+    COLOR_BRANCH_ID, COLOR_BRANCH_NAME , COLOR_NAME
+  </sql>
+  <!-- 颜色分类联合查询 -->
+  <!-- 颜色分类联合查询集合 -->
+  <resultMap id="ColorResultMap" type="com.alexmillerning.pojo.WFColorBranch" >
+    <id column="COLOR_BRANCH_ID" property="colorBranchId" jdbcType="INTEGER" />
+    <result column="COLOR_BRANCH_NAME" property="colorBranchName" jdbcType="VARCHAR" />
+    <association property="wbColor" column="colorId" javaType="com.alexmillerning.pojo.WBColor">
+      <id property="colorId" column="color_id" jdbcType="VARCHAR"/>
+      <result property="colorName" column="color_name" jdbcType="VARCHAR"/>
+    </association>
+  </resultMap>
+  <!-- 颜色分类联合查询集合 -->
+  <select id="selectByUnion" resultMap="ColorResultMap" parameterType="com.alexmillerning.pojo.WFColorBranchExample">
+--     select W_F_COLOR_BRANCH.COLOR_BRANCH_ID, W_F_COLOR_BRANCH.COLOR_BRANCH_NAME, W_B_COLOR.COLOR_NAME
+--     from W_F_COLOR_BRANCH,W_B_COLOR
+--     where W_F_COLOR_BRANCH.COLOR_BRANCH_PARENT = W_B_COLOR.COLOR_ID
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Color_Column_List" />
+    from W_F_COLOR_BRANCH,W_B_COLOR
+    and W_F_COLOR_BRANCH.COLOR_BRANCH_PARENT = W_B_COLOR.COLOR_ID
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset},${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+</mapper>

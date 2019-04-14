@@ -77,6 +77,11 @@
                 <artifactId>spring-jdbc</artifactId>
                 <version>${spring.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aspects</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
             <!-- 依赖spring-mvcweb -->
             <dependency>
                 <groupId>org.springframework</groupId>

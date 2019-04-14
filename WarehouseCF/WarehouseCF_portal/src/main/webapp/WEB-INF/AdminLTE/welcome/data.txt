@@ -1,0 +1,44 @@
+{
+  "data": [
+    {
+      "colorid": "01",
+      "colorname": "红"
+    },
+	{
+      "colorid": "02",
+      "colorname": "橙"
+    },
+	{
+      "colorid": "03",
+      "colorname": "黄"
+    },
+	{
+      "colorid": "04",
+      "colorname": "绿"
+    },
+	{
+      "colorid": "05",
+      "colorname": "蓝"
+    },
+	{
+      "colorid": "06",
+      "colorname": "靛"
+    },
+	{
+      "colorid": "07",
+      "colorname": "紫"
+    },
+	{
+      "colorid": "08",
+      "colorname": "黑"
+    },
+	{
+      "colorid": "09",
+      "colorname": "白"
+    },
+	{
+      "colorid": "10",
+      "colorname": "其他"
+    }
+  ]
+}
