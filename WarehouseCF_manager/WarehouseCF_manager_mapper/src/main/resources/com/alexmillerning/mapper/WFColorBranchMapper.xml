@@ -230,7 +230,7 @@
   <resultMap id="ColorResultMap" type="com.alexmillerning.pojo.WFColorBranch" >
     <id column="COLOR_BRANCH_ID" property="colorBranchId" jdbcType="INTEGER" />
     <result column="COLOR_BRANCH_NAME" property="colorBranchName" jdbcType="VARCHAR" />
-    <association property="wbColor" column="colorId" javaType="com.alexmillerning.pojo.WBColor">
+    <association property="wbColor" javaType="com.alexmillerning.pojo.WBColor">
       <id property="colorId" column="color_id" jdbcType="VARCHAR"/>
       <result property="colorName" column="color_name" jdbcType="VARCHAR"/>
     </association>

@@ -15,6 +15,7 @@ import com.alexmillerning.portal.service.WFColorBranchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 @Service
 /**
@@ -58,6 +59,11 @@ public class WFColorBranchServiceImpl implements WFColorBranchService {
         criteria.andColorBranchParentEqualTo(colorId);
 //        List<WFColorBranch> wfColorBranchList = wfColorBranchMapper.selectByExampleandPage(wfColorBranchExample);
         List<WFColorBranch> wfColorBranchList = wfColorBranchMapper.selectByUnion(wfColorBranchExample);
+//        List result = new ArrayList();
+//        for (WFColorBranch wfColorBranch: wfColorBranchList) {
+//            wfColorBranch.setColorName(wfColorBranch.getWbColor().getColorName());
+//            result.add(wfColorBranch);
+//        }
         return wfColorBranchList;
     }
     @Override

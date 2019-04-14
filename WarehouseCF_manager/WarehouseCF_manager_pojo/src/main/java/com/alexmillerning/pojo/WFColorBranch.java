@@ -12,6 +12,7 @@ public class WFColorBranch {
 
     //增加父类颜色关联查询
     private WBColor wbColor;
+    private String colorName;
 
     public Integer getColorBranchId() {
         return colorBranchId;
@@ -45,11 +46,20 @@ public class WFColorBranch {
         this.colorBranchRemark = colorBranchRemark == null ? null : colorBranchRemark.trim();
     }
 
+
     public WBColor getWbColor() {
         return wbColor;
     }
 
     public void setWbColor(WBColor wbColor) {
         this.wbColor = wbColor;
+    }
+
+    public String getColorName() {
+        return colorName;
+    }
+
+    public void setColorName(String colorName) {
+        this.colorName = colorName;
     }
 }
