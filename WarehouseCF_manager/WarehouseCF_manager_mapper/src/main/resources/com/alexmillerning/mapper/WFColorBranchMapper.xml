@@ -218,15 +218,11 @@
     where COLOR_BRANCH_ID = #{colorBranchId,jdbcType=INTEGER}
   </update>
 
-  <!-- 颜色分类联合查询 -->
+  <!-- 颜色子类父类联合查询列 -->
   <sql id="Color_Column_List" >
     COLOR_BRANCH_ID, COLOR_BRANCH_NAME , COLOR_NAME
   </sql>
-  <sql id="Color_Condition_List" >
-    COLOR_BRANCH_ID, COLOR_BRANCH_NAME , COLOR_NAME
-  </sql>
-  <!-- 颜色分类联合查询 -->
-  <!-- 颜色分类联合查询集合 -->
+  <!-- 颜色子类父类联合查询结果集 -->
   <resultMap id="ColorResultMap" type="com.alexmillerning.pojo.WFColorBranch" >
     <id column="COLOR_BRANCH_ID" property="colorBranchId" jdbcType="INTEGER" />
     <result column="COLOR_BRANCH_NAME" property="colorBranchName" jdbcType="VARCHAR" />
@@ -235,11 +231,42 @@
       <result property="colorName" column="color_name" jdbcType="VARCHAR"/>
     </association>
   </resultMap>
-  <!-- 颜色分类联合查询集合 -->
+  <!-- 颜色子类父类联合查询where条件 -->
+  <sql id="Union_Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+          and W_F_COLOR_BRANCH.COLOR_BRANCH_PARENT = W_B_COLOR.COLOR_ID
+        </if>
+        <if test="!criteria.valid">
+           W_F_COLOR_BRANCH.COLOR_BRANCH_PARENT = W_B_COLOR.COLOR_ID
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <!-- 颜色子类父类联合查询 -->
   <select id="selectByUnion" resultMap="ColorResultMap" parameterType="com.alexmillerning.pojo.WFColorBranchExample">
---     select W_F_COLOR_BRANCH.COLOR_BRANCH_ID, W_F_COLOR_BRANCH.COLOR_BRANCH_NAME, W_B_COLOR.COLOR_NAME
---     from W_F_COLOR_BRANCH,W_B_COLOR
---     where W_F_COLOR_BRANCH.COLOR_BRANCH_PARENT = W_B_COLOR.COLOR_ID
     select
     <if test="distinct" >
       distinct
@@ -247,9 +274,8 @@
     <include refid="Color_Column_List" />
     from W_F_COLOR_BRANCH,W_B_COLOR
     <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
+      <include refid="Union_Example_Where_Clause" />
     </if>
-      and W_F_COLOR_BRANCH.COLOR_BRANCH_PARENT = W_B_COLOR.COLOR_ID
     <if test="orderByClause != null" >
       order by ${orderByClause}
     </if>

@@ -75,28 +75,33 @@
                   </div>
                 </div>
               </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <label>子类颜色</label>
+                  <button class="btn  btn-primary" id="newAttribute">新增颜色</button>
+                </div>
+              </div>
               <!-- 表格 -->
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label>子类颜色</label>
                     <table id="example" class="table table-striped table-bordered">
-                <thead>
-                  <tr>
-                    <th>颜色编号</th>
-                    <th>颜色名称</th>
-                    <th>所属色系</th>
-                  </tr>
-                </thead>
-                <tbody></tbody>
-                <tfoot>
-                  <th>按颜色编号查询</th>
-                  <th>按颜色名称查询</th>
-                  <th>按颜色色系查询</th>
-                </tfoot>
-                <!-- tfoot是搜索 -->
-                <!-- tbody是必须的 -->
-              </table>
+                      <thead>
+                        <tr>
+                          <th>颜色编号</th>
+                          <th>颜色名称</th>
+                          <th>所属色系</th>
+                        </tr>
+                      </thead>
+                      <tbody></tbody>
+                      <tfoot>
+                        <th>按颜色编号查询</th>
+                        <th>按颜色名称查询</th>
+                        <th>按颜色色系查询</th>
+                      </tfoot>
+                      <!-- tfoot是搜索 -->
+                      <!-- tbody是必须的 -->
+                    </table>
                   </div>
                 </div>
               </div>
@@ -106,6 +111,9 @@
           <!-- /.box -->
         </div>
         <!-- /.col -->
+      </div>
+      <div class="row">
+
       </div>
       <!-- /.row -->
     </section>
@@ -149,7 +157,7 @@
     if(params == null){
       params = "0";
     }
-    // console.log("params"+params);
+    console.log("params"+params);
     $('#example tfoot th').each( function () {
       var title = $(this).text();
       //获取内容显示在输入框placeholder
@@ -168,7 +176,7 @@
         { "data": "colorBranchName" },
         { "data": "wbColor.colorName" }
       ],
-      "searching": false,//是否支持搜索
+      "searching": true,//是否支持搜索
       autoFill: true,
       bAutoWidth : true,
       //语言修改为中文
@@ -196,6 +204,9 @@
     $('#example').DataTable().settings()[0].ajax.data = param;
     $('#example').DataTable().ajax.reload();
   }
+  $('#myInput').on( 'keyup', function () {
+    table.search( this.value ).draw();
+  } );
 
 </script>
 </body>

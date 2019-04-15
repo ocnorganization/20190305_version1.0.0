@@ -59,11 +59,6 @@ public class WFColorBranchServiceImpl implements WFColorBranchService {
         criteria.andColorBranchParentEqualTo(colorId);
 //        List<WFColorBranch> wfColorBranchList = wfColorBranchMapper.selectByExampleandPage(wfColorBranchExample);
         List<WFColorBranch> wfColorBranchList = wfColorBranchMapper.selectByUnion(wfColorBranchExample);
-//        List result = new ArrayList();
-//        for (WFColorBranch wfColorBranch: wfColorBranchList) {
-//            wfColorBranch.setColorName(wfColorBranch.getWbColor().getColorName());
-//            result.add(wfColorBranch);
-//        }
         return wfColorBranchList;
     }
     @Override
@@ -79,7 +74,8 @@ public class WFColorBranchServiceImpl implements WFColorBranchService {
         WFColorBranchExample wfColorBranchExample = new WFColorBranchExample();
         wfColorBranchExample.setOffset(offSet);
         wfColorBranchExample.setLimit(limit);
-        List<WFColorBranch> wfColorBranchList = wfColorBranchMapper.selectByExampleandPage(wfColorBranchExample);
+        WFColorBranchExample.Criteria criteria = wfColorBranchExample.createCriteria();
+        List<WFColorBranch> wfColorBranchList = wfColorBranchMapper.selectByUnion(wfColorBranchExample);
         return wfColorBranchList;
     }
     @Override
