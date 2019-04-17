@@ -12,6 +12,7 @@ import com.alexmillerning.mapper.WFColorBranchMapper;
 import com.alexmillerning.pojo.WFColorBranch;
 import com.alexmillerning.pojo.WFColorBranchExample;
 import com.alexmillerning.portal.service.WFColorBranchService;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -92,12 +93,36 @@ public class WFColorBranchServiceImpl implements WFColorBranchService {
         int count = wfColorBranchMapper.countByExample(wfColorBranchExample);
         return count;
     }
-
+    @Override
+    /**
+     * @methodname getColorBranchCountbyPid
+     * @author Alex
+     * @date 2019/4/17
+     * @param [colorId]
+     * @return int
+     * @description 数据库查询颜色父类数量
+     */
     public int getColorBranchCountbyPid(String colorId) {
         WFColorBranchExample wfColorBranchExample = new WFColorBranchExample();
         WFColorBranchExample.Criteria criteria = wfColorBranchExample.createCriteria();
         criteria.andColorBranchParentEqualTo(colorId);
         int count = wfColorBranchMapper.countByExample(wfColorBranchExample);
         return count;
+    }
+
+    @Override
+    /**
+     * @methodname updateColorBranch
+     * @author Alex
+     * @date 2019/4/17
+     * @param []
+     * @return void
+     * @description 数据库更新子类颜色
+     */
+    public int updateColorBranch(WFColorBranch wfColorBranch) {
+        WFColorBranchExample wfColorBranchExample = new WFColorBranchExample();
+        WFColorBranchExample.Criteria criteria = wfColorBranchExample.createCriteria();
+        criteria.andColorBranchIdEqualTo(wfColorBranch.getColorBranchId());
+        return wfColorBranchMapper.updateByExampleSelective(wfColorBranch,wfColorBranchExample);
     }
 }

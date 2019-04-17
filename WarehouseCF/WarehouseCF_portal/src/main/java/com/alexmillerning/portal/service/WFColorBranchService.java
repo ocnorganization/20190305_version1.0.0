@@ -18,4 +18,5 @@ public interface WFColorBranchService {
     List<WFColorBranch> getColorBranchbyPage(Integer offSet,Integer limit);
     int getColorBranchCount();
     int getColorBranchCountbyPid(String colorId);
+    int updateColorBranch(WFColorBranch wfColorBranch);
 }

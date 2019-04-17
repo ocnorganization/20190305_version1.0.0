@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class DesignController {
@@ -91,6 +92,30 @@ public class DesignController {
             int recordsTotal = wfColorBranchService.getColorBranchCount();
             int recordsFiltered = wfColorBranchService.getColorBranchCount();
             return JSONPack.packbyPage(Integer.parseInt(draw),recordsTotal,recordsFiltered,wfColorBranchList);
+        }
+    }
+    @RequestMapping("/mainPage/goDesign/color/edit")
+    @ResponseBody
+    public JSONObject editColor(@RequestParam(value="colorBranchId") Integer colorBranchId,@RequestParam(value="colorBranchName") String colorBranchName,@RequestParam(value="colorName") String colorName){
+        if(logger.isDebugEnabled()){
+            logger.debug("收到url:[/mainPage/goDesign/color/edit]请求 请求参数为draw:["+colorBranchId+"] colorBranchName:["+colorBranchName+"] colorName:["+colorName+"]");
+        }
+        if(colorBranchId != null){
+            WFColorBranch wfColorBranch = new WFColorBranch();
+            wfColorBranch.setColorBranchId(colorBranchId);
+            wfColorBranch.setColorBranchName(colorBranchName);
+            if(colorName !=null&&colorName !=""){
+                wfColorBranch.setColorBranchParent(colorName);
+            }
+            int result = wfColorBranchService.updateColorBranch(wfColorBranch);
+            if(result != 0){
+                return JSONPack.packe(true,"更新成功!");
+
+            }else {
+                return JSONPack.packe(false,"更新失败!");
+            }
+        }else {
+            return JSONPack.packe(false,"请求参数为空,更新失败!");
         }
     }
 }
