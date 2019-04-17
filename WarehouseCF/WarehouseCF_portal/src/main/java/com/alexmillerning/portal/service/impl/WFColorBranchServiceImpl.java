@@ -18,6 +18,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 @Service
 /**
  * @name WFColorBranchServiceImpl
@@ -124,5 +127,18 @@ public class WFColorBranchServiceImpl implements WFColorBranchService {
         WFColorBranchExample.Criteria criteria = wfColorBranchExample.createCriteria();
         criteria.andColorBranchIdEqualTo(wfColorBranch.getColorBranchId());
         return wfColorBranchMapper.updateByExampleSelective(wfColorBranch,wfColorBranchExample);
+    }
+
+    @Override
+    public List<WFColorBranch> searchColorBranch(String searchParam,Integer offSet,Integer limit) {
+        WFColorBranchExample wfColorBranchExample = new WFColorBranchExample();
+        WFColorBranchExample.Criteria criteria = wfColorBranchExample.createCriteria();
+        Pattern pattern = Pattern.compile("^[0-9]*[1-9][0-9]*$");
+        if(pattern.matcher(searchParam).matches()){
+            criteria.andColorBranchIdEqualTo(Integer.parseInt(searchParam));
+        }else{
+            criteria.andColorBranchNameEqualTo(searchParam);
+        }
+        return wfColorBranchMapper.selectByUnion(wfColorBranchExample);
     }
 }

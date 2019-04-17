@@ -19,4 +19,6 @@ public interface WFColorBranchService {
     int getColorBranchCount();
     int getColorBranchCountbyPid(String colorId);
     int updateColorBranch(WFColorBranch wfColorBranch);
+    List<WFColorBranch> searchColorBranch(String searchParam,Integer offSet,Integer limit);
+
 }

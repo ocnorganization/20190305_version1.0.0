@@ -68,19 +68,33 @@ public class DesignController {
      * @return com.alibaba.fastjson.JSONObject
      * @description 设计元素/颜色/颜色子类表格数据处理类
      */
-    public JSONObject getColor(@RequestParam(value="colorid") String colorId,@RequestParam(value="draw") String draw,@RequestParam(value="start") String start,@RequestParam(value="length") String length){
+    public JSONObject getColor(@RequestParam(value="colorPid",required = false) String colorPid,
+                               @RequestParam(value="draw") String draw,
+                               @RequestParam(value="start") String start,
+                               @RequestParam(value="length") String length,
+                               @RequestParam(value="search",required = false) String searchParam){
         if(logger.isDebugEnabled()){
-            logger.debug("收到url:[/mainPage/goDesign/color]请求 请求参数为draw:["+draw+"] start:["+start+"] length:["+length+"] colorid:["+colorId+"]");
+            logger.debug("收到url:[/mainPage/goDesign/color]请求 请求参数为draw:["+draw+"] start:["+start+"] length:["+length+"] colorPid:["+colorPid+"] search:["+searchParam+"]");
         }
-        if(!colorId.equals("0")){
+        if(searchParam != null&&searchParam != ""){
+            if(logger.isDebugEnabled()){
+                logger.debug("开始根据参数查询子类颜色...");
+            }
+            Integer offSet = Integer.parseInt(start);
+            Integer limit = Integer.parseInt(length);
+            List<WFColorBranch> wfColorBranchList = wfColorBranchService.searchColorBranch(searchParam,offSet,limit);
+            int recordsTotal = wfColorBranchService.getColorBranchCount();
+            int recordsFiltered = wfColorBranchList.size();
+            return JSONPack.packbyPage(Integer.parseInt(draw),recordsTotal,recordsFiltered,wfColorBranchList);
+        }else if(colorPid != null&&colorPid != ""){
             if(logger.isDebugEnabled()){
                 logger.debug("开始按父类分页查询子类颜色...");
             }
             Integer offSet = Integer.parseInt(start);
             Integer limit = Integer.parseInt(length);
-            List<WFColorBranch> wfColorBranchList = wfColorBranchService.getColorBranch(colorId,offSet,limit);
+            List<WFColorBranch> wfColorBranchList = wfColorBranchService.getColorBranch(colorPid,offSet,limit);
             int recordsTotal = wfColorBranchService.getColorBranchCount();
-            int recordsFiltered = wfColorBranchService.getColorBranchCountbyPid(colorId);
+            int recordsFiltered = wfColorBranchService.getColorBranchCountbyPid(colorPid);
             return JSONPack.packbyPage(Integer.parseInt(draw),recordsTotal,recordsFiltered,wfColorBranchList);
         }else{
             if(logger.isDebugEnabled()){
@@ -92,7 +106,45 @@ public class DesignController {
             int recordsTotal = wfColorBranchService.getColorBranchCount();
             int recordsFiltered = wfColorBranchService.getColorBranchCount();
             return JSONPack.packbyPage(Integer.parseInt(draw),recordsTotal,recordsFiltered,wfColorBranchList);
+
         }
+
+//        }
+//        if(searchParam == null||searchParam.equals("")){
+//            if(!colorPid.equals("0")){
+//                if(logger.isDebugEnabled()){
+//                    logger.debug("开始按父类分页查询子类颜色...");
+//                }
+//                Integer offSet = Integer.parseInt(start);
+//                Integer limit = Integer.parseInt(length);
+//                List<WFColorBranch> wfColorBranchList = wfColorBranchService.getColorBranch(colorPid,offSet,limit);
+//                int recordsTotal = wfColorBranchService.getColorBranchCount();
+//                int recordsFiltered = wfColorBranchService.getColorBranchCountbyPid(colorPid);
+//                return JSONPack.packbyPage(Integer.parseInt(draw),recordsTotal,recordsFiltered,wfColorBranchList);
+//            }else{
+//                if(logger.isDebugEnabled()){
+//                    logger.debug("开始分页查询所有子类颜色...");
+//                }
+//                Integer offSet = Integer.parseInt(start);
+//                Integer limit = Integer.parseInt(length);
+//                List<WFColorBranch> wfColorBranchList = wfColorBranchService.getColorBranchbyPage(offSet,limit);
+//                int recordsTotal = wfColorBranchService.getColorBranchCount();
+//                int recordsFiltered = wfColorBranchService.getColorBranchCount();
+//                return JSONPack.packbyPage(Integer.parseInt(draw),recordsTotal,recordsFiltered,wfColorBranchList);
+//            }
+//        }else{
+//            if(logger.isDebugEnabled()){
+//                logger.debug("开始根据参数查询子类颜色...");
+//            }
+//            Integer offSet = Integer.parseInt(start);
+//            Integer limit = Integer.parseInt(length);
+//            List<WFColorBranch> wfColorBranchList = wfColorBranchService.searchColorBranch(searchParam,offSet,limit);
+//            int recordsTotal = wfColorBranchService.getColorBranchCount();
+//            int recordsFiltered = wfColorBranchList.size();
+//            return JSONPack.packbyPage(Integer.parseInt(draw),recordsTotal,recordsFiltered,wfColorBranchList);
+
+//        }
+
     }
     @RequestMapping("/mainPage/goDesign/color/edit")
     @ResponseBody

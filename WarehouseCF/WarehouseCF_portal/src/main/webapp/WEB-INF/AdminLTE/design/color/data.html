@@ -88,9 +88,10 @@
               <!--<div class="row">-->
                 <!--<div class="col-md-12">-->
                   <!--<div class="form-group">-->
-                  <!--<div>-->
-                    <!--<label>子类颜色</label>-->
-                  <!--</div>-->
+                    <!--<label for="searchColorBranchId" class="col-sm-2 control-label">颜色编号</label>-->
+                    <!--<div class="col-sm-2">-->
+                      <!--<input type="input" disabled="disabled" class="form-control" id="searchColorBranchId">-->
+                    <!--</div>-->
                   <!--<div>-->
                     <!--<button class="btn  btn-primary" id="newAttribute">新增颜色</button>-->
                   <!--</div>-->
@@ -247,18 +248,15 @@
   // });
   //初始化表格
   $(document).ready(function() {
-    var params=$(".select2").val();
-    if(params == null){
-      params = "0";
-    }
     //表格
     $('#example').DataTable( {
       //重新布局表格
-      dom:  "<'row'<'col-sm-1'<'select'>><'col-sm-11'B>>" +
+      dom:  "<'row'<'col-sm-1'<'select'>> <'col-sm-2'<'search'>> <'col-sm-9'B>>" +
               "<'row'<'col-sm-12'tr>>" +
               "<'row'<'col-sm-5'l><'col-sm-7'p>>",
       //添加表格上方的按钮
       buttons: [
+        'search',
         {
           text: '<i class="glyphicon glyphicon-copy" title="复制"></i>',
           extend: 'copy'
@@ -281,7 +279,6 @@
       //ajax请求
       ajax: {
         url:"/mainPage/goDesign/color",
-        data: {"colorid":params},
         dataType:"json",
         cache:false
       },
@@ -339,6 +336,7 @@
       //表格初始化完成后加载下拉菜单
       fnInitComplete: function(){
         $('div.select').html('<select id="table-select" class="form-control select2" style="width: 100%;"></select>');
+        $('div.search').html('<input type="input" class="form-control" id="searchColorBranchId" placeholder="按编号/名称搜索" style="width: 100%;"></input>');
         $("#table-select").select2({
           placeholder: '基础颜色',
           ajax: {
@@ -348,25 +346,25 @@
         });
         //下拉菜单点击处理事件
         $("#table-select").on("change", function(e) {
-          reloadTable($("#table-select").val());
+          $('#searchColorBranchId').val(null);
+          searchBranchColor();
         });
       }
     } );
   } );
-  //重新加载表格
-  function reloadTable(id) {
-    var param = {
-      "colorid": id,
-    };
-    $('#example').DataTable().settings()[0].ajax.data = param;
-    $('#example').DataTable().ajax.reload();
-  }
+  //表格上方搜索按钮搜索
+  $.fn.dataTable.ext.buttons.search = {
+    text: '<i class="glyphicon glyphicon-search" title="搜索"></i>',
+    action: function ( e, dt, node, config ) {
+      searchBranchColor();
+    }
+  };
   //表格上方刷新按钮刷新
   $.fn.dataTable.ext.buttons.reload = {
     text: '<i class="glyphicon glyphicon-refresh" title="刷新"></i>',
     action: function ( e, dt, node, config ) {
       // dt.ajax.reload();
-      reloadTable(0);
+      reloadTable();
     }
   };
   //表格上方新增按钮新增
@@ -383,7 +381,7 @@
       // dt.ajax.reload();
     }
   };
-
+  //编辑子类颜色并保存
   function editBranchColor(){
     var colorBranchId  = $("#colorBranchId").val();
     var colorBranchName  = $("#colorBranchName").val();
@@ -395,12 +393,30 @@
       success:function(data){
         $('#editModal').modal('hide');
         alert(data.success);
-        $('#example').DataTable().ajax.reload();
+        reloadTable();
       },
       error:function(e){
         alert("错误！！");
       }
     });
+  }
+  //重新加载表格
+  function reloadTable() {
+    var param = {
+      "search": null,
+      "colorPid": null
+    };
+    $('#example').DataTable().settings()[0].ajax.data = param;
+    $('#example').DataTable().ajax.reload();
+  }
+  //按参数加载表格
+  function searchBranchColor() {
+    var param = {
+      "search": $('#searchColorBranchId').val(),
+      "colorPid": $("#table-select").val()
+    };
+    $('#example').DataTable().settings()[0].ajax.data = param;
+    $('#example').DataTable().ajax.reload();
   }
 </script>
 </body>
