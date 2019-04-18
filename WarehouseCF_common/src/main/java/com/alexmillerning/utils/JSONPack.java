@@ -42,13 +42,9 @@ public class JSONPack {
         return jsonObject;
     }
 
-    public static JSONObject packe(boolean flag,String message){
+    public static JSONObject pack(String message){
         Map<String,Object> json = new HashMap<String ,Object>();
-        if(flag){
-            json.put("success",message);
-        }else {
-            json.put("error",message);
-        }
+        json.put("resultMessage",message);
         JSONObject jsonObject = new JSONObject(json);
         if(logger.isDebugEnabled()){
             logger.debug("组包后的JSON对象为:["+jsonObject+"]");

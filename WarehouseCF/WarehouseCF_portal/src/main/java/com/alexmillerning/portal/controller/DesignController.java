@@ -39,7 +39,7 @@ public class DesignController {
      * @date 2019/4/12
      * @param []
      * @return com.alibaba.fastjson.JSONObject
-     * @description 设计元素/颜色/颜色大类下拉列表数据处理类
+     * @description 设计元素/颜色/颜色大类下拉列表数据查询方法
      */
     public JSONObject getColorParent() {
         if(logger.isDebugEnabled()){
@@ -66,7 +66,7 @@ public class DesignController {
      * @date 2019/4/12
      * @param [colorId, draw, start, length]
      * @return com.alibaba.fastjson.JSONObject
-     * @description 设计元素/颜色/颜色子类表格数据处理类
+     * @description 设计元素/颜色/颜色子类表格数据查询方法
      */
     public JSONObject getColor(@RequestParam(value="colorPid",required = false) String colorPid,
                                @RequestParam(value="draw") String draw,
@@ -108,47 +108,20 @@ public class DesignController {
             return JSONPack.packbyPage(Integer.parseInt(draw),recordsTotal,recordsFiltered,wfColorBranchList);
 
         }
-
-//        }
-//        if(searchParam == null||searchParam.equals("")){
-//            if(!colorPid.equals("0")){
-//                if(logger.isDebugEnabled()){
-//                    logger.debug("开始按父类分页查询子类颜色...");
-//                }
-//                Integer offSet = Integer.parseInt(start);
-//                Integer limit = Integer.parseInt(length);
-//                List<WFColorBranch> wfColorBranchList = wfColorBranchService.getColorBranch(colorPid,offSet,limit);
-//                int recordsTotal = wfColorBranchService.getColorBranchCount();
-//                int recordsFiltered = wfColorBranchService.getColorBranchCountbyPid(colorPid);
-//                return JSONPack.packbyPage(Integer.parseInt(draw),recordsTotal,recordsFiltered,wfColorBranchList);
-//            }else{
-//                if(logger.isDebugEnabled()){
-//                    logger.debug("开始分页查询所有子类颜色...");
-//                }
-//                Integer offSet = Integer.parseInt(start);
-//                Integer limit = Integer.parseInt(length);
-//                List<WFColorBranch> wfColorBranchList = wfColorBranchService.getColorBranchbyPage(offSet,limit);
-//                int recordsTotal = wfColorBranchService.getColorBranchCount();
-//                int recordsFiltered = wfColorBranchService.getColorBranchCount();
-//                return JSONPack.packbyPage(Integer.parseInt(draw),recordsTotal,recordsFiltered,wfColorBranchList);
-//            }
-//        }else{
-//            if(logger.isDebugEnabled()){
-//                logger.debug("开始根据参数查询子类颜色...");
-//            }
-//            Integer offSet = Integer.parseInt(start);
-//            Integer limit = Integer.parseInt(length);
-//            List<WFColorBranch> wfColorBranchList = wfColorBranchService.searchColorBranch(searchParam,offSet,limit);
-//            int recordsTotal = wfColorBranchService.getColorBranchCount();
-//            int recordsFiltered = wfColorBranchList.size();
-//            return JSONPack.packbyPage(Integer.parseInt(draw),recordsTotal,recordsFiltered,wfColorBranchList);
-
-//        }
-
     }
     @RequestMapping("/mainPage/goDesign/color/edit")
     @ResponseBody
-    public JSONObject editColor(@RequestParam(value="colorBranchId") Integer colorBranchId,@RequestParam(value="colorBranchName") String colorBranchName,@RequestParam(value="colorName") String colorName){
+    /**
+     * @methodname editColor
+     * @author Alex
+     * @date 2019/4/18
+     * @param [colorBranchId, colorBranchName, colorName]
+     * @return com.alibaba.fastjson.JSONObject
+     * @description 设计元素/颜色/颜色子类表格数据新增方法
+     */
+    public JSONObject editColor(@RequestParam(value="colorBranchId") Integer colorBranchId,
+                                @RequestParam(value="colorBranchName") String colorBranchName,
+                                @RequestParam(value="colorName") String colorName){
         if(logger.isDebugEnabled()){
             logger.debug("收到url:[/mainPage/goDesign/color/edit]请求 请求参数为draw:["+colorBranchId+"] colorBranchName:["+colorBranchName+"] colorName:["+colorName+"]");
         }
@@ -161,13 +134,46 @@ public class DesignController {
             }
             int result = wfColorBranchService.updateColorBranch(wfColorBranch);
             if(result != 0){
-                return JSONPack.packe(true,"更新成功!");
+                return JSONPack.pack("更新成功!");
 
             }else {
-                return JSONPack.packe(false,"更新失败!");
+                return JSONPack.pack("更新失败!");
             }
         }else {
-            return JSONPack.packe(false,"请求参数为空,更新失败!");
+            return JSONPack.pack("请求参数为空,更新失败!");
+        }
+    }
+    @RequestMapping("/mainPage/goDesign/color/delete")
+    @ResponseBody
+    /**
+     * @methodname deleteColor
+     * @author Alex
+     * @date 2019/4/18
+     * @param [deleteParamArray]
+     * @return com.alibaba.fastjson.JSONObject
+     * @description 设计元素/颜色/颜色子类表格数据删除方法
+     */
+    public JSONObject deleteColor(@RequestParam(value="deleteParam") Integer[] deleteParamArray){
+        if(logger.isDebugEnabled()) {
+            logger.debug("收到url:[/mainPage/goDesign/color/edit]请求 请求参数为deleteParam:[");
+            for(int i =0;i<deleteParamArray.length;i++){
+                logger.debug(deleteParamArray[i]+",");
+            }
+            logger.debug("]");
+        }
+        int flag = -1;
+        for(int i =0;i<deleteParamArray.length;i++){
+            int result = wfColorBranchService.deleteColorBranchbyId(deleteParamArray[i]);
+            if(result == 0){
+                flag = i;
+                break;
+
+            }
+        }
+        if(flag != -1){
+            return JSONPack.pack("删除第["+flag+"]数据出错!终止后续删除!");
+        }else{
+            return JSONPack.pack("删除成功!");
         }
     }
 }

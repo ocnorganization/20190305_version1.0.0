@@ -130,6 +130,14 @@ public class WFColorBranchServiceImpl implements WFColorBranchService {
     }
 
     @Override
+    /**
+     * @methodname searchColorBranch
+     * @author Alex
+     * @date 2019/4/18
+     * @param [searchParam, offSet, limit]
+     * @return java.util.List<com.alexmillerning.pojo.WFColorBranch>
+     * @description 根据参数查询颜色信息
+     */
     public List<WFColorBranch> searchColorBranch(String searchParam,Integer offSet,Integer limit) {
         WFColorBranchExample wfColorBranchExample = new WFColorBranchExample();
         WFColorBranchExample.Criteria criteria = wfColorBranchExample.createCriteria();
@@ -140,5 +148,11 @@ public class WFColorBranchServiceImpl implements WFColorBranchService {
             criteria.andColorBranchNameEqualTo(searchParam);
         }
         return wfColorBranchMapper.selectByUnion(wfColorBranchExample);
+    }
+
+    @Override
+    public int deleteColorBranchbyId(Integer colorBranchId) {
+//        WFColorBranchExample wfColorBranchExample = new WFColorBranchExample();
+        return wfColorBranchMapper.deleteByPrimaryKey(colorBranchId);
     }
 }

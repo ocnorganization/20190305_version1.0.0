@@ -11,7 +11,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Data Tables</title>
+  <title>CNSystem | Design/Color/ColorBranchTable</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -26,10 +26,12 @@
   <link rel="stylesheet" href="../../bower_components/Ionicons/css/ionicons.min.css">
   <!-- DataTables -->
   <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
-  <!--<link rel="stylesheet" href="../../bower_components/DataTables/DataTables-1.10.18/css/dataTables.bootstrap.min.css">-->
   <!-- DataTables Extends-->
-  <!--<link rel="stylesheet" type="text/css" href="../../bower_components/DataTables/DataTables-1.10.18/css/jquery.dataTables.min.css"/>-->
   <link rel="stylesheet" type="text/css" href="../../bower_components/DataTables/Buttons-1.5.6/css/buttons.dataTables.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" type="text/css" href="../../plugins/iCheck/flat/orange.css">
+  <!-- bootstrap-validation -->
+  <link rel="stylesheet" type="text/css" href="../../plugins/bootstrap-validation/dist/css/bootstrapValidator.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -71,33 +73,6 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <!-- 下拉菜单 -->
-              <!--<div class="row">-->
-                <!--&lt;!&ndash;<div class="col-md-1">&ndash;&gt;-->
-                  <!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<select class="form-control select2" style="width: 100%;">&ndash;&gt;-->
-                    <!--&lt;!&ndash;</select>&ndash;&gt;-->
-                  <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                <!--<div class="col-md-2">-->
-                  <!--<div class="form-group">-->
-                    <!--<button class="btn  btn-primary" id="newAttribute">新增颜色</button>-->
-                  <!--</div>-->
-                <!--</div>-->
-              <!--</div>-->
-              <!--<div class="row">-->
-                <!--<div class="col-md-12">-->
-                  <!--<div class="form-group">-->
-                    <!--<label for="searchColorBranchId" class="col-sm-2 control-label">颜色编号</label>-->
-                    <!--<div class="col-sm-2">-->
-                      <!--<input type="input" disabled="disabled" class="form-control" id="searchColorBranchId">-->
-                    <!--</div>-->
-                  <!--<div>-->
-                    <!--<button class="btn  btn-primary" id="newAttribute">新增颜色</button>-->
-                  <!--</div>-->
-                  <!--</div>-->
-                <!--</div>-->
-              <!--</div>-->
               <!-- 表格 -->
               <div class="row">
                 <div class="col-md-12">
@@ -113,13 +88,6 @@
                         </tr>
                       </thead>
                       <tbody></tbody>
-                      <!--<tfoot>-->
-                        <!--<th>按颜色编号查询</th>-->
-                        <!--<th>按颜色名称查询</th>-->
-                        <!--<th>按颜色色系查询</th>-->
-                      <!--</tfoot>-->
-                      <!-- tfoot是搜索 -->
-                      <!-- tbody是必须的 -->
                     </table>
                   </div>
                 </div>
@@ -142,7 +110,7 @@
             <form class="form-horizontal">
               <div class="box-body">
                 <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                  <button type="button" class="close" onclick="warnings($('#editModal'))" aria-hidden="true">
                     &times;
                   </button>
                   <h4 class="modal-title" id="myModalLabel">
@@ -171,7 +139,7 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                  <button type="button" onclick="warnings($('#editModal'))" class="btn btn-default">关闭</button>
                   <button type="button" onclick="editBranchColor()" class="btn btn-primary">提交更改</button>
                 </div>
               </div><!-- /.modal-content -->
@@ -179,6 +147,87 @@
           </div>
         </div>
       </div><!-- /.modal -->
+  </div>
+  <!-- 新增页面 -->
+  <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="box box-warning">
+          <form class="form-horizontal" id="addForm">
+            <div class="box-body">
+              <div class="modal-header">
+                <button type="button" class="close" onclick="warnings($('#addModal'))" aria-hidden="true">
+                  &times;
+                </button>
+                <h4 class="modal-title" id="addModalLabel">
+                  新增颜色
+                </h4>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="add-select" class="col-sm-2 control-label">所属颜色</label>
+                  <div class="col-sm-10">
+                    <select id="add-select" class="form-control select2" style="width: 100%;">
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="addColorBranchName" class="col-sm-2 control-label">颜色名称</label>
+                  <div class="col-sm-10">
+                    <input type="input" class="form-control" id="addColorBranchName" name="addColor">
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" onclick="warnings($('#addModal'))" class="btn btn-default">关闭</button>
+                <button type="button" onclick="addBranchColor()" class="btn btn-primary">新增</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </form>
+        </div>
+      </div>
+    </div><!-- /.modal -->
+  </div>
+
+  <!-- 删除确认页面 -->
+  <div class="modal modal-danger fade" id="deleteModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">警告</h4>
+        </div>
+        <div class="modal-body">
+          <p>是否要删除该数据?</p>
+          <input type="hidden"  class="form-control" id="deleteColorBranchId">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">取消</button>
+          <button type="button" onclick="deleteBranchColor($('#deleteColorBranchId').val())" data-dismiss="modal" class="btn btn-outline">确认删除</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 删除多个确认页面 -->
+  <div class="modal modal-danger fade" id="deleteAllModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">警告</h4>
+        </div>
+        <div class="modal-body">
+          <p>是否要删除所选中的所有数据?</p>
+          <input type="hidden"  class="form-control" id="deleteAllColorBranchId">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">取消</button>
+          <button type="button" onclick="deleteBranchColor($('#deleteAllColorBranchId').val())" data-dismiss="modal" class="btn btn-outline">确认删除</button>
+        </div>
+      </div>
+    </div>
   </div>
 <!-- jQuery 3 -->
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
@@ -200,6 +249,10 @@
 <script src="../../bower_components/select2/dist/js/select2.full.min.js"></script>
 <!-- bootstrap-select -->
 <script src="../../bower_components/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+  <!-- iCheck-->
+  <script src="../../plugins/iCheck/icheck.min.js"></script>
+  <!-- bootstrap-validation -->
+  <script src="../../plugins/bootstrap-validation/dist/js/bootstrapValidator.min.js"></script>
 <!-- FastClick -->
 <script src="../../bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
@@ -208,48 +261,98 @@
 <script src="../../dist/js/demo.js"></script>
 <!-- page script -->
 <script>
-  // var colorBranchName;
+  // 编辑模态框初始化获取数据
   $('#editModal').on('shown.bs.modal', function (event) {
     var colorBranchId  = $(event.relatedTarget).attr('data-colorBranchId');
     var colorBranchName  = $(event.relatedTarget).attr('data-colorBranchName');
     var colorName  = $(event.relatedTarget).attr('data-colorName');
-    // console.log(colorName);
     $("#colorBranchId").val(colorBranchId);
     $("#colorBranchName").val(colorBranchName);
-    // $('#edit-select').html('<option value="1">' +colorName+ '</option>').trigger("change");
     $("#edit-select").select2({
       initSelection : function (element, callback) {
         console.log(colorName);
         var data = {id: colorName, text: colorName};
         callback(data);
       },
-      // placeholder: colorName,
       ajax: {
         url: '/mainPage/goDesign/colorParent',
         dataType: 'json',
       }
     });
-    // $("#edit-select").select2('val','1');
   });
-  // $(function () {
-  //   //初始化下拉菜单
-  //   $("#edit-select").select2({
-  //     // placeholder: '基础颜色',
-  //     ajax: {
-  //       url: '/mainPage/goDesign/colorParent',
-  //       dataType: 'json',
-  //     }
-  //   });
-  //   $("#edit-select").val("pxx");
-  //   //下拉菜单点击处理事件
-  //   $("#edit-select").on("change", function(e) {
-  //     // reloadTable($("#edit-select").val());
-  //   });
-  // });
+  // add-select
+  // 新增模态框初始化获取数据
+  $('#addModal').on('shown.bs.modal', function (event) {
+    $("#add-select").select2({
+      // allowClear  : true,
+      ajax: {
+        url: '/mainPage/goDesign/colorParent',
+        dataType: 'json',
+      }
+    });
+    // $('#add-select').select2("val","");
+    $('#addForm').data('bootstrapValidator').validate();
+    // if(!$('#addForm').data('bootstrapValidator').isValid()){
+    //   return ;
+    // }
+  });
+  $('#addModal').on('hidden.bs.modal', function (event) {
+    $('#addColorBranchName').val("");
+    $('#add-select').select2("val","");
+    $(this).removeData("bs.modal");
+    $('#addForm').data('bootstrapValidator').resetForm();
+  });
+  //删除模态框
+  $('#deleteModal').on('shown.bs.modal', function (event) {
+    var colorBranchId  = $(event.relatedTarget).attr('data-colorBranchId');
+    $("#deleteColorBranchId").val(colorBranchId);
+    // deleteBranchColor();
+  });
   //初始化表格
   $(document).ready(function() {
+    $('#addForm').bootstrapValidator({
+      message: 'This value is not valid',
+      excluded : [':disabled'],
+      feedbackIcons: {
+        valid: 'glyphicon glyphicon-ok',
+        invalid: 'glyphicon glyphicon-remove',
+        validating: 'glyphicon glyphicon-refresh'
+      },
+      fields:{
+        addColor: {
+          message: 'The username is not valid',
+          validators: {
+            notEmpty: {
+              message: '颜色名称不能为空'
+            }
+          }
+        }
+      }
+
+    });
     //表格
     $('#example').DataTable( {
+      //表格重绘时重新加载iCheck样式
+      drawCallback: function( settings ) {
+        //勾选框
+        $("#checkAll").iCheck({
+          handler:'checkbox',
+          checkboxClass:'icheckbox_flat-orange'
+        });
+        $('input[name="check"]').iCheck({
+          handle : 'checkbox',
+          checkboxClass : 'icheckbox_flat-orange',
+          radioClass : 'iradio_flat-orange'
+        });
+        //全选
+        $('#checkAll').on('ifChecked', function(event){
+          $('input').iCheck('check');
+        });
+        //反选
+        $('#checkAll').on('ifUnchecked', function(event){
+          $('input').iCheck('uncheck');
+        });
+      },
       //重新布局表格
       dom:  "<'row'<'col-sm-1'<'select'>> <'col-sm-2'<'search'>> <'col-sm-9'B>>" +
               "<'row'<'col-sm-12'tr>>" +
@@ -303,17 +406,18 @@
                     '<a data-toggle="modal" data-target="#editModal" data-colorBranchId="' + row.colorBranchId +'" data-colorBranchName="' + row.colorBranchName +'" data-colorName="' + row.wbColor.colorName +'" title="修改">' +
                     '<i class="glyphicon glyphicon-pencil"></i> ' +
                     '</a>'+
-                    '<a href="#delProject" data-toggle="modal" data-id="' + row.p_id +'" title="删除">' +
+                    '<a data-toggle="modal" data-target="#deleteModal" data-colorBranchId="' + row.colorBranchId +'" title="删除">' +
                     '<i class="glyphicon glyphicon-trash text-danger"></i> ' +
                     '</a>';
           }
         },
         {
           targets: 0,
-          render: function(data, type, row, meta) {
-            return '<input type="checkbox" name="checklist" value="' + row.name + '" />'
-          }
-        }
+          render: function(data, type, row,meta) {
+            return '<input type="checkbox" name="check" value="'+row.colorBranchId+'"/>'
+          },
+          title:'<input type="checkbox" id="checkAll" value="all"/>'
+        },
       ],
       searching: false,
       autoFill: true,
@@ -371,7 +475,7 @@
   $.fn.dataTable.ext.buttons.add = {
     text: '<i class="glyphicon glyphicon-plus" title="新增"></i>',
     action: function ( e, dt, node, config ) {
-      // dt.ajax.reload();
+      $('#addModal').modal('show');
     }
   };
   //表格上方删除按钮删除
@@ -379,8 +483,26 @@
     text: '<i class="glyphicon glyphicon-trash text-danger" title="删除"></i>',
     action: function ( e, dt, node, config ) {
       // dt.ajax.reload();
+      var checkBoxArr = [];
+      $('input[name="check"]:checked').each(function() {
+        checkBoxArr.push($(this).val());
+      });
+      if(checkBoxArr.length < 1){
+        alert("勾选需要删除的列!")
+      }else{
+        $('#deleteAllColorBranchId').val(checkBoxArr);
+        // console.log(checkBoxArr);
+        $('#deleteAllModal').modal('show');
+      }
     }
   };
+  //警告是否放弃编辑数据
+  function warnings(modal){
+    var flag = confirm("是否放弃更改?");
+    if(flag){
+      modal.modal('hide');
+    }
+  }
   //编辑子类颜色并保存
   function editBranchColor(){
     var colorBranchId  = $("#colorBranchId").val();
@@ -392,11 +514,11 @@
       data:{"colorBranchId":colorBranchId,"colorBranchName":colorBranchName,"colorName":colorName},
       success:function(data){
         $('#editModal').modal('hide');
-        alert(data.success);
+        alert(data.resultMessage);
         reloadTable();
       },
       error:function(e){
-        alert("错误！！");
+        alert("ajax提交错误！！请重试");
       }
     });
   }
@@ -418,6 +540,32 @@
     $('#example').DataTable().settings()[0].ajax.data = param;
     $('#example').DataTable().ajax.reload();
   }
+  function deleteBranchColor(deleteColorBranchId) {
+    var deleteParam = deleteColorBranchId;
+    // console.log(deleteParam);
+    if(deleteParam != null){
+      $.ajax({
+        url:"/mainPage/goDesign/color/delete",
+        type:"post",
+        traditional:true,
+        dataType:"json",
+        data : {"deleteParam":deleteParam},
+        success:function(data){
+          alert(data.resultMessage);
+          reloadTable();
+        },
+        error:function(e){
+          alert("ajax提交错误！！请重试");
+        }
+      });
+    }
+  }
+  function addBranchColor() {
+    if($('#addForm').data('bootstrapValidator').isValid()){
+      alert("success");
+    }
+  }
+
 </script>
 </body>
 </html>
