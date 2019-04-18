@@ -1,12 +1,9 @@
-/*!
- * BootstrapValidator (http://bootstrapvalidator.com)
- * The best jQuery plugin to validate form fields. Designed to use with Bootstrap 3
- *
- * @version     v0.5.3, built on 2014-11-05 9:14:18 PM
- * @author      https://twitter.com/nghuuphuoc
- * @copyright   (c) 2013 - 2014 Nguyen Huu Phuoc
- * @license     Commercial: http://bootstrapvalidator.com/license/
- *              Non-commercial: http://creativecommons.org/licenses/by-nc-nd/3.0/
+/*
+ * Copyright (c) 2019. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+ * Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
+ * Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
+ * Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
+ * Vestibulum commodo. Ut rhoncus gravida arcu.
  */
 if (typeof jQuery === 'undefined') {
     throw new Error('BootstrapValidator requires jQuery');
