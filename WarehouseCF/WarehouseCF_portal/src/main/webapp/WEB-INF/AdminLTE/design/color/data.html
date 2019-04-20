@@ -153,7 +153,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="box box-warning">
-          <form class="form-horizontal" id="addForm">
+          <!--<form class="form-horizontal" id="addForm">-->
             <div class="box-body">
               <div class="modal-header">
                 <button type="button" class="close" onclick="warnings($('#addModal'))" aria-hidden="true">
@@ -164,26 +164,29 @@
                 </h4>
               </div>
               <div class="modal-body">
-                <div class="form-group">
-                  <label for="add-select" class="col-sm-2 control-label">所属颜色</label>
-                  <div class="col-sm-10">
-                    <select id="add-select" class="form-control select2" style="width: 100%;">
-                    </select>
+                <form class="form-horizontal" id="addForm">
+                  <div class="form-group">
+                    <label for="add-select" class="col-sm-2 control-label">所属颜色</label>
+                    <div class="col-sm-10">
+                      <select id="add-select" class="form-control select2" style="width: 100%;" name="addSelect">
+                      </select>
+                    </div>
                   </div>
-                </div>
-                <div class="form-group">
-                  <label for="addColorBranchName" class="col-sm-2 control-label">颜色名称</label>
-                  <div class="col-sm-10">
-                    <input type="input" class="form-control" id="addColorBranchName" name="addColor">
+                  <div class="form-group">
+                    <!--<input type="hidden" class="form-control" id="addColorBranchNameHidden" name="addColorHidden">-->
+                    <label for="addColorBranchName" class="col-sm-2 control-label">颜色名称</label>
+                    <div class="col-sm-10">
+                      <input type="input" class="form-control" id="addColorBranchName" name="addColor">
+                    </div>
                   </div>
-                </div>
+                </form>
               </div>
               <div class="modal-footer">
                 <button type="button" onclick="warnings($('#addModal'))" class="btn btn-default">关闭</button>
-                <button type="button" onclick="addBranchColor()" class="btn btn-primary">新增</button>
+                <button type="button" onclick="addBranchColor()" class="btn btn-primary" data-dismiss="modal">新增</button>
               </div>
             </div><!-- /.modal-content -->
-          </form>
+          <!--</form>-->
         </div>
       </div>
     </div><!-- /.modal -->
@@ -249,10 +252,10 @@
 <script src="../../bower_components/select2/dist/js/select2.full.min.js"></script>
 <!-- bootstrap-select -->
 <script src="../../bower_components/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-  <!-- iCheck-->
-  <script src="../../plugins/iCheck/icheck.min.js"></script>
-  <!-- bootstrap-validation -->
-  <script src="../../plugins/bootstrap-validation/dist/js/bootstrapValidator.min.js"></script>
+<!-- iCheck-->
+<script src="../../plugins/iCheck/icheck.min.js"></script>
+<!-- bootstrap-validation -->
+<script src="../../plugins/bootstrap-validation/dist/js/bootstrapValidator.min.js"></script>
 <!-- FastClick -->
 <script src="../../bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
@@ -263,11 +266,13 @@
 <script>
   // 编辑模态框初始化获取数据
   $('#editModal').on('shown.bs.modal', function (event) {
+    //获取从按钮传递过来各参数值显示到编辑模态框中
     var colorBranchId  = $(event.relatedTarget).attr('data-colorBranchId');
     var colorBranchName  = $(event.relatedTarget).attr('data-colorBranchName');
     var colorName  = $(event.relatedTarget).attr('data-colorName');
     $("#colorBranchId").val(colorBranchId);
     $("#colorBranchName").val(colorBranchName);
+    //加载下拉菜单
     $("#edit-select").select2({
       initSelection : function (element, callback) {
         console.log(colorName);
@@ -280,36 +285,9 @@
       }
     });
   });
-  // add-select
   // 新增模态框初始化获取数据
   $('#addModal').on('shown.bs.modal', function (event) {
-    $("#add-select").select2({
-      // allowClear  : true,
-      ajax: {
-        url: '/mainPage/goDesign/colorParent',
-        dataType: 'json',
-      }
-    });
-    // $('#add-select').select2("val","");
-    $('#addForm').data('bootstrapValidator').validate();
-    // if(!$('#addForm').data('bootstrapValidator').isValid()){
-    //   return ;
-    // }
-  });
-  $('#addModal').on('hidden.bs.modal', function (event) {
-    $('#addColorBranchName').val("");
-    $('#add-select').select2("val","");
-    $(this).removeData("bs.modal");
-    $('#addForm').data('bootstrapValidator').resetForm();
-  });
-  //删除模态框
-  $('#deleteModal').on('shown.bs.modal', function (event) {
-    var colorBranchId  = $(event.relatedTarget).attr('data-colorBranchId');
-    $("#deleteColorBranchId").val(colorBranchId);
-    // deleteBranchColor();
-  });
-  //初始化表格
-  $(document).ready(function() {
+    //验证输入
     $('#addForm').bootstrapValidator({
       message: 'This value is not valid',
       excluded : [':disabled'],
@@ -326,11 +304,50 @@
               message: '颜色名称不能为空'
             }
           }
+        },
+        addSelect:{
+          message: 'The username is not valid',
+          validators: {
+            notEmpty: {
+              message: '所属颜色不能为空'
+            }
+          }
         }
       }
-
     });
-    //表格
+    //加载下拉菜单
+    $("#add-select").select2({
+      placeholder:'请选择颜色父类',
+      ajax: {
+        url: '/mainPage/goDesign/colorParent',
+        dataType: 'json',
+        cache:false
+      }
+    });
+    //打开模态框时校验必输项
+    $('#addForm').data('bootstrapValidator').validate();
+  });
+  $('#addModal').on('hidden.bs.modal', function (event) {
+    //关闭新增模态框时清空输入
+    $('#addColorBranchName').val("");
+    //需要在新增模态框关闭时清空下拉菜单(无效,需要后续解决)
+    $('#add-select').select2("val","");
+    //关闭新增模态框时清空校验信息
+    $('#addForm').data('bootstrapValidator').resetForm();
+    //需要在新增模态框关闭时清空下拉菜单(无效,需要后续解决)
+    $(this).removeData("bs.modal");
+
+  });
+  //删除模态框
+  $('#deleteModal').on('shown.bs.modal', function (event) {
+    //打开删除确认模态框时,获取传递来的颜色编号
+    var colorBranchId  = $(event.relatedTarget).attr('data-colorBranchId');
+    //调用删除方法
+    $("#deleteColorBranchId").val(colorBranchId);
+  });
+  //初始化
+  $(document).ready(function() {
+    //表格初始化
     $('#example').DataTable( {
       //表格重绘时重新加载iCheck样式
       drawCallback: function( settings ) {
@@ -396,6 +413,7 @@
       //自定义列
       columnDefs: [
         {
+          //最右侧操作按钮
           targets: -1,
           visible: true,
           sortable: false,
@@ -412,6 +430,7 @@
           }
         },
         {
+          //最左侧勾选框
           targets: 0,
           render: function(data, type, row,meta) {
             return '<input type="checkbox" name="check" value="'+row.colorBranchId+'"/>'
@@ -482,7 +501,6 @@
   $.fn.dataTable.ext.buttons.delete = {
     text: '<i class="glyphicon glyphicon-trash text-danger" title="删除"></i>',
     action: function ( e, dt, node, config ) {
-      // dt.ajax.reload();
       var checkBoxArr = [];
       $('input[name="check"]:checked').each(function() {
         checkBoxArr.push($(this).val());
@@ -491,7 +509,6 @@
         alert("勾选需要删除的列!")
       }else{
         $('#deleteAllColorBranchId').val(checkBoxArr);
-        // console.log(checkBoxArr);
         $('#deleteAllModal').modal('show');
       }
     }
@@ -540,9 +557,9 @@
     $('#example').DataTable().settings()[0].ajax.data = param;
     $('#example').DataTable().ajax.reload();
   }
+  //删除方法
   function deleteBranchColor(deleteColorBranchId) {
     var deleteParam = deleteColorBranchId;
-    // console.log(deleteParam);
     if(deleteParam != null){
       $.ajax({
         url:"/mainPage/goDesign/color/delete",
@@ -560,12 +577,29 @@
       });
     }
   }
+  //新增方法
   function addBranchColor() {
     if($('#addForm').data('bootstrapValidator').isValid()){
-      alert("success");
+      var colorName  = $("#addColorBranchName").val();
+      var colorPid = $("#add-select").val();
+      $.ajax({
+        url:"/mainPage/goDesign/color/add",
+        type:"post",
+        traditional:true,
+        dataType:"json",
+        data : {"colorName":colorName,"colorPid":colorPid},
+        success:function(data){
+          alert(data.resultMessage);
+          // $('#identifier').modal('hide')
+          reloadTable();
+        },
+        error:function(e){
+          alert("ajax提交错误！！请重试");
+        }
+      });
+      // alert(colorBranchName+colorPid);
     }
   }
-
 </script>
 </body>
 </html>

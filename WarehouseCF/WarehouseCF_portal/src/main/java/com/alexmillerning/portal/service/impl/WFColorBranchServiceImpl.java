@@ -151,8 +151,20 @@ public class WFColorBranchServiceImpl implements WFColorBranchService {
     }
 
     @Override
+    /**
+     * @methodname deleteColorBranchbyId
+     * @author Alex
+     * @date 2019/4/19
+     * @param [colorBranchId]
+     * @return int
+     * @description 根据颜色编号删除颜色信息
+     */
     public int deleteColorBranchbyId(Integer colorBranchId) {
-//        WFColorBranchExample wfColorBranchExample = new WFColorBranchExample();
         return wfColorBranchMapper.deleteByPrimaryKey(colorBranchId);
+    }
+
+    @Override
+    public int insertColorBranch(WFColorBranch wfColorBranch) {
+        return wfColorBranchMapper.insertSelective(wfColorBranch);
     }
 }

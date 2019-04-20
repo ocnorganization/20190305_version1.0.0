@@ -34,5 +34,6 @@ public interface WFColorBranchService {
     List<WFColorBranch> searchColorBranch(String searchParam,Integer offSet,Integer limit);
     //通过子类颜色id删除颜色信息
     int deleteColorBranchbyId(Integer colorBranchId);
-
+    //新增子类颜色
+    int insertColorBranch(WFColorBranch wfColorBranch);
 }

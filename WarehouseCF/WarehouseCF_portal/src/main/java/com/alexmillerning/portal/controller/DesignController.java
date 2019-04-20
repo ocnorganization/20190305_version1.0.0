@@ -176,4 +176,20 @@ public class DesignController {
             return JSONPack.pack("删除成功!");
         }
     }
+    @RequestMapping("/mainPage/goDesign/color/add")
+    @ResponseBody
+    public JSONObject addColor(@RequestParam(value="colorName") String colorName,@RequestParam(value="colorPid") String colorPid){
+        if(logger.isDebugEnabled()) {
+            logger.debug("收到url:[/mainPage/goDesign/color/add]请求 请求参数为colorName:[" + colorName + "] colorPid:[" + colorPid + "]");
+        }
+        WFColorBranch wfColorBranch = new WFColorBranch();
+        wfColorBranch.setColorBranchName(colorName);
+        wfColorBranch.setColorBranchParent(colorPid);
+        int result = wfColorBranchService.insertColorBranch(wfColorBranch);
+        if(result > 0){
+            return JSONPack.pack("新增颜色成功!");
+        }else{
+            return JSONPack.pack("新增颜色失败!");
+        }
+    }
 }
