@@ -18,6 +18,8 @@ public interface WFBrandService {
     int getBrandCount();
     //修改品牌数据
     int updateBrand(WFBrand wfBrand);
+    //删除品牌数据
+    int deleteBrandbyId(Integer brandId);
 
 }
 

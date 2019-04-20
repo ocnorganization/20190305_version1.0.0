@@ -107,7 +107,6 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="box box-warning">
-            <form class="form-horizontal">
               <div class="box-body">
                 <div class="modal-header">
                   <button type="button" class="close" onclick="warnings($('#editModal'))" aria-hidden="true">
@@ -145,7 +144,6 @@
                   <button type="button" onclick="editBrand()" class="btn btn-primary">提交更改</button>
                 </div>
               </div><!-- /.modal-content -->
-            </form>
           </div>
         </div>
       </div><!-- /.modal -->
@@ -210,11 +208,11 @@
         </div>
         <div class="modal-body">
           <p>是否要删除该数据?</p>
-          <input type="hidden"  class="form-control" id="deleteColorBranchId">
+          <input type="hidden"  class="form-control" id="deleteBrandId">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">取消</button>
-          <button type="button" onclick="deleteBranchColor($('#deleteColorBranchId').val())" data-dismiss="modal" class="btn btn-outline">确认删除</button>
+          <button type="button" onclick="deleteBrand($('#deleteBrandId').val())" data-dismiss="modal" class="btn btn-outline">确认删除</button>
         </div>
       </div>
     </div>
@@ -230,11 +228,11 @@
         </div>
         <div class="modal-body">
           <p>是否要删除所选中的所有数据?</p>
-          <input type="hidden"  class="form-control" id="deleteAllColorBranchId">
+          <input type="hidden"  class="form-control" id="deleteAllBrandId">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">取消</button>
-          <button type="button" onclick="deleteBranchColor($('#deleteAllColorBranchId').val())" data-dismiss="modal" class="btn btn-outline">确认删除</button>
+          <button type="button" onclick="deleteBrand($('#deleteAllBrandId').val())" data-dismiss="modal" class="btn btn-outline">确认删除</button>
         </div>
       </div>
     </div>
@@ -363,9 +361,9 @@
   //删除模态框
   $('#deleteModal').on('shown.bs.modal', function (event) {
     //打开删除确认模态框时,获取传递来的颜色编号
-    var colorBranchId  = $(event.relatedTarget).attr('data-colorBranchId');
+    var brandId  = $(event.relatedTarget).attr('data-brandId');
     //调用删除方法
-    $("#deleteColorBranchId").val(colorBranchId);
+    $("#deleteBrandId").val(brandId);
   });
   //初始化
   $(document).ready(function() {
@@ -455,7 +453,7 @@
           //最左侧勾选框
           targets: 0,
           render: function(data, type, row,meta) {
-            return '<input type="checkbox" name="check" value="'+row.colorBranchId+'"/>'
+            return '<input type="checkbox" name="check" value="'+row.brandId+'"/>'
           },
           title:'<input type="checkbox" id="checkAll" value="all"/>'
         },
@@ -517,7 +515,8 @@
       if(checkBoxArr.length < 1){
         alert("勾选需要删除的列!")
       }else{
-        $('#deleteAllColorBranchId').val(checkBoxArr);
+        console.log(checkBoxArr);
+        $('#deleteAllBrandId').val(checkBoxArr);
         $('#deleteAllModal').modal('show');
       }
     }
@@ -567,11 +566,12 @@
     $('#example').DataTable().ajax.reload();
   }
   //删除方法
-  function deleteBranchColor(deleteColorBranchId) {
-    var deleteParam = deleteColorBranchId;
+  function deleteBrand(deleteBrandId) {
+    var deleteParam = deleteBrandId;
+    // console.log(deleteParam);
     if(deleteParam != null){
       $.ajax({
-        url:"/mainPage/goDesign/color/delete",
+        url:"/mainPage/goDesign/brand/delete",
         type:"post",
         traditional:true,
         dataType:"json",

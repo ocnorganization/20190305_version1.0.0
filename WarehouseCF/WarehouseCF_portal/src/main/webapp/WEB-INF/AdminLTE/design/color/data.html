@@ -275,7 +275,7 @@
     //加载下拉菜单
     $("#edit-select").select2({
       initSelection : function (element, callback) {
-        console.log(colorName);
+        // console.log(colorName);
         var data = {id: colorName, text: colorName};
         callback(data);
       },
@@ -508,6 +508,7 @@
       if(checkBoxArr.length < 1){
         alert("勾选需要删除的列!")
       }else{
+        console.log(checkBoxArr);
         $('#deleteAllColorBranchId').val(checkBoxArr);
         $('#deleteAllModal').modal('show');
       }

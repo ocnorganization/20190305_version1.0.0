@@ -44,4 +44,9 @@ public class WFBrandServiceImpl implements WFBrandService {
         criteria.andBrandIdEqualTo(wfBrand.getBrandId());
         return wfBrandMapper.updateByExampleSelective(wfBrand,wfBrandExample);
     }
+
+    @Override
+    public int deleteBrandbyId(Integer brandId) {
+        return wfBrandMapper.deleteByPrimaryKey(brandId);
+    }
 }

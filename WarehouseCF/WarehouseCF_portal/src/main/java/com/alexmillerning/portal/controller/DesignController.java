@@ -248,6 +248,31 @@ public class DesignController {
         }
 
     }
+    @RequestMapping("/mainPage/goDesign/brand/delete")
+    @ResponseBody
+    public JSONObject deleteBrand(@RequestParam(value="deleteParam") Integer[] deleteParamArray){
+        if(logger.isDebugEnabled()) {
+            logger.debug("收到url:[/mainPage/goDesign/brand/delete]请求 请求参数为deleteParam:[");
+            for(int i =0;i<deleteParamArray.length;i++){
+                logger.debug(deleteParamArray[i]+",");
+            }
+            logger.debug("]");
+        }
+        int flag = -1;
+        for(int i =0;i<deleteParamArray.length;i++){
+            int result = wfBrandService.deleteBrandbyId(deleteParamArray[i]);
+            if(result == 0){
+                flag = i;
+                break;
+
+            }
+        }
+        if(flag != -1){
+            return JSONPack.pack("删除第["+flag+"]数据出错!终止后续删除!");
+        }else{
+            return JSONPack.pack("删除成功!");
+        }
+    }
 
 }
 
