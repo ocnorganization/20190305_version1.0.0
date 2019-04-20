@@ -45,7 +45,7 @@ UNIQUE (MENUNAME)
 );
 INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('1', '', '设计元素', 'CLOSED', '');
 INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('11', '1', '颜色', '', '/design/color/data.html');
-INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('12', '1', '品牌', '', '');
+INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('12', '1', '品牌', '', '/design/brand/data.html');
 INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('13', '1', '尺码', '', '');
 INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('14', '1', '工艺', '', '');
 INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('15', '1', '季节', '', '');
@@ -134,4 +134,26 @@ BRAND_REMARK VARCHAR(100) NULL COMMENT '预留备注',
 PRIMARY KEY(BRAND_ID),
 UNIQUE (BRAND_NAME)
 );
-
+-- 测试数据
+INSERT INTO `warehousecf`.`w_f_brand` (`BRAND_NAME`, `BRAND_DES`, `BRAND_REMARK`) VALUES ('阿迪达斯', '阿迪达斯运动系列', NULL);
+INSERT INTO `warehousecf`.`w_f_brand` (`BRAND_NAME`, `BRAND_DES`, `BRAND_REMARK`) VALUES ('香柏树', '香柏树系列', NULL);
+INSERT INTO `warehousecf`.`w_f_brand` (`BRAND_NAME`, `BRAND_DES`, `BRAND_REMARK`) VALUES ('夜光杯', '夜光杯动系列', NULL);
+INSERT INTO `warehousecf`.`w_f_brand` (`BRAND_NAME`, `BRAND_DES`, `BRAND_REMARK`) VALUES ('Google谷歌', 'Google谷歌', NULL);
+INSERT INTO `warehousecf`.`w_f_brand` (`BRAND_NAME`, `BRAND_DES`, `BRAND_REMARK`) VALUES ('Apple苹果', 'Apple苹果', NULL);
+INSERT INTO `warehousecf`.`w_f_brand` (`BRAND_NAME`, `BRAND_DES`, `BRAND_REMARK`) VALUES ('Amazon亚马逊', 'Amazon亚马逊', NULL);
+INSERT INTO `warehousecf`.`w_f_brand` (`BRAND_NAME`, `BRAND_DES`, `BRAND_REMARK`) VALUES ('Microsoft微软', 'Microsoft微软', NULL);
+INSERT INTO `warehousecf`.`w_f_brand` (`BRAND_NAME`, `BRAND_DES`, `BRAND_REMARK`) VALUES ('Coca-Cola可口可乐', 'Coca-Cola可口可乐', NULL);
+INSERT INTO `warehousecf`.`w_f_brand` (`BRAND_NAME`, `BRAND_DES`, `BRAND_REMARK`) VALUES ('IBM', 'IBM', NULL);
+INSERT INTO `warehousecf`.`w_f_brand` (`BRAND_NAME`, `BRAND_DES`, `BRAND_REMARK`) VALUES ('MCDONALD', '麦当劳', NULL);
+INSERT INTO `warehousecf`.`w_f_brand` (`BRAND_NAME`, `BRAND_DES`, `BRAND_REMARK`) VALUES ('Intel英特尔', 'Intel英特尔', NULL);
+INSERT INTO `warehousecf`.`w_f_brand` (`BRAND_NAME`, `BRAND_DES`, `BRAND_REMARK`) VALUES ('BMW宝马', 'BMW宝马', NULL);
+INSERT INTO `warehousecf`.`w_f_brand` (`BRAND_NAME`, `BRAND_DES`, `BRAND_REMARK`) VALUES ('Disney迪士尼', 'Disney迪士尼', NULL);
+INSERT INTO `warehousecf`.`w_f_brand` (`BRAND_NAME`, `BRAND_DES`, `BRAND_REMARK`) VALUES ('Walmart沃尔玛', 'Walmart沃尔玛', NULL);
+INSERT INTO `warehousecf`.`w_f_brand` (`BRAND_NAME`, `BRAND_DES`, `BRAND_REMARK`) VALUES ('国家电网STATEGRID', '国家电网STATEGRID', NULL);
+INSERT INTO `warehousecf`.`w_f_brand` (`BRAND_NAME`, `BRAND_DES`, `BRAND_REMARK`) VALUES ('中国石化Sinopec', '中国石化Sinopec', NULL);
+INSERT INTO `warehousecf`.`w_f_brand` (`BRAND_NAME`, `BRAND_DES`, `BRAND_REMARK`) VALUES ('中国石油CNPC', '中国石油CNPC', NULL);
+INSERT INTO `warehousecf`.`w_f_brand` (`BRAND_NAME`, `BRAND_DES`, `BRAND_REMARK`) VALUES ('Shell壳牌', 'Shell壳牌', NULL);
+INSERT INTO `warehousecf`.`w_f_brand` (`BRAND_NAME`, `BRAND_DES`, `BRAND_REMARK`) VALUES ('TOYOTA丰田', 'TOYOTA丰田', NULL);
+INSERT INTO `warehousecf`.`w_f_brand` (`BRAND_NAME`, `BRAND_DES`, `BRAND_REMARK`) VALUES ('Volkswagen大众', 'Volkswagen大众', NULL);
+INSERT INTO `warehousecf`.`w_f_brand` (`BRAND_NAME`, `BRAND_DES`, `BRAND_REMARK`) VALUES ('英国石油公司', '英国石油公司', NULL);
+INSERT INTO `warehousecf`.`w_f_brand` (`BRAND_NAME`, `BRAND_DES`, `BRAND_REMARK`) VALUES ('Mobil美孚', 'Mobil美孚', NULL);
