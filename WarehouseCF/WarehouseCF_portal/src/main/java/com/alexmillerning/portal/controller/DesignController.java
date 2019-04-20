@@ -9,15 +9,19 @@
 package com.alexmillerning.portal.controller;
 
 import com.alexmillerning.pojo.WBColor;
+import com.alexmillerning.pojo.WFBrand;
 import com.alexmillerning.pojo.WFColorBranch;
 import com.alexmillerning.portal.service.WBColorService;
+import com.alexmillerning.portal.service.WFBrandService;
 import com.alexmillerning.portal.service.WFColorBranchService;
 import com.alexmillerning.utils.JSONPack;
 import com.alexmillerning.utils.pojo.SelectColorParent;
 import com.alibaba.fastjson.JSONObject;
+import org.apache.ibatis.jdbc.Null;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -117,7 +121,7 @@ public class DesignController {
      * @date 2019/4/18
      * @param [colorBranchId, colorBranchName, colorName]
      * @return com.alibaba.fastjson.JSONObject
-     * @description 设计元素/颜色/颜色子类表格数据新增方法
+     * @description 设计元素/颜色/颜色子类表格数据更新方法
      */
     public JSONObject editColor(@RequestParam(value="colorBranchId") Integer colorBranchId,
                                 @RequestParam(value="colorBranchName") String colorBranchName,
@@ -192,4 +196,58 @@ public class DesignController {
             return JSONPack.pack("新增颜色失败!");
         }
     }
+
+    @Autowired
+    WFBrandService wfBrandService;
+    @RequestMapping("/mainPage/goDesign/brand")
+    @ResponseBody
+    public JSONObject  getBrand(@RequestParam(value="brandId",required = false) String brandId,
+            @RequestParam(value="draw") String draw,
+            @RequestParam(value="start") String start,
+            @RequestParam(value="length") String length,
+            @RequestParam(value="search",required = false) String searchParam){
+        if(logger.isDebugEnabled()){
+            logger.debug("收到url:[/mainPage/goDesign/brand]请求 请求参数为draw:["+draw+"] start:["+start+"] length:["+length+"] brandId:["+brandId+"] search:["+searchParam+"]");
+        }
+        if(searchParam != null&&searchParam != "") {
+            return JSONPack.pack("xxxxx!");
+        }else{
+            if (logger.isDebugEnabled()) {
+                logger.debug("开始根据参数查询品牌...");
+            }
+            Integer offSet = Integer.parseInt(start);
+            Integer limit = Integer.parseInt(length);
+            List<WFBrand> wfBrandList = wfBrandService.getBrand(offSet,limit);
+            int recordsTotal = wfBrandService.getBrandCount();
+            int recordsFiltered = wfBrandService.getBrandCount();
+            return JSONPack.packbyPage(Integer.parseInt(draw),recordsTotal,recordsFiltered,wfBrandList);
+        }
+    }
+    @RequestMapping("/mainPage/goDesign/brand/edit")
+    @ResponseBody
+    public JSONObject editBrand(@RequestParam(value="brandId") Integer brandId,
+                                @RequestParam(value="brandName") String brandName,
+                                @RequestParam(value="brandDes") String brandDes){
+        if(logger.isDebugEnabled()){
+            logger.debug("收到url:[/mainPage/goDesign/brand/edit]请求 请求参数为brandId:["+brandId+"] brandName:["+brandName+"] brandDes:["+brandDes+"]");
+        }
+        if(brandId != null){
+            WFBrand wfBrand = new WFBrand();
+            wfBrand.setBrandId(brandId);
+            wfBrand.setBrandName(brandName);
+            wfBrand.setBrandDes(brandDes);
+            int result = wfBrandService.updateBrand(wfBrand);
+            if(result != 0){
+                return JSONPack.pack("更新成功!");
+
+            }else {
+                return JSONPack.pack("更新失败!");
+            }
+        }else {
+            return JSONPack.pack("请求参数为空,更新失败!");
+        }
+
+    }
+
 }
+
