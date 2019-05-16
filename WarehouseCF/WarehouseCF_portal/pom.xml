@@ -17,8 +17,14 @@
         <relativePath>../../WarehouseCF_parent/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <packaging>war</packaging>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>WarehouseCF_portal_mapper</module>
+        <module>WarehouseCF_portal_pojo</module>
+        <module>WarehouseCF_portal_service</module>
+        <module>WarehouseCF_portal_web</module>
+    </modules>
 
     <artifactId>WarehouseCF_portal</artifactId>
     <dependencies>
