@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
-    <file type="web" url="file://$PROJECT_DIR$/WarehouseCF/WarehouseCF_portal" />
     <file type="web" url="file://$PROJECT_DIR$/WarehouseCF_manager/WarehouseCF_manager_web" />
+    <file type="web" url="file://$PROJECT_DIR$/WarehouseCF_portal" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">

@@ -1,0 +1,54 @@
+<!--
+  ~ Copyright (c) 2019. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  ~ Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
+  ~ Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
+  ~ Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
+  ~ Vestibulum commodo. Ut rhoncus gravida arcu.
+  -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/task
+        http://www.springframework.org/schema/task/spring-task.xsd">
+    <context:component-scan base-package="com.alexmillerning.controller"></context:component-scan>
+    <!--主要作用于@Controller激活该模式下面是一种简写形式
+          它会自动注册DefaultAnnotationHandlerMapping与AnnotationMethodHandlerAdapter，
+          是spring MVC为@Controllers分发请求所必须的   -->
+    <mvc:annotation-driven/>
+    <!--<mvc:default-servlet-handler/>-->
+    <!-- FreeMarker -->
+    <bean id="FreeMarkerConfigurer" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath" value="/WEB-INF/AdminLTE/"/>
+    </bean>
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="suffix" value=".html"/>
+        <property name="contentType" value="text/html;charset=UTF-8"></property>
+    </bean>
+    <!-- index视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/AdminLTE/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+    <!--<mvc:resources mapping="/AdminLTE/**" location="/WEB-INF/AdminLTE/"/>-->
+    <mvc:resources mapping="**/bower_components/**" location="/WEB-INF/AdminLTE/"/>
+    <mvc:resources mapping="**/build/**" location="/WEB-INF/AdminLTE/"/>
+    <mvc:resources mapping="**/dist/**" location="/WEB-INF/AdminLTE/"/>
+    <mvc:resources mapping="**/plugins/**" location="/WEB-INF/AdminLTE/"/>
+    <mvc:resources mapping="**/img/**" location="/WEB-INF/AdminLTE/"/>
+    <mvc:resources mapping="**/css/**" location="/WEB-INF/AdminLTE/"/>
+    <mvc:resources mapping="**/js/**" location="/WEB-INF/AdminLTE/"/>
+    <mvc:resources mapping="**/design/**" location="/WEB-INF/AdminLTE/"/>
+    <mvc:resources mapping="**/welcome/**" location="/WEB-INF/AdminLTE/"/>
+</beans>

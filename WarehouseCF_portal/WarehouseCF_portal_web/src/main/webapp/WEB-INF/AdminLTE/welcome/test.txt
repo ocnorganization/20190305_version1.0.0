@@ -1,0 +1,15 @@
+{
+  "data": [
+    {
+      "colorid": "01",
+      "colorname": "深红",
+      "colorparent": "红"
+    },
+    {
+          "colorid": "02",
+          "colorname": "亮红",
+          "colorparent": "红"
+    }
+
+  ]
+}

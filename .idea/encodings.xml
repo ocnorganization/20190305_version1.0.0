@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" addBOMForNewFiles="with NO BOM">
-    <file url="file://$PROJECT_DIR$/WarehouseCF/WarehouseCF_portal" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/WarehouseCF/WarehouseCF_portal/WarehouseCF_portal_mapper" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/WarehouseCF/WarehouseCF_portal/WarehouseCF_portal_pojo" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/WarehouseCF/WarehouseCF_portal/WarehouseCF_portal_service" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/WarehouseCF/WarehouseCF_portal/WarehouseCF_portal_web" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/WarehouseCF_common" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/WarehouseCF_manager" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/WarehouseCF_manager/WarehouseCF_manager_mapper" charset="UTF-8" />
@@ -13,6 +8,11 @@
     <file url="file://$PROJECT_DIR$/WarehouseCF_manager/WarehouseCF_manager_service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/WarehouseCF_manager/WarehouseCF_manager_web" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/WarehouseCF_parent" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WarehouseCF_portal" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WarehouseCF_portal/WarehouseCF_portal_mapper" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WarehouseCF_portal/WarehouseCF_portal_pojo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WarehouseCF_portal/WarehouseCF_portal_service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WarehouseCF_portal/WarehouseCF_portal_web" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/WarehouseCF_redis" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/WarehouseCF_rest" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/WarehouseCF_search" charset="UTF-8" />
