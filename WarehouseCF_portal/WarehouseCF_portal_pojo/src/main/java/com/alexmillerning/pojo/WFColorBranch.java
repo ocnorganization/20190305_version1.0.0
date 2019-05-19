@@ -70,4 +70,14 @@ public class WFColorBranch {
     public void setColorName(String colorName) {
         this.colorName = colorName;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder wFColorBranch = new StringBuilder();
+        wFColorBranch.append(" colorBranchId:"+colorBranchId);
+        wFColorBranch.append(" colorBranchName:"+colorBranchName);
+        wFColorBranch.append(" colorBranchParent:"+colorBranchParent);
+        wFColorBranch.append(" colorBranchRemark:"+colorBranchRemark);
+        return wFColorBranch.toString();
+    }
 }

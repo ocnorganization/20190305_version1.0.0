@@ -106,6 +106,18 @@ These are the customisation options specific to Line charts. These options are m
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 ```
 
 You can override these for your `Chart` instance by passing a second argument into the `Line` method as an object with the keys you want to override.

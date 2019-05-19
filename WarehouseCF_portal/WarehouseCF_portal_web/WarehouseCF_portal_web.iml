@@ -10,11 +10,11 @@
           <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/../../../WarehouseCF_portal/WarehouseCF_portal_web/src/main/webapp/WEB-INF/web.xml" />
         </descriptors>
         <webroots>
-          <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
+          <root url="file://$MODULE_DIR$/../../../WarehouseCF_portal/WarehouseCF_portal_web/src/main/webapp" relative="/" />
         </webroots>
         <sourceRoots>
-          <root url="file://$MODULE_DIR$/src/main/java" />
-          <root url="file://$MODULE_DIR$/src/main/resources" />
+          <root url="file://$MODULE_DIR$/../../../WarehouseCF_portal/WarehouseCF_portal_web/src/main/java" />
+          <root url="file://$MODULE_DIR$/../../../WarehouseCF_portal/WarehouseCF_portal_web/src/main/resources" />
         </sourceRoots>
       </configuration>
     </facet>

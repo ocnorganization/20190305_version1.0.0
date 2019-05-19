@@ -12,6 +12,18 @@ function myCoolPluginInit(plot) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 $.plot.plugins.push({ init: myCoolPluginInit, options: { ... } });
 
 // if $.plot is called, it will return a plot object with the
@@ -84,6 +96,18 @@ HTML page and then it can be used with:
 
 ```js
     $.plot($("#placeholder"), [...], { debug: 2 });
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

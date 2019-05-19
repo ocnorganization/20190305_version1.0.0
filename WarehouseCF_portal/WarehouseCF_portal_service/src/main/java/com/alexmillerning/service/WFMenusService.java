@@ -6,25 +6,13 @@
  * Vestibulum commodo. Ut rhoncus gravida arcu.
  */
 
-package com.alexmillerning.utils.pojo;
+package com.alexmillerning.service;
 
-public class SelectColorParent {
-    private String id;
-    private String text;
 
-    public String getId() {
-        return id;
-    }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+import com.alexmillerning.pojo.WFMenus;
 
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
+import java.util.List;
+public interface WFMenusService {
+    List<WFMenus> getWFMenusList();
 }

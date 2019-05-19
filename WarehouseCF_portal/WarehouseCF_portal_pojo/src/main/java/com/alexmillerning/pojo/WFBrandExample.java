@@ -14,7 +14,7 @@ import java.util.List;
 public class WFBrandExample {
     /**
      * 添加分页查询用到的参数
-     */
+
     protected Integer limit;
     protected Integer offset;
     public void setLimit(Integer limit) {
@@ -28,7 +28,7 @@ public class WFBrandExample {
     }
     public Integer getOffset() {
         return offset;
-    }
+    }*/
     protected String orderByClause;
 
     protected boolean distinct;

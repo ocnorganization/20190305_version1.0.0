@@ -14,7 +14,7 @@ import java.util.List;
 public class WFColorBranchExample {
     /**
      * 添加分页查询用到的参数
-     */
+
     protected Integer limit;
     protected Integer offset;
     public void setLimit(Integer limit) {
@@ -29,6 +29,7 @@ public class WFColorBranchExample {
     public Integer getOffset() {
         return offset;
     }
+     */
 
     protected String orderByClause;
 

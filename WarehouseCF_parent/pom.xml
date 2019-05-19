@@ -21,7 +21,7 @@
         <module>../WarehouseCF_sso</module>
         <module>../WarehouseCF_search</module>
         <module>../WarehouseCF_redis</module>
-        <module>../WarehouseCF/WarehouseCF_portal</module>
+        <module>../WarehouseCF_portal</module>
     </modules>
 
 
@@ -41,6 +41,7 @@
         <log4j.version>1.2.17</log4j.version>
         <freemarker.version>2.3.28</freemarker.version>
         <spring-context.version>5.1.5.RELEASE</spring-context.version>
+        <pagehelper.version>4.1.6</pagehelper.version>
     </properties>
 
     <!-- 定义依赖 -->
@@ -148,6 +149,7 @@
                 <artifactId>spring-context-support</artifactId>
                 <version>${spring.version}</version>
             </dependency>
+            <!-- page-helper -->
 
         </dependencies>
     </dependencyManagement>
