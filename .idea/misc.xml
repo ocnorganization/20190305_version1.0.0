@@ -4,6 +4,7 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/WarehouseCF_manager/WarehouseCF_manager_web" />
     <file type="web" url="file://$PROJECT_DIR$/WarehouseCF_portal" />
+    <file type="web" url="file://$PROJECT_DIR$/WarehouseCF_rest" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
@@ -11,6 +12,12 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/WarehouseCF_parent/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/WarehouseCF_portal/WarehouseCF_portal_mapper/pom.xml" />
+        <option value="$PROJECT_DIR$/WarehouseCF_portal/WarehouseCF_portal_pojo/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">

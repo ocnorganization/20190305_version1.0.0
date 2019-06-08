@@ -16,5 +16,11 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+        <!--<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">-->
+                <!--<property name="location">-->
+                        <!--<value>classpath:resource.properties</value>-->
+                <!--</property>-->
+        <!--</bean>-->
+        <context:property-placeholder location="classpath:resource.properties" ignore-unresolvable="true"/>
         <context:component-scan base-package="com.alexmillerning.service"/>
 </beans>

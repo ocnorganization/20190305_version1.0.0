@@ -1,9 +1,4 @@
-E:\IntellijWorkspace\WarehouseCF_portal\WarehouseCF_portal_service\src\main\java\com\alexmillerning\service\impl\WFBrandServiceImpl.java
-E:\IntellijWorkspace\WarehouseCF_portal\WarehouseCF_portal_service\src\main\java\com\alexmillerning\service\WFBrandService.java
-E:\IntellijWorkspace\WarehouseCF_portal\WarehouseCF_portal_service\src\main\java\com\alexmillerning\service\impl\WBColorServiceImpl.java
-E:\IntellijWorkspace\WarehouseCF_portal\WarehouseCF_portal_service\src\main\java\com\alexmillerning\service\impl\WFColorBranchServiceImpl.java
-E:\IntellijWorkspace\WarehouseCF_portal\WarehouseCF_portal_service\src\main\java\com\alexmillerning\service\impl\WFMenusServiceImpl.java
-E:\IntellijWorkspace\WarehouseCF_portal\WarehouseCF_portal_service\src\main\java\com\alexmillerning\service\WFColorBranchService.java
-E:\IntellijWorkspace\WarehouseCF_portal\WarehouseCF_portal_service\src\main\java\com\alexmillerning\service\MenuTreeUtils.java
-E:\IntellijWorkspace\WarehouseCF_portal\WarehouseCF_portal_service\src\main\java\com\alexmillerning\service\WFMenusService.java
-E:\IntellijWorkspace\WarehouseCF_portal\WarehouseCF_portal_service\src\main\java\com\alexmillerning\service\WBColorService.java
+E:\MyWorkspace\version20190515\WarehouseCF_portal\WarehouseCF_portal_service\src\main\java\com\alexmillerning\service\menu\MenuClientService.java
+E:\MyWorkspace\version20190515\WarehouseCF_portal\WarehouseCF_portal_service\src\main\java\com\alexmillerning\service\color\ColorClientService.java
+E:\MyWorkspace\version20190515\WarehouseCF_portal\WarehouseCF_portal_service\src\main\java\com\alexmillerning\service\color\impl\ColorClientServiceImpl.java
+E:\MyWorkspace\version20190515\WarehouseCF_portal\WarehouseCF_portal_service\src\main\java\com\alexmillerning\service\menu\impl\MenuClientServiceImpl.java

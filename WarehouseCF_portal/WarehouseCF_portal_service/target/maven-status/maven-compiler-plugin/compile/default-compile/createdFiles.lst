@@ -1,0 +1,4 @@
+com\alexmillerning\service\menu\impl\MenuClientServiceImpl.class
+com\alexmillerning\service\color\ColorClientService.class
+com\alexmillerning\service\color\impl\ColorClientServiceImpl.class
+com\alexmillerning\service\menu\MenuClientService.class

@@ -10,31 +10,34 @@ package com.alexmillerning.controller;
 
 
 
-import com.alexmillerning.pojo.WFMenus;
-import com.alexmillerning.service.MenuTreeUtils;
-import com.alexmillerning.service.WFMenusService;
+import com.alexmillerning.service.menu.MenuClientService;
+import com.alexmillerning.utils.pojo.menu.MenuTree;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.List;
 
 @Controller
 public class IndexController {
+    final Logger logger = Logger.getLogger(IndexController.class);
     @Autowired
-    WFMenusService wfMenusService;
-    //index页面
+    MenuClientService menuClientService;
     @RequestMapping("/")
-    public String  requestIndex(){
+    /**
+     * @methodname requestIndex
+     * @author Alex
+     * @date 2019/6/6
+     * @param [modelMap]
+     * @return java.lang.String
+     * @description 加载主页以及左侧菜单按钮
+     */
+    public String  requestIndex(ModelMap modelMap){
+        if(logger.isDebugEnabled()){
+            logger.debug("页面请求[/index.html]");
+        }
+        MenuTree menuTree = menuClientService.getMenuTree();
+        modelMap.addAttribute("menuTree",menuTree);
         return "index";
-    }
-    //加载页面菜单
-    @RequestMapping("/mainPage/getTree")
-    @ResponseBody
-    public List<WFMenus> getWBMenus(){
-        List<WFMenus> wfMenusList = wfMenusService.getWFMenusList();
-        List<WFMenus> menuTree = MenuTreeUtils.getFatherNode(wfMenusList);
-        return menuTree;
     }
 }

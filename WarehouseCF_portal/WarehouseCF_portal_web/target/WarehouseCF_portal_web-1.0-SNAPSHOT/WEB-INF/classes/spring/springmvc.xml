@@ -33,7 +33,8 @@
         <property name="templateLoaderPath" value="/WEB-INF/AdminLTE/"/>
     </bean>
     <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
-        <property name="suffix" value=".html"/>
+        <property name="prefix" value=""/>
+        <property name="suffix" value=".ftl"/>
         <property name="contentType" value="text/html;charset=UTF-8"></property>
     </bean>
     <!-- index视图解析器-->

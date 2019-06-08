@@ -15,6 +15,10 @@
     <file url="file://$PROJECT_DIR$/WarehouseCF_portal/WarehouseCF_portal_web" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/WarehouseCF_redis" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/WarehouseCF_rest" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WarehouseCF_rest/WarehouseCF_rest_mapper" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WarehouseCF_rest/WarehouseCF_rest_pojo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WarehouseCF_rest/WarehouseCF_rest_service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WarehouseCF_rest/WarehouseCF_rest_web" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/WarehouseCF_search" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/WarehouseCF_sso" charset="UTF-8" />
   </component>

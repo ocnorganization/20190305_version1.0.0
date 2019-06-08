@@ -486,7 +486,6 @@
   $.fn.dataTable.ext.buttons.reload = {
     text: '<i class="glyphicon glyphicon-refresh" title="刷新"></i>',
     action: function ( e, dt, node, config ) {
-      // dt.ajax.reload();
       reloadTable();
     }
   };
@@ -591,14 +590,12 @@
         data : {"colorName":colorName,"colorPid":colorPid},
         success:function(data){
           alert(data.resultMessage);
-          // $('#identifier').modal('hide')
           reloadTable();
         },
         error:function(e){
           alert("ajax提交错误！！请重试");
         }
       });
-      // alert(colorBranchName+colorPid);
     }
   }
 </script>
