@@ -1,0 +1,599 @@
+<!--
+  ~ Copyright (c) 2019. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  ~ Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
+  ~ Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
+  ~ Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
+  ~ Vestibulum commodo. Ut rhoncus gravida arcu.
+  -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>CNSystem | Design/Color/ColorBranchTable</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="../../bower_components/select2/dist/css/select2.min.css">
+  <!-- bootstrap-select -->
+  <link rel="stylesheet" href="../../bower_components/bootstrap-select/dist/css/bootstrap-select.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="../../bower_components/Ionicons/css/ionicons.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <!-- DataTables Extends-->
+  <link rel="stylesheet" type="text/css" href="../../bower_components/DataTables/Buttons-1.5.6/css/buttons.dataTables.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" type="text/css" href="../../plugins/iCheck/flat/orange.css">
+  <!-- bootstrap-validation -->
+  <link rel="stylesheet" type="text/css" href="../../plugins/bootstrap-validation/dist/css/bootstrapValidator.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Google Font -->
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+<body style="background-color: transparent">
+<div class="wrapper">
+  <section class="content-header">
+    <h1>
+      设计元素
+      <small>工艺</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i>欢迎页</a></li>
+      <li><a href="#">设计元素</a></li>
+      <li class="active">工艺</li>
+    </ol>
+  </section>
+  <!-- Main content -->
+  <section class="content">
+    <!-- 表格 -->
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box box-warning">
+          <div class="box-header">
+            <h3 class="box-title">设计工艺</h3>
+          </div>
+          <!-- /.box-header -->
+          <div class="box-body">
+            <!-- 表格 -->
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <table id="example" class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                      <th>选择</th>
+                      <th>工艺编号</th>
+                      <th>工艺名称</th>
+                      <th>工艺描述</th>
+                      <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </section>
+</div>
+<!-- 编辑页面 -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="box box-warning">
+        <div class="box-body">
+          <div class="modal-header">
+            <button type="button" class="close" onclick="warnings($('#editModal'))" aria-hidden="true">
+              &times;
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+              编辑工艺
+            </h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal" id="editForm">
+              <div class="form-group">
+                <label for="editCraftId" class="col-sm-2 control-label">工艺编号</label>
+                <div class="col-sm-10">
+                  <input type="input" disabled="disabled" class="form-control" id="editCraftId">
+                </div>
+              </div>
+              <div class="form-group">
+                <!--<input type="hidden" class="form-control" id="addColorBranchNameHidden" name="addColorHidden">-->
+                <label for="editCraftName" class="col-sm-2 control-label">工艺名称</label>
+                <div class="col-sm-10">
+                  <input type="input"  class="form-control" id="editCraftName" name="editCraft">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="editCraftDes" class="col-sm-2 control-label">工艺描述</label>
+                <div class="col-sm-10">
+                  <input type="input"  class="form-control" id="editCraftDes" name="editDes">
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" onclick="warnings($('#editModal'))" class="btn btn-default">关闭</button>
+            <button type="button" onclick="editCraft()" class="btn btn-primary">提交更改</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div>
+    </div>
+  </div><!-- /.modal -->
+</div>
+<!-- 新增页面 -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="box box-warning">
+        <!--<form class="form-horizontal" id="addForm">-->
+        <div class="box-body">
+          <div class="modal-header">
+            <button type="button" class="close" onclick="warnings($('#addModal'))" aria-hidden="true">
+              &times;
+            </button>
+            <h4 class="modal-title" id="addModalLabel">
+              新增工艺
+            </h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal" id="addForm">
+              <!--<div class="form-group">-->
+              <!--<label for="addCraftId" class="col-sm-2 control-label">工艺编号</label>-->
+              <!--<div class="col-sm-10">-->
+              <!--<input type="input" disabled="disabled" class="form-control" id="addCraftId">-->
+              <!--</div>-->
+              <!--</div>-->
+              <div class="form-group">
+                <label for="addCraftName" class="col-sm-2 control-label">工艺名称</label>
+                <div class="col-sm-10">
+                  <input type="input" class="form-control" id="addCraftName" name="addCraft">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="addCraftDes" class="col-sm-2 control-label">工艺描述</label>
+                <div class="col-sm-10">
+                  <input type="input" class="form-control" id="addCraftDes">
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" onclick="warnings($('#addModal'))" class="btn btn-default">关闭</button>
+            <button type="button" onclick="addCraft()" class="btn btn-primary" >新增</button>
+          </div>
+        </div><!-- /.modal-content -->
+        <!--</form>-->
+      </div>
+    </div>
+  </div><!-- /.modal -->
+</div>
+
+<!-- 删除确认页面 -->
+<div class="modal modal-danger fade" id="deleteModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">警告</h4>
+      </div>
+      <div class="modal-body">
+        <p>是否要删除该数据?</p>
+        <input type="hidden"  class="form-control" id="deleteCraftId">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">取消</button>
+        <button type="button" onclick="deleteCraft($('#deleteCraftId').val())" data-dismiss="modal" class="btn btn-outline">确认删除</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 删除多个确认页面 -->
+<div class="modal modal-danger fade" id="deleteAllModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">警告</h4>
+      </div>
+      <div class="modal-body">
+        <p>是否要删除所选中的所有数据?</p>
+        <input type="hidden"  class="form-control" id="deleteAllCraftId">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">取消</button>
+        <button type="button" onclick="deleteCraft($('#deleteAllCraftId').val())" data-dismiss="modal" class="btn btn-outline">确认删除</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- jQuery 3 -->
+<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- DataTables -->
+<script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- DataTables Extends-->
+<script src="../../bower_components/DataTables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
+<script src="../../bower_components/DataTables/Buttons-1.5.6/js/buttons.bootstrap.min.js"></script>
+<!--打印-->
+<script src="../../bower_components/DataTables/Buttons-1.5.6/js/buttons.print.min.js"></script>
+<!--导出-->
+<script src="../../bower_components/DataTables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
+<!-- SlimScroll -->
+<script src="../../bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<!-- Select2 -->
+<script src="../../bower_components/select2/dist/js/select2.full.min.js"></script>
+<!-- bootstrap-select -->
+<script src="../../bower_components/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+<!-- iCheck-->
+<script src="../../plugins/iCheck/icheck.min.js"></script>
+<!-- bootstrap-validation -->
+<script src="../../plugins/bootstrap-validation/dist/js/bootstrapValidator.min.js"></script>
+<!-- FastClick -->
+<script src="../../bower_components/fastclick/lib/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../dist/js/demo.js"></script>
+<!-- page script -->
+<script>
+  // 编辑模态框初始化获取数据
+  $('#editModal').on('shown.bs.modal', function (event) {
+    //验证输入
+    $('#editForm').bootstrapValidator({
+      message: 'This value is not valid',
+      excluded : [':disabled'],
+      feedbackIcons: {
+        valid: 'glyphicon glyphicon-ok',
+        invalid: 'glyphicon glyphicon-remove',
+        validating: 'glyphicon glyphicon-refresh'
+      },
+      fields:{
+        editCraft: { //无法实现校验，需更改
+          message: 'The craftName is not valid',
+          validators: {
+            notEmpty: {
+              message: '工艺名称不能为空'
+            }
+          }
+        }
+      }
+    });
+    //获取从按钮传递过来各参数值显示到编辑模态框中
+    var craftId  = $(event.relatedTarget).attr('data-craftId');
+    var craftName  = $(event.relatedTarget).attr('data-craftName');
+    var craftDes  = $(event.relatedTarget).attr('data-craftDes');
+    $("#editCraftId").val(craftId);
+    $("#editCraftName").val(craftName);
+    $("#editCraftDes").val(craftDes);
+    //打开模态框时校验必输项
+    $('#editForm').data('bootstrapValidator').validate();
+  });
+  $('#editModal').on('hidden.bs.modal', function (event) {
+    //关闭新增模态框时清空校验信息
+    $('#editForm').data('bootstrapValidator').resetForm();
+  });
+  // 新增模态框初始化获取数据
+  $('#addModal').on('shown.bs.modal', function (event) {
+    //验证输入
+    $('#addForm').bootstrapValidator({
+      message: 'This value is not valid',
+      excluded : [':disabled'],
+      feedbackIcons: {
+        valid: 'glyphicon glyphicon-ok',
+        invalid: 'glyphicon glyphicon-remove',
+        validating: 'glyphicon glyphicon-refresh'
+      },
+      fields:{
+        addCraft: {
+          message: 'The craft name is not valid',
+          validators: {
+            notEmpty: {
+              message: '工艺名称不能为空'
+            }
+          }
+        }
+      }
+    });
+    //打开模态框时校验必输项
+    $('#addForm').data('bootstrapValidator').validate();
+  });
+  $('#addModal').on('hidden.bs.modal', function (event) {
+    //关闭新增模态框时清空输入(无效,需要后续解决)
+    $('#addCraftName').val("");
+    $('#addCraftDes').val("");
+    //关闭新增模态框时清空校验信息
+    $('#addForm').data('bootstrapValidator').resetForm();
+    //需要在新增模态框关闭时清空下拉菜单(无效,需要后续解决)
+    $(this).removeData("bs.modal");
+  });
+  //删除模态框
+  $('#deleteModal').on('shown.bs.modal', function (event) {
+    //打开删除确认模态框时,获取传递来的颜色编号
+    var craftId  = $(event.relatedTarget).attr('data-craftId');
+    //调用删除方法
+    $("#deleteCraftId").val(craftId);
+  });
+  //初始化
+  $(document).ready(function() {
+    //表格初始化
+    $('#example').DataTable( {
+      //表格重绘时重新加载iCheck样式
+      drawCallback: function( settings ) {
+        //勾选框
+        $("#checkAll").iCheck({
+          handler:'checkbox',
+          checkboxClass:'icheckbox_flat-orange'
+        });
+        $('input[name="check"]').iCheck({
+          handle : 'checkbox',
+          checkboxClass : 'icheckbox_flat-orange',
+          radioClass : 'iradio_flat-orange'
+        });
+        //全选
+        $('#checkAll').on('ifChecked', function(event){
+          $('input').iCheck('check');
+        });
+        //反选
+        $('#checkAll').on('ifUnchecked', function(event){
+          $('input').iCheck('uncheck');
+        });
+      },
+      //重新布局表格
+      dom:  "<'row' <'col-sm-2'<'search'>> <'col-sm-10'B>>" +
+              "<'row'<'col-sm-12'tr>>" +
+              "<'row'<'col-sm-5'l><'col-sm-7'p>>",
+      //添加表格上方的按钮
+      buttons: [
+        'search',
+        {
+          text: '<i class="glyphicon glyphicon-copy" title="复制"></i>',
+          extend: 'copy'
+        }, {
+          text: '<i class="glyphicon glyphicon-print" title="打印"></i>',
+          extend: 'print'
+        }, {
+          text: '<i class="glyphicon glyphicon-save-file" title="导出excel"></i>',
+          extend: 'excel'
+        }, {
+          text: '<i class="glyphicon glyphicon-list-alt" title="导出csv"></i>',
+          extend: 'csv'
+        }, {
+          text: '<i class="glyphicon glyphicon-file" title="生成pdf"></i>',
+          extend: 'pdf'
+        },'reload','add','delete'
+      ],
+      //服务器模式打开
+      serverSide: true,
+      //ajax请求
+      ajax: {
+        url:"/mainPage/goDesign/craft",
+        dataType:"json",
+        cache:false
+      },
+      //表格列
+      columns: [
+        { "data": null , defaultContent: ''},
+        { "data": "craftId" },
+        { "data": "craftName" },
+        { "data": "craftDes" },
+        { "data": null , defaultContent: ''}
+      ],
+      //自定义列
+      columnDefs: [
+        {
+          //最右侧操作按钮
+          targets: -1,
+          visible: true,
+          sortable: false,
+          render: function(data, type, row){
+            return  '<a href="#" title="详情">' +
+                    '<i class="glyphicon glyphicon-eye-open"></i> ' +
+                    '</a>'+
+                    '<a data-toggle="modal" data-target="#editModal" data-craftId="' + row.craftId +'" data-craftName="' + row.craftName +'" data-craftDes="' + row.craftDes +'" title="修改">' +
+                    '<i class="glyphicon glyphicon-pencil"></i> ' +
+                    '</a>'+
+                    '<a data-toggle="modal" data-target="#deleteModal" data-craftId="' + row.craftId +'" title="删除">' +
+                    '<i class="glyphicon glyphicon-trash text-danger"></i> ' +
+                    '</a>';
+          }
+        },
+        {
+          //最左侧勾选框
+          targets: 0,
+          render: function(data, type, row,meta) {
+            return '<input type="checkbox" name="check" value="'+row.craftId+'"/>'
+          },
+          title:'<input type="checkbox" id="checkAll" value="all"/>'
+        },
+      ],
+      searching: false,
+      autoFill: true,
+      bAutoWidth : true,
+      ordering:false,
+      fixedHeader: true,
+      //语言修改为中文
+      language: {
+        lengthMenu: "每页显示 _MENU_条",
+        sZeroRecords : "没有您要搜索的内容",
+        oPaginate: {
+          sFirst : "第一页",
+          sPrevious : "上一页",
+          sNext : "下一页",
+          sLast : "最后一页"
+        },
+      },
+      pagingType: "full_numbers",
+      info: false,
+      //表格初始化完成后加载下拉菜单
+      fnInitComplete: function(){
+        $('div.search').html('<input type="input" class="form-control" id="searchColorBranchId" placeholder="按编号/名称搜索" style="width: 100%;"></input>');
+      }
+    } );
+  } );
+  //表格上方搜索按钮搜索
+  $.fn.dataTable.ext.buttons.search = {
+    text: '<i class="glyphicon glyphicon-search" title="搜索"></i>',
+    action: function ( e, dt, node, config ) {
+      searchBranchColor();
+    }
+  };
+  //表格上方刷新按钮刷新
+  $.fn.dataTable.ext.buttons.reload = {
+    text: '<i class="glyphicon glyphicon-refresh" title="刷新"></i>',
+    action: function ( e, dt, node, config ) {
+      // dt.ajax.reload();
+      reloadTable();
+    }
+  };
+  //表格上方新增按钮新增
+  $.fn.dataTable.ext.buttons.add = {
+    text: '<i class="glyphicon glyphicon-plus" title="新增"></i>',
+    action: function ( e, dt, node, config ) {
+      $('#addModal').modal('show');
+    }
+  };
+  //表格上方删除按钮删除
+  $.fn.dataTable.ext.buttons.delete = {
+    text: '<i class="glyphicon glyphicon-trash text-danger" title="删除"></i>',
+    action: function ( e, dt, node, config ) {
+      var checkBoxArr = [];
+      $('input[name="check"]:checked').each(function() {
+        checkBoxArr.push($(this).val());
+      });
+      if(checkBoxArr.length < 1){
+        alert("勾选需要删除的列!")
+      }else{
+        console.log(checkBoxArr);
+        $('#deleteAllCraftId').val(checkBoxArr);
+        $('#deleteAllModal').modal('show');
+      }
+    }
+  };
+  //警告是否放弃编辑数据
+  function warnings(modal){
+    var flag = confirm("是否放弃更改?");
+    if(flag){
+      modal.modal('hide');
+    }
+  }
+  //编辑工艺并保存
+  function editCraft(){
+    var craftId  = $("#editCraftId").val();
+    var craftName  = $("#editCraftName").val();
+    var craftDes  = $("#editCraftDes").val();
+    $.ajax({
+      url:"/mainPage/goDesign/craft/edit",
+      type:"post",
+      data:{"craftId":craftId,"craftName":craftName,"craftDes":craftDes},
+      success:function(data){
+        $('#editModal').modal('hide');
+        alert(data.resultMessage);
+        reloadTable();
+      },
+      error:function(e){
+        alert("ajax提交错误！！请重试");
+      }
+    });
+  }
+  //重新加载表格
+  function reloadTable() {
+    var param = {
+      "search": null,
+      "craftId": null
+    };
+    $('#example').DataTable().settings()[0].ajax.data = param;
+    $('#example').DataTable().ajax.reload();
+  }
+  //按参数加载表格
+  function searchBranchColor() {
+    var param = {
+      "search": $('#searchColorBranchId').val(),
+      // "craftName": $("#table-select").val()
+    };
+    $('#example').DataTable().settings()[0].ajax.data = param;
+    $('#example').DataTable().ajax.reload();
+  }
+  //删除方法
+  function deleteCraft(deleteCraftId) {
+    var deleteParam = deleteCraftId;
+    // console.log(deleteParam);
+    if(deleteParam != null){
+      $.ajax({
+        url:"/mainPage/goDesign/craft/delete",
+        type:"post",
+        traditional:true,
+        dataType:"json",
+        data : {"deleteParam":deleteParam},
+        success:function(data){
+          alert(data.resultMessage);
+          reloadTable();
+        },
+        error:function(e){
+          alert("ajax提交错误！！请重试");
+        }
+      });
+    }
+  }
+  //新增方法
+  function addCraft() {
+    var bootstrapValidator = $("#addForm").data('bootstrapValidator');
+    bootstrapValidator.validate();
+    if(bootstrapValidator.isValid()){
+      // if($('#addForm').data('bootstrapValidator').isValid()){
+      var craftName  = $("#addCraftName").val();
+      var craftDes  = $("#addCraftDes").val();
+      // var colorPid = $("#add-select").val();
+      $.ajax({
+        url:"/mainPage/goDesign/craft/add",
+        type:"post",
+        traditional:true,
+        dataType:"json",
+        data : {"craftName":craftName, "craftDes":craftDes},
+        success:function(data){
+          alert(data.resultMessage);
+          $('#addModal').modal('hide');
+          reloadTable();
+        },
+        error:function(e){
+          alert("ajax提交错误！！请重试");
+        }
+      });
+    }else{
+      return;
+    }
+  }
+</script>
+</body>
+</html>

@@ -165,30 +165,29 @@
               </div>
               <div class="modal-body">
                 <form class="form-horizontal" id="addForm">
+                  <!--<div class="form-group">-->
+                    <!--<label for="addBrandId" class="col-sm-2 control-label">品牌编号</label>-->
+                    <!--<div class="col-sm-10">-->
+                      <!--<input type="input" disabled="disabled" class="form-control" id="addBrandId">-->
+                    <!--</div>-->
+                  <!--</div>-->
                   <div class="form-group">
-                    <label for="addBrandId" class="col-sm-2 control-label">品牌编号</label>
-                    <div class="col-sm-10">
-                      <input type="input" disabled="disabled" class="form-control" id="addBrandId">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <!--<input type="hidden" class="form-control" id="addColorBranchNameHidden" name="addColorHidden">-->
                     <label for="addBrandName" class="col-sm-2 control-label">品牌名称</label>
                     <div class="col-sm-10">
-                      <input type="input" disabled="disabled" class="form-control" id="addBrandName">
+                      <input type="input" class="form-control" id="addBrandName" name="addBrand">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="addBrandDes" class="col-sm-2 control-label">品牌描述</label>
                     <div class="col-sm-10">
-                      <input type="input" disabled="disabled" class="form-control" id="addBrandDes">
+                      <input type="input" class="form-control" id="addBrandDes">
                     </div>
                   </div>
                 </form>
               </div>
               <div class="modal-footer">
                 <button type="button" onclick="warnings($('#addModal'))" class="btn btn-default">关闭</button>
-                <button type="button" onclick="addBranchColor()" class="btn btn-primary" data-dismiss="modal">新增</button>
+                <button type="button" onclick="addBrand()" class="btn btn-primary" >新增</button>
               </div>
             </div><!-- /.modal-content -->
           <!--</form>-->
@@ -317,46 +316,27 @@
         validating: 'glyphicon glyphicon-refresh'
       },
       fields:{
-        addColor: {
-          message: 'The username is not valid',
+        addBrand: {
+          message: 'The brand name is not valid',
           validators: {
             notEmpty: {
-              message: '颜色名称不能为空'
-            }
-          }
-        },
-        addSelect:{
-          message: 'The username is not valid',
-          validators: {
-            notEmpty: {
-              message: '所属颜色不能为空'
+              message: '品牌名称不能为空'
             }
           }
         }
-      }
-    });
-    //加载下拉菜单
-    $("#add-select").select2({
-      placeholder:'请选择颜色父类',
-      ajax: {
-        url: '/mainPage/goDesign/colorParent',
-        dataType: 'json',
-        cache:false
       }
     });
     //打开模态框时校验必输项
     $('#addForm').data('bootstrapValidator').validate();
   });
   $('#addModal').on('hidden.bs.modal', function (event) {
-    //关闭新增模态框时清空输入
-    $('#addColorBranchName').val("");
-    //需要在新增模态框关闭时清空下拉菜单(无效,需要后续解决)
-    $('#add-select').select2("val","");
+    //关闭新增模态框时清空输入(无效,需要后续解决)
+    $('#addBrandName').val("");
+    $('#addBrandDes').val("");
     //关闭新增模态框时清空校验信息
     $('#addForm').data('bootstrapValidator').resetForm();
     //需要在新增模态框关闭时清空下拉菜单(无效,需要后续解决)
     $(this).removeData("bs.modal");
-
   });
   //删除模态框
   $('#deleteModal').on('shown.bs.modal', function (event) {
@@ -560,7 +540,7 @@
   function searchBranchColor() {
     var param = {
       "search": $('#searchColorBranchId').val(),
-      "colorPid": $("#table-select").val()
+      // "brandName": $("#table-select").val()
     };
     $('#example').DataTable().settings()[0].ajax.data = param;
     $('#example').DataTable().ajax.reload();
@@ -587,26 +567,31 @@
     }
   }
   //新增方法
-  function addBranchColor() {
-    if($('#addForm').data('bootstrapValidator').isValid()){
-      var colorName  = $("#addColorBranchName").val();
-      var colorPid = $("#add-select").val();
+  function addBrand() {
+    var bootstrapValidator = $("#addForm").data('bootstrapValidator');
+    bootstrapValidator.validate();
+    if(bootstrapValidator.isValid()){
+      // if($('#addForm').data('bootstrapValidator').isValid()){
+      var brandName  = $("#addBrandName").val();
+      var brandDes  = $("#addBrandDes").val();
+      // var colorPid = $("#add-select").val();
       $.ajax({
-        url:"/mainPage/goDesign/color/add",
+        url:"/mainPage/goDesign/brand/add",
         type:"post",
         traditional:true,
         dataType:"json",
-        data : {"colorName":colorName,"colorPid":colorPid},
+        data : {"brandName":brandName, "brandDes":brandDes},
         success:function(data){
           alert(data.resultMessage);
-          // $('#identifier').modal('hide')
+          $('#addModal').modal('hide');
           reloadTable();
         },
         error:function(e){
           alert("ajax提交错误！！请重试");
         }
       });
-      // alert(colorBranchName+colorPid);
+    }else{
+      return;
     }
   }
 </script>

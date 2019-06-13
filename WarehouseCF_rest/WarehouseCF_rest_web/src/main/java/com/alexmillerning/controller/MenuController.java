@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/rest")
+@RequestMapping("/rest/mainPage")
 public class MenuController {
     @Autowired
     MenuService menuService;
-    @RequestMapping("/mainPage/menuTree")
+    @RequestMapping("/menuTree")
     @ResponseBody
     public MenuTree getMenuTree(){
         MenuTree menuTree = menuService.getMenuTree();

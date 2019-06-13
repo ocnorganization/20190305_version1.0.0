@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/rest")
+@RequestMapping("/rest/design")
 public class ColorController {
     static final Logger logger = Logger.getLogger(ColorController.class);
     @Autowired
@@ -48,11 +48,11 @@ public class ColorController {
     public MessageToInterface deleteBrunchColor(@RequestBody BrunchColorDeleteReqParam brunchColorDeleteReqParam){
         Integer[] deleteArray = brunchColorDeleteReqParam.getDeleteArray();
         if(logger.isDebugEnabled()){
-            logger.debug("客户端PORTAL请求[/rest/color/brunchColor/table/delete] 请求参数[ deleteArray: ");
+            StringBuilder stringBuilder = new StringBuilder();
             for(int i = 0; i < deleteArray.length; i++){
-                logger.debug(deleteArray[i]+" ");
+                stringBuilder.append(deleteArray[i]+",");
             }
-            logger.debug("]");
+            logger.debug("客户端PORTAL请求[/rest/color/brunchColor/table/delete] 请求参数[ deleteArray: "+stringBuilder+"]");
         }
         int flag = -1;
         for(int i =0;i<deleteArray.length;i++){
@@ -65,11 +65,10 @@ public class ColorController {
         MessageToInterface messageToInterface = new MessageToInterface();
         if(flag != -1){
             messageToInterface.setResultMessage("删除第["+flag+"]数据出错!终止后续删除!");
-            return messageToInterface;
         }else{
             messageToInterface.setResultMessage("删除成功!");
-            return messageToInterface;
         }
+        return messageToInterface;
     }
     @RequestMapping("/color/brunchColor/table/add")
     @ResponseBody
@@ -81,11 +80,10 @@ public class ColorController {
         MessageToInterface messageToInterface = new MessageToInterface();
         if(flag > 0){
             messageToInterface.setResultMessage("新增颜色成功!");
-            return messageToInterface;
         }else{
             messageToInterface.setResultMessage("新增颜色失败!");
-            return messageToInterface;
         }
+        return messageToInterface;
     }
 
     @RequestMapping("/color/brunchColor/table/edit")

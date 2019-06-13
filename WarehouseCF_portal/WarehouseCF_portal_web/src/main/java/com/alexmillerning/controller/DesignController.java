@@ -9,10 +9,22 @@
 package com.alexmillerning.controller;
 
 
+import com.alexmillerning.service.brand.BrandClientService;
 import com.alexmillerning.service.color.ColorClientService;
+import com.alexmillerning.service.craft.CraftClientService;
+import com.alexmillerning.service.part.PartClientService;
+import com.alexmillerning.service.season.SeasonClientService;
+import com.alexmillerning.service.size.SizeClientService;
+import com.alexmillerning.service.unit.UnitClientService;
 import com.alexmillerning.utils.gson.GsonUtils;
 import com.alexmillerning.utils.pojo.MessageToInterface;
+import com.alexmillerning.utils.pojo.design.Season.*;
+import com.alexmillerning.utils.pojo.design.brand.*;
 import com.alexmillerning.utils.pojo.design.color.*;
+import com.alexmillerning.utils.pojo.design.craft.*;
+import com.alexmillerning.utils.pojo.design.part.*;
+import com.alexmillerning.utils.pojo.design.size.*;
+import com.alexmillerning.utils.pojo.design.unit.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +41,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 public class DesignController {
     final Logger logger = Logger.getLogger(DesignController.class);
+    /**
+     * 设计元素/颜色
+     */
     @Autowired
     ColorClientService colorClientService;
     /**
@@ -76,11 +91,11 @@ public class DesignController {
     @ResponseBody
     public MessageToInterface deleteBrunchColor(@RequestParam(value="deleteParam") Integer[] deleteParamArray){
         if(logger.isDebugEnabled()) {
-            logger.debug("页面请求[/mainPage/goDesign/color/edit]请求 请求参数为deleteParam:[");
+            StringBuilder stringBuilder = new StringBuilder();
             for(int i =0;i<deleteParamArray.length;i++){
-                logger.debug(deleteParamArray[i]+",");
+                stringBuilder.append(deleteParamArray[i]+",");
             }
-            logger.debug("]");
+            logger.debug("页面请求[/mainPage/goDesign/color/edit] 请求参数为deleteParam:["+stringBuilder+"]");
         }
         BrunchColorDeleteReqParam brunchColorDeleteReqParam = new BrunchColorDeleteReqParam();
         brunchColorDeleteReqParam.setDeleteArray(deleteParamArray);
@@ -109,7 +124,7 @@ public class DesignController {
     }
 
     /**
-     * \
+     *
      * @param colorBranchId
      * @param colorBranchName
      * @param colorName
@@ -131,7 +146,517 @@ public class DesignController {
         String jsonParam = GsonUtils.toJson(brunchColorEditReqParam);
         return colorClientService.editBrunchColorfTable(jsonParam);
     }
+    /**
+     * 设计元素/品牌
+     */
+    @Autowired
+    BrandClientService brandClientService;
+    /**
+     * @description 设计元素/品牌/品牌表格数据
+     */
+    @RequestMapping("/mainPage/goDesign/brand")
+    @ResponseBody
+    public BrandfTable getBrand(@RequestParam(value="draw") String draw,
+                                @RequestParam(value="start") String start,
+                                @RequestParam(value="length") String length,
+                                @RequestParam(value="search",required = false) String searchParam){
+        if (logger.isDebugEnabled()) {
+            logger.debug("页面请求[/mainPage/goDesign/color] 请求参数为draw:[" + draw + "] start:[" + start + "] length:[" + length + "]  search:[" + searchParam + "]");
+        }
+        Integer offSet = Integer.parseInt(start);
+        Integer limit = Integer.parseInt(length);
+//        BrunchColorReqParam brunchColorReqParam = new BrunchColorReqParam();
+        BrandReqParam brandReqParam = new BrandReqParam();
+        brandReqParam.setDraw(Integer.parseInt(draw));
+        brandReqParam.setCurrentPage((offSet/limit)+1);
+        brandReqParam.setPageSize(limit);
+        brandReqParam.setSearchParam(searchParam);
+        String jsonParam = GsonUtils.toJson(brandReqParam);
+        if (logger.isDebugEnabled()) {
+            logger.debug("请求的JSON数据为["+ jsonParam +"]");
+        }
+        return brandClientService.getBrand(jsonParam);
+    }
+    /**
+     * @description 设计元素/品牌/品牌表格数据删除方法
+     */
+    @RequestMapping("/mainPage/goDesign/brand/delete")
+    @ResponseBody
+    public MessageToInterface deleteBrand(@RequestParam(value="deleteParam") Integer[] deleteParamArray){
+        if(logger.isDebugEnabled()) {
+            StringBuilder stringBuilder = new StringBuilder();
+            for(int i =0;i<deleteParamArray.length;i++){
+                stringBuilder.append(deleteParamArray[i]+",");
+            }
+            logger.debug("页面请求[/mainPage/goDesign/color/edit] 请求参数为deleteParam:["+stringBuilder+"]");
+        }
+        BrandDeleteReqParam brandDeleteReqParam = new BrandDeleteReqParam();
+        brandDeleteReqParam.setDeleteArray(deleteParamArray);
+        String jsonParam = GsonUtils.toJson(brandDeleteReqParam);
+        return brandClientService.deleteBrand(jsonParam);
+    }
 
+    /**
+     * @description 设计元素/品牌/品牌表格数据新增方法
+     */
+    @RequestMapping("/mainPage/goDesign/brand/add")
+    @ResponseBody
+    public MessageToInterface addBrand(@RequestParam(value="brandName") String brandName,@RequestParam(value="brandDes") String brandDes){
+        if(logger.isDebugEnabled()) {
+            logger.debug("页面请求[/mainPage/goDesign/brand/add] 请求参数为brandName:[" + brandName + "] brandDes:[" + brandDes + "]");
+        }
+        BrandAddReqParam brandAddReqParam = new BrandAddReqParam();
+        brandAddReqParam.setBrandName(brandName);
+        brandAddReqParam.setBrandDes(brandDes);
+        String jsonParam = GsonUtils.toJson(brandAddReqParam);
+        return brandClientService.addBrand(jsonParam);
+    }
+    /**
+     * @description 设计元素/品牌/品牌表格数据编辑方法
+     */
+    @RequestMapping("/mainPage/goDesign/brand/edit")
+    @ResponseBody
+    public MessageToInterface editBrand(@RequestParam(value="brandId") String brandId,
+                                              @RequestParam(value="brandName") String brandName,
+                                              @RequestParam(value="brandDes") String brandDes){
+        if(logger.isDebugEnabled()){
+            logger.debug("页面请求[/mainPage/goDesign/brand/edit] brandId:["+brandId+"] brandName:["+brandName+"] brandDes:["+brandDes+"]");
+        }
+        BrandEditReqParam brandEditReqParam = new BrandEditReqParam();
+        brandEditReqParam.setBrandId(brandId);
+        brandEditReqParam.setBrandName(brandName);
+        brandEditReqParam.setBrandDes(brandDes);
+        String jsonParam = GsonUtils.toJson(brandEditReqParam);
+        return brandClientService.editBrand(jsonParam);
+    }
+    /**
+     * 设计元素/尺寸
+     */
+    @Autowired
+    SizeClientService sizeClientService;
+    /**
+     * @description 设计元素/尺寸/尺寸大类下拉列表数据
+     */
+    @RequestMapping("/mainPage/goDesign/sizeParent")
+    @ResponseBody
+    public SizefDrop getSizeParent() {
+        if(logger.isDebugEnabled()){
+            logger.debug("页面请求[/mainPage/goDesign/sizeParent]");
+        }
+        return sizeClientService.getBasicSizefDrop();
+    }
+    /**
+     * @description 设计元素/尺寸/尺寸子类表格数据
+     */
+    @RequestMapping("/mainPage/goDesign/branchSize")
+    @ResponseBody
+    public BranchSizefTable getSize(@RequestParam(value="sizePid",required = false) String sizePid,
+                                    @RequestParam(value="draw") String draw,
+                                    @RequestParam(value="start") String start,
+                                    @RequestParam(value="length") String length,
+                                    @RequestParam(value="search",required = false) String searchParam) {
+        if (logger.isDebugEnabled()) {
+            logger.debug("页面请求[/mainPage/goDesign/branchSize]请求 请求参数为draw:[" + draw + "] start:[" + start + "] length:[" + length + "] sizePid:[" + sizePid + "] search:[" + searchParam + "]");
+        }
+        Integer offSet = Integer.parseInt(start);
+        Integer limit = Integer.parseInt(length);
+        BranchSizeReqParam branchSizeReqParam = new BranchSizeReqParam();
+        branchSizeReqParam.setDraw(Integer.parseInt(draw));
+        branchSizeReqParam.setCurrentPage((offSet/limit)+1);
+        branchSizeReqParam.setPageSize(limit);
+        branchSizeReqParam.setSizePid(sizePid);
+        branchSizeReqParam.setSearchParam(searchParam);
+        String jsonParam = GsonUtils.toJson(branchSizeReqParam);
+        if (logger.isDebugEnabled()) {
+            logger.debug("请求的JSON数据为["+ jsonParam +"]");
+        }
+        return sizeClientService.getBranchSizefTable(jsonParam);
+    }
+    /**
+     * @description 设计元素/尺寸/尺寸子类表格数据删除方法
+     */
+    @RequestMapping("/mainPage/goDesign/branchSize/delete")
+    @ResponseBody
+    public MessageToInterface deleteBranchSize(@RequestParam(value="deleteParam") Integer[] deleteParamArray){
+        if(logger.isDebugEnabled()) {
+            StringBuilder stringBuilder = new StringBuilder();
+            for(int i =0;i<deleteParamArray.length;i++){
+                stringBuilder.append(deleteParamArray[i]+",");
+            }
+            logger.debug("页面请求[/mainPage/goDesign/branchSize/delete] 请求参数为deleteParam:["+stringBuilder+"]");
+        }
+        BranchSizeDeleteReqParam branchSizeDeleteReqParam = new BranchSizeDeleteReqParam();
+        branchSizeDeleteReqParam.setDeleteArray(deleteParamArray);
+        String jsonParam = GsonUtils.toJson(branchSizeDeleteReqParam);
+        return sizeClientService.deleteBranchSizefTable(jsonParam);
+    }
 
+    /**
+     * @description 设计元素/尺寸/尺寸子类表格数据新增方法
+     */
+    @RequestMapping("/mainPage/goDesign/branchSize/add")
+    @ResponseBody
+    public MessageToInterface addBranchSize(@RequestParam(value="sizeName") String sizeName,@RequestParam(value="sizePid") int sizePid){
+        if(logger.isDebugEnabled()) {
+            logger.debug("页面请求[/mainPage/goDesign/branchSize/add] 请求参数为sizeName:[" + sizeName + "] sizePid:[" + sizePid + "]");
+        }
+        BranchSizeAddReqParam branchSizeAddReqParam = new BranchSizeAddReqParam();
+        branchSizeAddReqParam.setBranchSizeName(sizeName);
+        branchSizeAddReqParam.setBranchSizePid(sizePid);
+        String jsonParam = GsonUtils.toJson(branchSizeAddReqParam);
+        return sizeClientService.addBranchSizefTable(jsonParam);
+    }
+
+    /**
+     * @description 设计元素/尺寸/尺寸子类表格数据编辑方法
+     */
+    @RequestMapping("/mainPage/goDesign/branchSize/edit")
+    @ResponseBody
+    public MessageToInterface editBranchSize(@RequestParam(value="sizeBranchId") int sizeBranchId,
+                                              @RequestParam(value="sizeBranchName") String sizeBranchName,
+                                              @RequestParam(value="sizeName") String sizeName){
+        if(logger.isDebugEnabled()){
+            logger.debug("页面请求[/mainPage/goDesign/branchSize/edit] sizeBranchId:["+sizeBranchId+"] sizeBranchName:["+sizeBranchName+"] sizeName:["+sizeName+"]");
+        }
+        BranchSizeEditReqParam branchSizeEditReqParam = new BranchSizeEditReqParam();
+        branchSizeEditReqParam.setBranchSizeId(sizeBranchId);
+        branchSizeEditReqParam.setBranchSizeName(sizeBranchName);
+        branchSizeEditReqParam.setBranchSizePid(sizeName);
+        String jsonParam = GsonUtils.toJson(branchSizeEditReqParam);
+        return sizeClientService.editBranchSizefTable(jsonParam);
+    }
+    /**
+     * 设计元素/工艺
+     */
+    @Autowired
+    CraftClientService craftClientService;
+    /**
+     * @description 设计元素/工艺/工艺子类表格数据
+     */
+    @RequestMapping("/mainPage/goDesign/craft")
+    @ResponseBody
+    public CraftfTable getCraft(
+            @RequestParam(value="draw") String draw,
+            @RequestParam(value="start") String start,
+            @RequestParam(value="length") String length,
+            @RequestParam(value="search",required = false) String searchParam) {
+        if (logger.isDebugEnabled()) {
+            logger.debug("页面请求[/mainPage/goDesign/craft]请求 请求参数为draw:[" + draw + "] start:[" + start + "] length:[" + length + "] search:[" + searchParam + "]");
+        }
+        Integer offSet = Integer.parseInt(start);
+        Integer limit = Integer.parseInt(length);
+        CraftReqParam craftReqParam = new CraftReqParam();
+        craftReqParam.setDraw(Integer.parseInt(draw));
+        craftReqParam.setCurrentPage((offSet/limit)+1);
+        craftReqParam.setPageSize(limit);
+        craftReqParam.setSearchParam(searchParam);
+        String jsonParam = GsonUtils.toJson(craftReqParam);
+        if (logger.isDebugEnabled()) {
+            logger.debug("请求的JSON数据为["+ jsonParam +"]");
+        }
+        return craftClientService.getCraft(jsonParam);
+    }
+    /**
+     * @description 设计元素/工艺/工艺子类表格数据删除方法
+     */
+    @RequestMapping("/mainPage/goDesign/craft/delete")
+    @ResponseBody
+    public MessageToInterface deleteCraft(@RequestParam(value="deleteParam") Integer[] deleteParamArray){
+        if(logger.isDebugEnabled()) {
+            StringBuilder stringBuilder = new StringBuilder();
+            for(int i =0;i<deleteParamArray.length;i++){
+                stringBuilder.append(deleteParamArray[i]+",");
+            }
+            logger.debug("页面请求[/mainPage/goDesign/craft/delete] 请求参数为deleteParam:["+stringBuilder+"]");
+        }
+        CraftDeleteReqParam craftDeleteReqParam = new CraftDeleteReqParam();
+        craftDeleteReqParam.setDeleteArray(deleteParamArray);
+        String jsonParam = GsonUtils.toJson(craftDeleteReqParam);
+        return craftClientService.deleteCraft(jsonParam);
+    }
+
+    /**
+     * @description 设计元素/工艺/工艺子类表格数据新增方法
+     */
+    @RequestMapping("/mainPage/goDesign/craft/add")
+    @ResponseBody
+    public MessageToInterface addCraft(@RequestParam(value="craftName") String craftName,@RequestParam(value="craftDes") String craftDes){
+        if(logger.isDebugEnabled()) {
+            logger.debug("页面请求[/mainPage/goDesign/craft/add] 请求参数为craftName:[" + craftName + "] craftDes:[" + craftDes + "]");
+        }
+        CraftAddReqParam craftAddReqParam = new CraftAddReqParam();
+        craftAddReqParam.setCraftName(craftName);
+        craftAddReqParam.setCraftDes(craftDes);
+        String jsonParam = GsonUtils.toJson(craftAddReqParam);
+        return craftClientService.addCraft(jsonParam);
+    }
+
+    /**
+     * @description 设计元素/工艺/工艺子类表格数据编辑方法
+     */
+    @RequestMapping("/mainPage/goDesign/craft/edit")
+    @ResponseBody
+    public MessageToInterface editCraft(@RequestParam(value="craftId") int craftId,
+                                        @RequestParam(value="craftName") String craftName,
+                                        @RequestParam(value="craftDes") String craftDes){
+        if(logger.isDebugEnabled()){
+            logger.debug("页面请求[/mainPage/goDesign/craft/edit] craftId:["+craftId+"] craftName:["+craftName+"] craftDes:["+craftDes+"]");
+        }
+        CraftEditReqParam craftEditReqParam = new CraftEditReqParam();
+        craftEditReqParam.setCraftId(craftId);
+        craftEditReqParam.setCraftName(craftName);
+        craftEditReqParam.setCraftDes(craftDes);
+        String jsonParam = GsonUtils.toJson(craftEditReqParam);
+        return craftClientService.editCraft(jsonParam);
+    }
+    /**
+     * 设计元素/季节
+     */
+    @Autowired
+    SeasonClientService seasonClientService;
+    /**
+     * @description 设计元素/季节/季节子类表格数据
+     */
+    @RequestMapping("/mainPage/goDesign/season")
+    @ResponseBody
+    public SeasonfTable getSeason(
+            @RequestParam(value="draw") String draw,
+            @RequestParam(value="start") String start,
+            @RequestParam(value="length") String length,
+            @RequestParam(value="search",required = false) String searchParam) {
+        if (logger.isDebugEnabled()) {
+            logger.debug("页面请求[/mainPage/goDesign/season]请求 请求参数为draw:[" + draw + "] start:[" + start + "] length:[" + length + "] search:[" + searchParam + "]");
+        }
+        Integer offSet = Integer.parseInt(start);
+        Integer limit = Integer.parseInt(length);
+        SeasonReqParam seasonReqParam = new SeasonReqParam();
+        seasonReqParam.setDraw(Integer.parseInt(draw));
+        seasonReqParam.setCurrentPage((offSet/limit)+1);
+        seasonReqParam.setPageSize(limit);
+        seasonReqParam.setSearchParam(searchParam);
+        String jsonParam = GsonUtils.toJson(seasonReqParam);
+        if (logger.isDebugEnabled()) {
+            logger.debug("请求的JSON数据为["+ jsonParam +"]");
+        }
+        return seasonClientService.getSeason(jsonParam);
+    }
+    /**
+     * @description 设计元素/季节/季节子类表格数据删除方法
+     */
+    @RequestMapping("/mainPage/goDesign/season/delete")
+    @ResponseBody
+    public MessageToInterface deleteSeason(@RequestParam(value="deleteParam") Integer[] deleteParamArray){
+        if(logger.isDebugEnabled()) {
+            StringBuilder stringBuilder = new StringBuilder();
+            for(int i =0;i<deleteParamArray.length;i++){
+                stringBuilder.append(deleteParamArray[i]+",");
+            }
+            logger.debug("页面请求[/mainPage/goDesign/season/delete] 请求参数为deleteParam:["+stringBuilder+"]");
+        }
+        SeasonDeleteReqParam seasonDeleteReqParam = new SeasonDeleteReqParam();
+        seasonDeleteReqParam.setDeleteArray(deleteParamArray);
+        String jsonParam = GsonUtils.toJson(seasonDeleteReqParam);
+        return seasonClientService.deleteSeason(jsonParam);
+    }
+
+    /**
+     * @description 设计元素/季节/季节子类表格数据新增方法
+     */
+    @RequestMapping("/mainPage/goDesign/season/add")
+    @ResponseBody
+    public MessageToInterface addSeason(@RequestParam(value="seasonName") String seasonName){
+        if(logger.isDebugEnabled()) {
+            logger.debug("页面请求[/mainPage/goDesign/season/add] 请求参数为seasonName:[" + seasonName + "]");
+        }
+        SeasonAddReqParam seasonAddReqParam = new SeasonAddReqParam();
+        seasonAddReqParam.setSeasonName(seasonName);
+        String jsonParam = GsonUtils.toJson(seasonAddReqParam);
+        return seasonClientService.addSeason(jsonParam);
+    }
+
+    /**
+     * @description 设计元素/季节/季节子类表格数据编辑方法
+     */
+    @RequestMapping("/mainPage/goDesign/season/edit")
+    @ResponseBody
+    public MessageToInterface editSeason(@RequestParam(value="seasonId") int seasonId,
+                                         @RequestParam(value="seasonName") String seasonName){
+        if(logger.isDebugEnabled()){
+            logger.debug("页面请求[/mainPage/goDesign/season/edit] seasonId:["+seasonId+"] seasonName:["+seasonName+"]");
+        }
+        SeasonEditReqParam seasonEditReqParam = new SeasonEditReqParam();
+        seasonEditReqParam.setSeasonId(seasonId);
+        seasonEditReqParam.setSeasonName(seasonName);
+        String jsonParam = GsonUtils.toJson(seasonEditReqParam);
+        return seasonClientService.editSeason(jsonParam);
+    }
+    /**
+     * 设计元素/部位
+     */
+    @Autowired
+    PartClientService partClientService;
+    /**
+     * @description 设计元素/部位/部位子类表格数据
+     */
+    @RequestMapping("/mainPage/goDesign/part")
+    @ResponseBody
+    public PartfTable getPart(
+            @RequestParam(value="draw") String draw,
+            @RequestParam(value="start") String start,
+            @RequestParam(value="length") String length,
+            @RequestParam(value="search",required = false) String searchParam) {
+        if (logger.isDebugEnabled()) {
+            logger.debug("页面请求[/mainPage/goDesign/part]请求 请求参数为draw:[" + draw + "] start:[" + start + "] length:[" + length + "] search:[" + searchParam + "]");
+        }
+        Integer offSet = Integer.parseInt(start);
+        Integer limit = Integer.parseInt(length);
+        PartReqParam partReqParam = new PartReqParam();
+        partReqParam.setDraw(Integer.parseInt(draw));
+        partReqParam.setCurrentPage((offSet/limit)+1);
+        partReqParam.setPageSize(limit);
+        partReqParam.setSearchParam(searchParam);
+        String jsonParam = GsonUtils.toJson(partReqParam);
+        if (logger.isDebugEnabled()) {
+            logger.debug("请求的JSON数据为["+ jsonParam +"]");
+        }
+        return partClientService.getPart(jsonParam);
+    }
+    /**
+     * @description 设计元素/部位/部位子类表格数据删除方法
+     */
+    @RequestMapping("/mainPage/goDesign/part/delete")
+    @ResponseBody
+    public MessageToInterface deletePart(@RequestParam(value="deleteParam") Integer[] deleteParamArray){
+        if(logger.isDebugEnabled()) {
+            StringBuilder stringBuilder = new StringBuilder();
+            for(int i =0;i<deleteParamArray.length;i++){
+                stringBuilder.append(deleteParamArray[i]+",");
+            }
+            logger.debug("页面请求[/mainPage/goDesign/part/delete] 请求参数为deleteParam:["+stringBuilder+"]");
+        }
+        PartDeleteReqParam partDeleteReqParam = new PartDeleteReqParam();
+        partDeleteReqParam.setDeleteArray(deleteParamArray);
+        String jsonParam = GsonUtils.toJson(partDeleteReqParam);
+        return partClientService.deletePart(jsonParam);
+    }
+
+    /**
+     * @description 设计元素/部位/部位子类表格数据新增方法
+     */
+    @RequestMapping("/mainPage/goDesign/part/add")
+    @ResponseBody
+    public MessageToInterface addPart(@RequestParam(value="partName") String partName,@RequestParam(value="partDes") String partDes){
+        if(logger.isDebugEnabled()) {
+            logger.debug("页面请求[/mainPage/goDesign/part/add] 请求参数为partName:[" + partName + "] partDes:[" + partDes + "]");
+        }
+        PartAddReqParam partAddReqParam = new PartAddReqParam();
+        partAddReqParam.setPartName(partName);
+        partAddReqParam.setPartDes(partDes);
+        String jsonParam = GsonUtils.toJson(partAddReqParam);
+        return partClientService.addPart(jsonParam);
+    }
+
+    /**
+     * @description 设计元素/部位/部位子类表格数据编辑方法
+     */
+    @RequestMapping("/mainPage/goDesign/part/edit")
+    @ResponseBody
+    public MessageToInterface editPart(@RequestParam(value="partId") int partId,
+                                       @RequestParam(value="partName") String partName,
+                                       @RequestParam(value="partDes") String partDes){
+        if(logger.isDebugEnabled()){
+            logger.debug("页面请求[/mainPage/goDesign/part/edit] partId:["+partId+"] partName:["+partName+"] partDes:["+partDes+"]");
+        }
+        PartEditReqParam partEditReqParam = new PartEditReqParam();
+        partEditReqParam.setPartId(partId);
+        partEditReqParam.setPartName(partName);
+        partEditReqParam.setPartDes(partDes);
+        String jsonParam = GsonUtils.toJson(partEditReqParam);
+        return partClientService.editPart(jsonParam);
+    }
+    /**
+     * 设计元素/单位
+     */
+    @Autowired
+    UnitClientService unitClientService;
+    /**
+     * @description 设计元素/单位/单位子类表格数据
+     */
+    @RequestMapping("/mainPage/goDesign/unit")
+    @ResponseBody
+    public UnitfTable getUnit(
+            @RequestParam(value="draw") String draw,
+            @RequestParam(value="start") String start,
+            @RequestParam(value="length") String length,
+            @RequestParam(value="search",required = false) String searchParam) {
+        if (logger.isDebugEnabled()) {
+            logger.debug("页面请求[/mainPage/goDesign/unit]请求 请求参数为draw:[" + draw + "] start:[" + start + "] length:[" + length + "] search:[" + searchParam + "]");
+        }
+        Integer offSet = Integer.parseInt(start);
+        Integer limit = Integer.parseInt(length);
+        UnitReqParam unitReqParam = new UnitReqParam();
+        unitReqParam.setDraw(Integer.parseInt(draw));
+        unitReqParam.setCurrentPage((offSet/limit)+1);
+        unitReqParam.setPageSize(limit);
+        unitReqParam.setSearchParam(searchParam);
+        String jsonParam = GsonUtils.toJson(unitReqParam);
+        if (logger.isDebugEnabled()) {
+            logger.debug("请求的JSON数据为["+ jsonParam +"]");
+        }
+        return unitClientService.getUnit(jsonParam);
+    }
+    /**
+     * @description 设计元素/单位/单位子类表格数据删除方法
+     */
+    @RequestMapping("/mainPage/goDesign/unit/delete")
+    @ResponseBody
+    public MessageToInterface deleteUnit(@RequestParam(value="deleteParam") Integer[] deleteParamArray){
+        if(logger.isDebugEnabled()) {
+            StringBuilder stringBuilder = new StringBuilder();
+            for(int i =0;i<deleteParamArray.length;i++){
+                stringBuilder.append(deleteParamArray[i]+",");
+            }
+            logger.debug("页面请求[/mainPage/goDesign/unit/delete] 请求参数为deleteParam:["+stringBuilder+"]");
+        }
+        UnitDeleteReqParam unitDeleteReqParam = new UnitDeleteReqParam();
+        unitDeleteReqParam.setDeleteArray(deleteParamArray);
+        String jsonParam = GsonUtils.toJson(unitDeleteReqParam);
+        return unitClientService.deleteUnit(jsonParam);
+    }
+
+    /**
+     * @description 设计元素/单位/单位子类表格数据新增方法
+     */
+    @RequestMapping("/mainPage/goDesign/unit/add")
+    @ResponseBody
+    public MessageToInterface addUnit(@RequestParam(value="unitName") String unitName,@RequestParam(value="unitDes") String unitDes){
+        if(logger.isDebugEnabled()) {
+            logger.debug("页面请求[/mainPage/goDesign/unit/add] 请求参数为unitName:[" + unitName + "] unitDes:[" + unitDes + "]");
+        }
+        UnitAddReqParam unitAddReqParam = new UnitAddReqParam();
+        unitAddReqParam.setUnitName(unitName);
+        unitAddReqParam.setUnitDes(unitDes);
+        String jsonParam = GsonUtils.toJson(unitAddReqParam);
+        return unitClientService.addUnit(jsonParam);
+    }
+
+    /**
+     * @description 设计元素/单位/单位子类表格数据编辑方法
+     */
+    @RequestMapping("/mainPage/goDesign/unit/edit")
+    @ResponseBody
+    public MessageToInterface editUnit(@RequestParam(value="unitId") int unitId,
+                                       @RequestParam(value="unitName") String unitName,
+                                       @RequestParam(value="unitDes") String unitDes){
+        if(logger.isDebugEnabled()){
+            logger.debug("页面请求[/mainPage/goDesign/unit/edit] unitId:["+unitId+"] unitName:["+unitName+"] unitDes:["+unitDes+"]");
+        }
+        UnitEditReqParam unitEditReqParam = new UnitEditReqParam();
+        unitEditReqParam.setUnitId(unitId);
+        unitEditReqParam.setUnitName(unitName);
+        unitEditReqParam.setUnitDes(unitDes);
+        String jsonParam = GsonUtils.toJson(unitEditReqParam);
+        return unitClientService.editUnit(jsonParam);
+    }
 }
 

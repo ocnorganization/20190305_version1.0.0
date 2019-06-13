@@ -1,4 +1,16 @@
 E:\MyWorkspace\version20190515\WarehouseCF_portal\WarehouseCF_portal_service\src\main\java\com\alexmillerning\service\menu\MenuClientService.java
-E:\MyWorkspace\version20190515\WarehouseCF_portal\WarehouseCF_portal_service\src\main\java\com\alexmillerning\service\color\ColorClientService.java
+E:\MyWorkspace\version20190515\WarehouseCF_portal\WarehouseCF_portal_service\src\main\java\com\alexmillerning\service\brand\BrandClientService.java
+E:\MyWorkspace\version20190515\WarehouseCF_portal\WarehouseCF_portal_service\src\main\java\com\alexmillerning\service\part\impl\PartClientServiceImpl.java
+E:\MyWorkspace\version20190515\WarehouseCF_portal\WarehouseCF_portal_service\src\main\java\com\alexmillerning\service\brand\impl\BrandClientServiceImpl.java
+E:\MyWorkspace\version20190515\WarehouseCF_portal\WarehouseCF_portal_service\src\main\java\com\alexmillerning\service\size\impl\SizeClientServiceImpl.java
+E:\MyWorkspace\version20190515\WarehouseCF_portal\WarehouseCF_portal_service\src\main\java\com\alexmillerning\service\unit\impl\UnitClientServiceImpl.java
+E:\MyWorkspace\version20190515\WarehouseCF_portal\WarehouseCF_portal_service\src\main\java\com\alexmillerning\service\part\PartClientService.java
 E:\MyWorkspace\version20190515\WarehouseCF_portal\WarehouseCF_portal_service\src\main\java\com\alexmillerning\service\color\impl\ColorClientServiceImpl.java
+E:\MyWorkspace\version20190515\WarehouseCF_portal\WarehouseCF_portal_service\src\main\java\com\alexmillerning\service\craft\CraftClientService.java
+E:\MyWorkspace\version20190515\WarehouseCF_portal\WarehouseCF_portal_service\src\main\java\com\alexmillerning\service\season\SeasonClientService.java
+E:\MyWorkspace\version20190515\WarehouseCF_portal\WarehouseCF_portal_service\src\main\java\com\alexmillerning\service\unit\UnitClientService.java
+E:\MyWorkspace\version20190515\WarehouseCF_portal\WarehouseCF_portal_service\src\main\java\com\alexmillerning\service\color\ColorClientService.java
+E:\MyWorkspace\version20190515\WarehouseCF_portal\WarehouseCF_portal_service\src\main\java\com\alexmillerning\service\size\SizeClientService.java
+E:\MyWorkspace\version20190515\WarehouseCF_portal\WarehouseCF_portal_service\src\main\java\com\alexmillerning\service\craft\impl\CraftClientServiceImpl.java
+E:\MyWorkspace\version20190515\WarehouseCF_portal\WarehouseCF_portal_service\src\main\java\com\alexmillerning\service\season\impl\SeasonClientServiceImpl.java
 E:\MyWorkspace\version20190515\WarehouseCF_portal\WarehouseCF_portal_service\src\main\java\com\alexmillerning\service\menu\impl\MenuClientServiceImpl.java

@@ -39,7 +39,4 @@ public class ResultToBrunchColorTable {
         brunchColorfTable.setRecordsFiltered(recordsFiltered);
         return brunchColorfTable;
     }
-//    public static MessageToInterface convertToMessage(){
-//
-//    }
 }

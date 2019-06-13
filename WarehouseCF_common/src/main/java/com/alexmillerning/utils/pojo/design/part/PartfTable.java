@@ -1,0 +1,89 @@
+/*
+ * Copyright (c) 2019. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+ * Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
+ * Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
+ * Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
+ * Vestibulum commodo. Ut rhoncus gravida arcu.
+ */
+
+package com.alexmillerning.utils.pojo.design.part;
+
+import java.util.List;
+
+public class PartfTable {
+    private int recordsFiltered;
+    private int draw;
+    private int recordsTotal;
+    private List<DataBean> data;
+
+    public int getRecordsFiltered() {
+        return recordsFiltered;
+    }
+
+    public void setRecordsFiltered(int recordsFiltered) {
+        this.recordsFiltered = recordsFiltered;
+    }
+
+    public int getDraw() {
+        return draw;
+    }
+
+    public void setDraw(int draw) {
+        this.draw = draw;
+    }
+
+    public int getRecordsTotal() {
+        return recordsTotal;
+    }
+
+    public void setRecordsTotal(int recordsTotal) {
+        this.recordsTotal = recordsTotal;
+    }
+
+    public List<DataBean> getData() {
+        return data;
+    }
+
+    public void setData(List<DataBean> data) {
+        this.data = data;
+    }
+
+    public static class DataBean {
+        private int partId;
+        private String partName;
+        private String partDes;
+        private String partRemark;
+
+        public int getPartId() {
+            return partId;
+        }
+
+        public void setPartId(int partId) {
+            this.partId = partId;
+        }
+
+        public String getPartName() {
+            return partName;
+        }
+
+        public void setPartName(String partName) {
+            this.partName = partName;
+        }
+
+        public String getPartDes() {
+            return partDes;
+        }
+
+        public void setPartDes(String partDes) {
+            this.partDes = partDes;
+        }
+
+        public String getPartRemark() {
+            return partRemark;
+        }
+
+        public void setPartRemark(String partRemark) {
+            this.partRemark = partRemark;
+        }
+    }
+}

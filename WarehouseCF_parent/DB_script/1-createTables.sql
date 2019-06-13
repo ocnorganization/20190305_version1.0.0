@@ -33,24 +33,47 @@ INSERT INTO W_B_MENUS (ID,PID,TEXT,STATUS,URL)VALUES('121','12','查询员工信
 INSERT INTO W_B_MENUS (ID,PID,TEXT,STATUS,URL)VALUES('122','12','添加员工信息','','');
 INSERT INTO W_B_MENUS (ID,PID,TEXT,STATUS,URL)VALUES('123','12','删除员工信息','','');
 -- 创建AdminLTE前端页面菜单按钮
-create TABLE W_F_MENUS
+-- create TABLE W_F_MENUS
+-- (
+-- MENUID VARCHAR(20) NOT NULL,
+-- PMENUID VARCHAR(20) NULL,
+-- MENUNAME VARCHAR(50) NULL,
+-- MENUSTATUS VARCHAR(20) NULL,
+-- MENUURL VARCHAR(100) NULL,
+-- PRIMARY KEY(MENUID),
+-- UNIQUE (MENUNAME)
+-- );
+-- INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('1', '', '设计元素', 'CLOSED', '');
+-- INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('11', '1', '颜色', '', '/design/color/data.html');
+-- INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('12', '1', '品牌', '', '/design/brand/data.html');
+-- INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('13', '1', '尺码', '', '');
+-- INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('14', '1', '工艺', '', '');
+-- INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('15', '1', '季节', '', '');
+-- INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('16', '1', '部位', '', '');
+-- INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('2', '', '物料管理', 'CLOSED', '');
+
+-- 创建AdminLTE前端页面菜单按钮
+create TABLE W_F_MENUTREE
 (
-MENUID VARCHAR(20) NOT NULL,
-PMENUID VARCHAR(20) NULL,
-MENUNAME VARCHAR(50) NULL,
-MENUSTATUS VARCHAR(20) NULL,
-MENUURL VARCHAR(100) NULL,
+MENUID VARCHAR(20) NOT NULL COMMENT '按钮的编号',
+PMENUID VARCHAR(20) NULL COMMENT '按钮的父编号',
+MENUNAME VARCHAR(50) NULL COMMENT '按钮的名称',
+MENUSTATUS VARCHAR(20) NULL COMMENT '按钮的状态',
+MENUURL VARCHAR(100) NULL COMMENT '按钮的链接',
+MENUICON VARCHAR(50) NOT NULL COMMENT '按钮的图标',
+MENUAUTH VARCHAR(2) NOT NULL COMMENT '按钮的权限编号',
 PRIMARY KEY(MENUID),
 UNIQUE (MENUNAME)
 );
-INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('1', '', '设计元素', 'CLOSED', '');
-INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('11', '1', '颜色', '', '/design/color/data.html');
-INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('12', '1', '品牌', '', '/design/brand/data.html');
-INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('13', '1', '尺码', '', '');
-INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('14', '1', '工艺', '', '');
-INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('15', '1', '季节', '', '');
-INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('16', '1', '部位', '', '');
-INSERT INTO `warehousecf`.`w_f_menus` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`) VALUES ('2', '', '物料管理', 'CLOSED', '');
+INSERT INTO `warehousecf`.`w_f_menutree` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`, `MENUICON`, `MENUAUTH`) VALUES ('1', '', '设计元素', 'CLOSED', '', 'fa-paint-brush', '0');
+INSERT INTO `warehousecf`.`w_f_menutree` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`, `MENUICON`, `MENUAUTH`) VALUES ('11', '1', '颜色', '', '/design/color/data.html', 'fa-dashboard', '0');
+INSERT INTO `warehousecf`.`w_f_menutree` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`, `MENUICON`, `MENUAUTH`) VALUES ('12', '1', '品牌', '', '/design/brand/data.html', 'fa-trademark', '0');
+INSERT INTO `warehousecf`.`w_f_menutree` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`, `MENUICON`, `MENUAUTH`) VALUES ('13', '1', '尺码', '', '/design/size/data.html', 'fa-compress', '0');
+INSERT INTO `warehousecf`.`w_f_menutree` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`, `MENUICON`, `MENUAUTH`) VALUES ('14', '1', '工艺', '', '/design/craft/data.html', 'fa-scissors', '0');
+INSERT INTO `warehousecf`.`w_f_menutree` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`, `MENUICON`, `MENUAUTH`) VALUES ('15', '1', '季节', '', '/design/season/data.html', 'fa-tree', '0');
+INSERT INTO `warehousecf`.`w_f_menutree` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`, `MENUICON`, `MENUAUTH`) VALUES ('16', '1', '部位', '', '/design/part/data.html', 'fa-hand-paper-o', '0');
+INSERT INTO `warehousecf`.`w_f_menutree` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`, `MENUICON`, `MENUAUTH`) VALUES ('17', '1', '单位', '', '/design/unit/data.html', 'fa-balance-scale', '0');
+INSERT INTO `warehousecf`.`w_f_menutree` (`MENUID`, `PMENUID`, `MENUNAME`, `MENUSTATUS`, `MENUURL`, `MENUICON`, `MENUAUTH`) VALUES ('2', '', '物料管理', 'CLOSED', '', 'fa-th', '0');
 -- 创建颜色大类
 create TABLE W_B_COLOR
 (
@@ -157,3 +180,109 @@ INSERT INTO `warehousecf`.`w_f_brand` (`BRAND_NAME`, `BRAND_DES`, `BRAND_REMARK`
 INSERT INTO `warehousecf`.`w_f_brand` (`BRAND_NAME`, `BRAND_DES`, `BRAND_REMARK`) VALUES ('Volkswagen大众', 'Volkswagen大众', NULL);
 INSERT INTO `warehousecf`.`w_f_brand` (`BRAND_NAME`, `BRAND_DES`, `BRAND_REMARK`) VALUES ('英国石油公司', '英国石油公司', NULL);
 INSERT INTO `warehousecf`.`w_f_brand` (`BRAND_NAME`, `BRAND_DES`, `BRAND_REMARK`) VALUES ('Mobil美孚', 'Mobil美孚', NULL);
+
+-- 创建尺码管理表
+create TABLE W_B_SIZE
+(
+SIZE_ID INT(10) NOT NULL AUTO_INCREMENT COMMENT '尺码的编号',
+SIZE_NAME VARCHAR(20) NULL COMMENT '尺码的名称',
+SIZE_REMARK VARCHAR(100) NULL,
+PRIMARY KEY(SIZE_ID),
+UNIQUE (SIZE_NAME)
+);
+INSERT INTO `warehousecf`.`w_b_size` (`SIZE_ID`, `SIZE_NAME`, `SIZE_REMARK`) VALUES ('1', '小童', NULL);
+INSERT INTO `warehousecf`.`w_b_size` (`SIZE_ID`, `SIZE_NAME`, `SIZE_REMARK`) VALUES ('2', '中童', NULL);
+INSERT INTO `warehousecf`.`w_b_size` (`SIZE_ID`, `SIZE_NAME`, `SIZE_REMARK`) VALUES ('3', '大童', NULL);
+INSERT INTO `warehousecf`.`w_b_size` (`SIZE_ID`, `SIZE_NAME`, `SIZE_REMARK`) VALUES ('4', '成人', NULL);
+
+-- 创建尺码管理表
+create TABLE W_F_SIZE_BRANCH
+(
+SIZE_BRANCH_ID INT(20) NOT NULL AUTO_INCREMENT COMMENT '子类尺码的编号',
+SIZE_BRANCH_NAME VARCHAR(20) NOT NULL COMMENT '子类尺码的名称',
+SIZE_BRANCH_PARENT INT(10) NOT NULL COMMENT '父类尺码的编号',
+SIZE_BRANCH_REMARK INT(100) NULL,
+PRIMARY KEY(SIZE_BRANCH_ID),
+UNIQUE (SIZE_BRANCH_NAME),
+FOREIGN KEY(SIZE_BRANCH_PARENT) REFERENCES W_F_SIZE(SIZE_ID)
+);
+-- 测试数据
+INSERT INTO `warehousecf`.`w_f_size_branch` (`SIZE_BRANCH_NAME`, `SIZE_BRANCH_PARENT`, `SIZE_BRANCH_REMARK`) VALUES ('小童M', '1', NULL);
+INSERT INTO `warehousecf`.`w_f_size_branch` (`SIZE_BRANCH_NAME`, `SIZE_BRANCH_PARENT`, `SIZE_BRANCH_REMARK`) VALUES ('小童L', '1', NULL);
+INSERT INTO `warehousecf`.`w_f_size_branch` (`SIZE_BRANCH_NAME`, `SIZE_BRANCH_PARENT`, `SIZE_BRANCH_REMARK`) VALUES ('小童XL', '1', NULL);
+INSERT INTO `warehousecf`.`w_f_size_branch` (`SIZE_BRANCH_NAME`, `SIZE_BRANCH_PARENT`, `SIZE_BRANCH_REMARK`) VALUES ('中童S', '2', NULL);
+INSERT INTO `warehousecf`.`w_f_size_branch` (`SIZE_BRANCH_NAME`, `SIZE_BRANCH_PARENT`, `SIZE_BRANCH_REMARK`) VALUES ('中童M', '2', NULL);
+INSERT INTO `warehousecf`.`w_f_size_branch` (`SIZE_BRANCH_NAME`, `SIZE_BRANCH_PARENT`, `SIZE_BRANCH_REMARK`) VALUES ('中童L', '2', NULL);
+INSERT INTO `warehousecf`.`w_f_size_branch` (`SIZE_BRANCH_NAME`, `SIZE_BRANCH_PARENT`, `SIZE_BRANCH_REMARK`) VALUES ('中童XL', '2', NULL);
+INSERT INTO `warehousecf`.`w_f_size_branch` (`SIZE_BRANCH_NAME`, `SIZE_BRANCH_PARENT`, `SIZE_BRANCH_REMARK`) VALUES ('大童S', '3', NULL);
+INSERT INTO `warehousecf`.`w_f_size_branch` (`SIZE_BRANCH_NAME`, `SIZE_BRANCH_PARENT`, `SIZE_BRANCH_REMARK`) VALUES ('大童M', '3', NULL);
+INSERT INTO `warehousecf`.`w_f_size_branch` (`SIZE_BRANCH_NAME`, `SIZE_BRANCH_PARENT`, `SIZE_BRANCH_REMARK`) VALUES ('大童L', '3', NULL);
+INSERT INTO `warehousecf`.`w_f_size_branch` (`SIZE_BRANCH_NAME`, `SIZE_BRANCH_PARENT`, `SIZE_BRANCH_REMARK`) VALUES ('大童XL', '3', NULL);
+INSERT INTO `warehousecf`.`w_f_size_branch` (`SIZE_BRANCH_NAME`, `SIZE_BRANCH_PARENT`, `SIZE_BRANCH_REMARK`) VALUES ('成人S', '4', NULL);
+INSERT INTO `warehousecf`.`w_f_size_branch` (`SIZE_BRANCH_NAME`, `SIZE_BRANCH_PARENT`, `SIZE_BRANCH_REMARK`) VALUES ('成人M', '4', NULL);
+INSERT INTO `warehousecf`.`w_f_size_branch` (`SIZE_BRANCH_NAME`, `SIZE_BRANCH_PARENT`, `SIZE_BRANCH_REMARK`) VALUES ('成人L', '4', NULL);
+INSERT INTO `warehousecf`.`w_f_size_branch` (`SIZE_BRANCH_NAME`, `SIZE_BRANCH_PARENT`, `SIZE_BRANCH_REMARK`) VALUES ('成人XL', '4', NULL);
+INSERT INTO `warehousecf`.`w_f_size_branch` (`SIZE_BRANCH_NAME`, `SIZE_BRANCH_PARENT`, `SIZE_BRANCH_REMARK`) VALUES ('成人XXL', '4', NULL);
+-- 创建工艺管理表
+create TABLE W_F_CRAFT
+(
+CRAFT_ID INT(20) NOT NULL AUTO_INCREMENT COMMENT '工艺的编号',
+CRAFT_NAME VARCHAR(20) NOT NULL COMMENT '工艺的名称',
+CRAFT_DES VARCHAR(100) NULL COMMENT '工艺备注',
+CRAFT_REMARK INT(100) NULL,
+PRIMARY KEY(CRAFT_ID),
+UNIQUE (CRAFT_NAME)
+);
+-- 测试数据
+INSERT INTO `warehousecf`.`w_f_craft` (`CRAFT_NAME`, `CRAFT_DES`, `CRAFT_REMARK`) VALUES ('热印花', '热能印花', NULL);
+INSERT INTO `warehousecf`.`w_f_craft` (`CRAFT_NAME`, `CRAFT_DES`, `CRAFT_REMARK`) VALUES ('冷印花', '冷冻印花', NULL);
+INSERT INTO `warehousecf`.`w_f_craft` (`CRAFT_NAME`, `CRAFT_DES`, `CRAFT_REMARK`) VALUES ('棉麻刺绣', '棉麻刺绣', NULL);
+
+-- 创建季节管理表
+create TABLE W_F_SEASON
+(
+SEASON_ID INT(10) NOT NULL AUTO_INCREMENT COMMENT '季节的编号',
+SEASON_NAME VARCHAR(20) NOT NULL COMMENT '季节的名称',
+SEASON_REMARK VARCHAR(100) NULL,
+PRIMARY KEY(SEASON_ID),
+UNIQUE (SEASON_NAME)
+);
+-- 测试数据
+INSERT INTO `warehousecf`.`w_f_season` (`SEASON_NAME`, `SEASON_REMARK`) VALUES ('春', NULL);
+INSERT INTO `warehousecf`.`w_f_season` (`SEASON_NAME`, `SEASON_REMARK`) VALUES ('夏', NULL);
+INSERT INTO `warehousecf`.`w_f_season` (`SEASON_NAME`, `SEASON_REMARK`) VALUES ('秋', NULL);
+INSERT INTO `warehousecf`.`w_f_season` (`SEASON_NAME`, `SEASON_REMARK`) VALUES ('冬', NULL);
+
+-- 创建部位管理表
+create TABLE W_F_PART
+(
+PART_ID INT(20) NOT NULL AUTO_INCREMENT COMMENT '部位的编号',
+PART_NAME VARCHAR(20) NOT NULL COMMENT '部位的名称',
+PART_DES VARCHAR(100) NULL COMMENT '部位的备注',
+PART_REMARK VARCHAR(100) NULL,
+PRIMARY KEY(PART_ID),
+UNIQUE (PART_NAME)
+);
+-- 测试数据
+INSERT INTO `warehousecf`.`w_f_part` (`PART_NAME`, `PART_DES`, `PART_REMARK`) VALUES ('手', '手部', NULL);
+INSERT INTO `warehousecf`.`w_f_part` (`PART_NAME`, `PART_DES`, `PART_REMARK`) VALUES ('小腿', '小腿部位', NULL);
+INSERT INTO `warehousecf`.`w_f_part` (`PART_NAME`, `PART_DES`, `PART_REMARK`) VALUES ('大腿', NULL, NULL);
+INSERT INTO `warehousecf`.`w_f_part` (`PART_NAME`, `PART_DES`, `PART_REMARK`) VALUES ('前胸', NULL, NULL);
+INSERT INTO `warehousecf`.`w_f_part` (`PART_NAME`, `PART_DES`, `PART_REMARK`) VALUES ('后背', NULL, NULL);
+INSERT INTO `warehousecf`.`w_f_part` (`PART_NAME`, `PART_DES`, `PART_REMARK`) VALUES ('腰', NULL, NULL);
+
+-- 创建单位管理表
+create TABLE W_F_UNIT
+(
+UNIT_ID INT(20) NOT NULL AUTO_INCREMENT COMMENT '单位的编号',
+UNIT_NAME VARCHAR(20) NOT NULL COMMENT '单位的名称',
+UNIT_DES VARCHAR(100) NULL COMMENT '单位的备注',
+UNIT_REMARK VARCHAR(100) NULL,
+PRIMARY KEY(UNIT_ID),
+UNIQUE (UNIT_NAME)
+);
+-- 测试数据
+INSERT INTO `warehousecf`.`w_f_unit` (`UNIT_NAME`, `UNIT_DES`, `UNIT_REMARK`) VALUES ('毫米', NULL, NULL);
+INSERT INTO `warehousecf`.`w_f_unit` (`UNIT_NAME`, `UNIT_DES`, `UNIT_REMARK`) VALUES ('厘米', NULL, NULL);
+INSERT INTO `warehousecf`.`w_f_unit` (`UNIT_NAME`, `UNIT_DES`, `UNIT_REMARK`) VALUES ('分米', NULL, NULL);
+INSERT INTO `warehousecf`.`w_f_unit` (`UNIT_NAME`, `UNIT_DES`, `UNIT_REMARK`) VALUES ('米', NULL, NULL);

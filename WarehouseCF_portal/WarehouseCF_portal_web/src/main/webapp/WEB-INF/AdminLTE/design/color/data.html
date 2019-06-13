@@ -183,7 +183,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" onclick="warnings($('#addModal'))" class="btn btn-default">关闭</button>
-                <button type="button" onclick="addBranchColor()" class="btn btn-primary" data-dismiss="modal">新增</button>
+                <button type="button" onclick="addBranchColor()" class="btn btn-primary">新增</button>
               </div>
             </div><!-- /.modal-content -->
           <!--</form>-->
@@ -270,6 +270,7 @@
     var colorBranchId  = $(event.relatedTarget).attr('data-colorBranchId');
     var colorBranchName  = $(event.relatedTarget).attr('data-colorBranchName');
     var colorName  = $(event.relatedTarget).attr('data-colorName');
+    // console.log("colorName:"+colorName);
     $("#colorBranchId").val(colorBranchId);
     $("#colorBranchName").val(colorBranchName);
     //加载下拉菜单
@@ -525,6 +526,7 @@
     var colorBranchId  = $("#colorBranchId").val();
     var colorBranchName  = $("#colorBranchName").val();
     var colorName  = $("#edit-select").val();
+    console.log("colorName:"+colorName)
     $.ajax({
       url:"/mainPage/goDesign/color/edit",
       type:"post",
@@ -590,6 +592,7 @@
         data : {"colorName":colorName,"colorPid":colorPid},
         success:function(data){
           alert(data.resultMessage);
+          $('#addModal').modal('hide');
           reloadTable();
         },
         error:function(e){

@@ -33,14 +33,14 @@ public class ColorClientServiceImpl implements ColorClientService {
     private String REST_URL;
     @Value("${REST_BASIC_COLOR_OF_DROP}")
     private String REST_BASIC_COLOR_OF_DROP;
-    @Value("${REST_BRUNCH_COLOR_OF_TABLE}")
-    private String REST_BRUNCH_COLOR_OF_TABLE;
-    @Value("${REST_BRUNCH_COLOR_OF_TABLE_DELETE}")
-    private String REST_BRUNCH_COLOR_OF_TABLE_DELETE;
-    @Value("${REST_BRUNCH_COLOR_OF_TABLE_ADD}")
-    private String REST_BRUNCH_COLOR_OF_TABLE_ADD;
-    @Value("${REST_BRUNCH_COLOR_OF_TABLE_EDIT}")
-    private String REST_BRUNCH_COLOR_OF_TABLE_EDIT;
+    @Value("${REST_BRANCH_COLOR_OF_TABLE}")
+    private String REST_BRANCH_COLOR_OF_TABLE;
+    @Value("${REST_BRANCH_COLOR_OF_TABLE_DELETE}")
+    private String REST_BRANCH_COLOR_OF_TABLE_DELETE;
+    @Value("${REST_BRANCH_COLOR_OF_TABLE_ADD}")
+    private String REST_BRANCH_COLOR_OF_TABLE_ADD;
+    @Value("${REST_BRANCH_COLOR_OF_TABLE_EDIT}")
+    private String REST_BRANCH_COLOR_OF_TABLE_EDIT;
     @Override
     /**
      * @methodname getBasicColorfDrop
@@ -79,9 +79,9 @@ public class ColorClientServiceImpl implements ColorClientService {
     public BrunchColorfTable getBrunchColorfTable(String jsonParam) {
         try {
             if(logger.isDebugEnabled()){
-                logger.debug("请求服务器地址["+REST_URL+"] 请求路径["+REST_BRUNCH_COLOR_OF_TABLE+"]");
+                logger.debug("请求服务器地址["+REST_URL+"] 请求路径["+REST_BRANCH_COLOR_OF_TABLE+"]");
             }
-            String jsonResult = HttpClientUtils.httpPost(REST_URL + REST_BRUNCH_COLOR_OF_TABLE, jsonParam);
+            String jsonResult = HttpClientUtils.httpPost(REST_URL + REST_BRANCH_COLOR_OF_TABLE, jsonParam);
             BrunchColorfTable brunchColorfTable = GsonUtils.fromJson(jsonResult, BrunchColorfTable.class);
             if(logger.isDebugEnabled()){
                 logger.debug("服务器[REST] 返回数据["+jsonResult+"]");
@@ -103,9 +103,9 @@ public class ColorClientServiceImpl implements ColorClientService {
     public MessageToInterface deleteBrunchColorfTable(String jsonParam) {
         try {
             if(logger.isDebugEnabled()){
-                logger.debug("请求服务器地址["+REST_URL+"] 请求路径["+REST_BRUNCH_COLOR_OF_TABLE_DELETE+"]");
+                logger.debug("请求服务器地址["+REST_URL+"] 请求路径["+REST_BRANCH_COLOR_OF_TABLE_DELETE+"]");
             }
-            String jsonResult = HttpClientUtils.httpPost(REST_URL + REST_BRUNCH_COLOR_OF_TABLE_DELETE, jsonParam);
+            String jsonResult = HttpClientUtils.httpPost(REST_URL + REST_BRANCH_COLOR_OF_TABLE_DELETE, jsonParam);
             if(logger.isDebugEnabled()){
                 logger.debug("服务器[REST] 返回数据["+jsonResult+"]");
             }
@@ -127,9 +127,9 @@ public class ColorClientServiceImpl implements ColorClientService {
     public MessageToInterface addBrunchColorfTable(String jsonParam) {
         try {
             if(logger.isDebugEnabled()){
-                logger.debug("请求服务器地址["+REST_URL+"] 请求路径["+REST_BRUNCH_COLOR_OF_TABLE_ADD+"]");
+                logger.debug("请求服务器地址["+REST_URL+"] 请求路径["+REST_BRANCH_COLOR_OF_TABLE_ADD+"]");
             }
-            String jsonResult = HttpClientUtils.httpPost(REST_URL + REST_BRUNCH_COLOR_OF_TABLE_ADD, jsonParam);
+            String jsonResult = HttpClientUtils.httpPost(REST_URL + REST_BRANCH_COLOR_OF_TABLE_ADD, jsonParam);
             if(logger.isDebugEnabled()){
                 logger.debug("服务器[REST] 返回数据["+jsonResult+"]");
             }
@@ -151,9 +151,9 @@ public class ColorClientServiceImpl implements ColorClientService {
     public MessageToInterface editBrunchColorfTable(String jsonParam) {
         try {
             if(logger.isDebugEnabled()){
-                logger.debug("请求服务器地址["+REST_URL+"] 请求路径["+REST_BRUNCH_COLOR_OF_TABLE_EDIT+"]");
+                logger.debug("请求服务器地址["+REST_URL+"] 请求路径["+REST_BRANCH_COLOR_OF_TABLE_EDIT+"]");
             }
-            String jsonResult = HttpClientUtils.httpPost(REST_URL + REST_BRUNCH_COLOR_OF_TABLE_EDIT, jsonParam);
+            String jsonResult = HttpClientUtils.httpPost(REST_URL + REST_BRANCH_COLOR_OF_TABLE_EDIT, jsonParam);
             if(logger.isDebugEnabled()){
                 logger.debug("服务器[REST] 返回数据["+jsonResult+"]");
             }

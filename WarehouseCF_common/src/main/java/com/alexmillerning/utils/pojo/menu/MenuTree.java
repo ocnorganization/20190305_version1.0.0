@@ -37,6 +37,8 @@ public class MenuTree {
         private String menustatus;
         private String menuurl;
         private String pmenuid;
+        private String menuicon;
+        private String menuauth;
         private List<ChildBean> child;
 
         public String getMenuid() {
@@ -79,6 +81,22 @@ public class MenuTree {
             this.pmenuid = pmenuid;
         }
 
+        public String getMenuicon() {
+            return menuicon;
+        }
+
+        public void setMenuicon(String menuicon) {
+            this.menuicon = menuicon;
+        }
+
+        public String getMenuauth() {
+            return menuauth;
+        }
+
+        public void setMenuauth(String menuauth) {
+            this.menuauth = menuauth;
+        }
+
         public List<ChildBean> getChild() {
             return child;
         }
@@ -102,6 +120,8 @@ public class MenuTree {
             private String menustatus;
             private String menuurl;
             private String pmenuid;
+            private String menuicon;
+            private String menuauth;
             private List<ChildBean> child;
 
             public String getMenuid() {
@@ -142,6 +162,22 @@ public class MenuTree {
 
             public void setPmenuid(String pmenuid) {
                 this.pmenuid = pmenuid;
+            }
+
+            public String getMenuicon() {
+                return menuicon;
+            }
+
+            public void setMenuicon(String menuicon) {
+                this.menuicon = menuicon;
+            }
+
+            public String getMenuauth() {
+                return menuauth;
+            }
+
+            public void setMenuauth(String menuauth) {
+                this.menuauth = menuauth;
             }
 
             public List<ChildBean> getChild() {

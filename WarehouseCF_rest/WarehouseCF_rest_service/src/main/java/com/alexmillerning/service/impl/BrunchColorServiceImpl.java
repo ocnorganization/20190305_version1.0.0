@@ -50,6 +50,7 @@ public class BrunchColorServiceImpl implements BrunchColorService {
                 }
                 criteria.andColorBranchIdEqualTo(Integer.parseInt(searchParam));
                 List<WFColorBranch> wfColorBranchList = wfColorBranchMapper.selectByUnion(wfColorBranchExample);
+                //total数量问题
                 int recordsTotal = getBrunchColorCount();
                 int recordsFiltered = wfColorBranchList.size();
                 return ResultToBrunchColorTable.convert(wfColorBranchList, draw, recordsTotal, recordsFiltered);
@@ -152,7 +153,7 @@ public class BrunchColorServiceImpl implements BrunchColorService {
         WFColorBranch wfColorBranch = new WFColorBranch();
         wfColorBranch.setColorBranchId(colorBranchId);
         wfColorBranch.setColorBranchName(colorBranchName);
-        if(colorName !=null&&colorName !=""){
+        if(colorName !=null&&!("".equals(colorName))){
             wfColorBranch.setColorBranchParent(colorName);
         }
         WFColorBranchExample wfColorBranchExample = new WFColorBranchExample();

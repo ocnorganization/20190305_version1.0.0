@@ -133,14 +133,14 @@
         <li id="tree" class="treeview">
           <#list menuTree.menus as m1>
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>${m1.menuname}</span>
+            <i class="fa ${m1.menuicon}"></i> <span>${m1.menuname}</span>
             <span class="pull-right-container">
              <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
             <#list m1.child as m2>
-              <li><a href="${m2.menuurl}" target="menuFrame"><i class="fa fa-circle-o"></i> ${m2.menuname}</a></li>
+              <li><a href="${m2.menuurl}" target="menuFrame"><i class="fa ${m2.menuicon}"></i> ${m2.menuname}</a></li>
             </#list>
           </ul>
           </#list>

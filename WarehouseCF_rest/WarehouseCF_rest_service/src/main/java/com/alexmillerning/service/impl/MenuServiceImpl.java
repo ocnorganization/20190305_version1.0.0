@@ -8,9 +8,9 @@
 
 package com.alexmillerning.service.impl;
 
-import com.alexmillerning.mapper.WFMenusMapper;
-import com.alexmillerning.pojo.WFMenus;
-import com.alexmillerning.pojo.WFMenusExample;
+import com.alexmillerning.mapper.WFMenutreeMapper;
+import com.alexmillerning.pojo.WFMenutree;
+import com.alexmillerning.pojo.WFMenutreeExample;
 import com.alexmillerning.service.MenuService;
 import com.alexmillerning.utils.MenuTreeUtils;
 import com.alexmillerning.utils.pojo.menu.MenuTree;
@@ -21,14 +21,19 @@ import java.util.List;
 
 @Service
 public class MenuServiceImpl implements MenuService {
+//    @Autowired
+//    WFMenusMapper wfMenusMapper;
     @Autowired
-    WFMenusMapper wfMenusMapper;
+    WFMenutreeMapper wfMenutreeMapper;
     @Override
     public MenuTree getMenuTree() {
-        WFMenusExample wfMenusExample = new WFMenusExample();
-        List<WFMenus> wfMenusList = wfMenusMapper.selectByExample(wfMenusExample);
+//        WFMenusExample wfMenusExample = new WFMenusExample();
+//        List<WFMenus> wfMenusList = wfMenusMapper.selectByExample(wfMenusExample);
+        WFMenutreeExample wfMenutreeExample = new WFMenutreeExample();
+        List<WFMenutree> wfMenutreeList = wfMenutreeMapper.selectByExample(wfMenutreeExample);
         MenuTree menuTree = new MenuTree();
-        List<MenuTree.MenusBean> menusBeanList = MenuTreeUtils.getFather(wfMenusList);
+//        List<MenuTree.MenusBean> menusBeanList = MenuTreeUtils.getFather(wfMenusList);
+        List<MenuTree.MenusBean> menusBeanList = MenuTreeUtils.getFatherMore(wfMenutreeList);
         menuTree.setMenus(menusBeanList);
         return menuTree;
     }
