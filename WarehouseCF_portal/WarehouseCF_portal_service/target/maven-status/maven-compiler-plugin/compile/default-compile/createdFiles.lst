@@ -12,5 +12,7 @@ com\alexmillerning\service\craft\impl\CraftClientServiceImpl.class
 com\alexmillerning\service\season\impl\SeasonClientServiceImpl.class
 com\alexmillerning\service\season\SeasonClientService.class
 com\alexmillerning\service\unit\UnitClientService.class
+com\alexmillerning\service\login\LoginCheckClientService.class
 com\alexmillerning\service\brand\BrandClientService.class
+com\alexmillerning\service\login\impl\LoginCheckClientServiceImpl.class
 com\alexmillerning\service\craft\CraftClientService.class

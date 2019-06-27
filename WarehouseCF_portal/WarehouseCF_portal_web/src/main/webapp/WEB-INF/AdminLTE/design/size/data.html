@@ -285,7 +285,7 @@
         callback(data);
       },
       ajax: {
-        url: '/mainPage/goDesign/sizeParent',
+        url: '/mainPage/goDesign/sizeParent.go',
         dataType: 'json',
       }
     });
@@ -324,7 +324,7 @@
     $("#add-select").select2({
       placeholder:'请选择尺寸父类',
       ajax: {
-        url: '/mainPage/goDesign/sizeParent',
+        url: '/mainPage/goDesign/sizeParent.go',
         dataType: 'json',
         cache:false
       }
@@ -403,7 +403,7 @@
       serverSide: true,
       //ajax请求
       ajax: {
-        url:"/mainPage/goDesign/branchSize",
+        url:"/mainPage/goDesign/branchSize.go",
         dataType:"json",
         cache:false
       },
@@ -468,7 +468,7 @@
         $("#table-select").select2({
           placeholder: '基础尺寸',
           ajax: {
-            url: '/mainPage/goDesign/sizeParent',
+            url: '/mainPage/goDesign/sizeParent.go',
             dataType: 'json',
           }
         });
@@ -532,7 +532,7 @@
     var sizeName  = $("#edit-select").val();
     console.log(sizeBranchId+sizeBranchName+sizeName);
     $.ajax({
-      url:"/mainPage/goDesign/branchSize/edit",
+      url:"/mainPage/goDesign/branchSize/edit.go",
       type:"post",
       data:{"sizeBranchId":sizeBranchId,"sizeBranchName":sizeBranchName,"sizeName":sizeName},
       success:function(data){
@@ -568,7 +568,7 @@
     var deleteParam = deleteSizeBranchId;
     if(deleteParam != null){
       $.ajax({
-        url:"/mainPage/goDesign/branchSize/delete",
+        url:"/mainPage/goDesign/branchSize/delete.go",
         type:"post",
         traditional:true,
         dataType:"json",
@@ -589,7 +589,7 @@
       var sizeName  = $("#addSizeBranchName").val();
       var sizePid = $("#add-select").val();
       $.ajax({
-        url:"/mainPage/goDesign/branchSize/add",
+        url:"/mainPage/goDesign/branchSize/add.go",
         type:"post",
         traditional:true,
         dataType:"json",

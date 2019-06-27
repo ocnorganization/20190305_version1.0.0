@@ -9,7 +9,7 @@
 package com.alexmillerning.controller;
 
 
-
+import com.alexmillerning.service.login.LoginCheckClientService;
 import com.alexmillerning.service.menu.MenuClientService;
 import com.alexmillerning.utils.pojo.menu.MenuTree;
 import org.apache.log4j.Logger;
@@ -23,7 +23,10 @@ public class IndexController {
     final Logger logger = Logger.getLogger(IndexController.class);
     @Autowired
     MenuClientService menuClientService;
-    @RequestMapping("/")
+    @Autowired
+    LoginCheckClientService loginCheckClientService;
+    @RequestMapping("/login/to/index.go")
+//@RequestMapping("/")
     /**
      * @methodname requestIndex
      * @author Alex
@@ -34,10 +37,10 @@ public class IndexController {
      */
     public String  requestIndex(ModelMap modelMap){
         if(logger.isDebugEnabled()){
-            logger.debug("页面请求[/index.html]");
+            logger.debug("页面请求[/login/to/index.go]");
         }
-        MenuTree menuTree = menuClientService.getMenuTree();
-        modelMap.addAttribute("menuTree",menuTree);
-        return "index";
+            MenuTree menuTree = menuClientService.getMenuTree();
+            modelMap.addAttribute("menuTree",menuTree);
+            return "index";
     }
 }

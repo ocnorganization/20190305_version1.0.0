@@ -48,6 +48,8 @@
         <jackson-databind.version>2.9.8</jackson-databind.version>
         <httpclient.version>4.5.2</httpclient.version>
         <gson.version>2.7</gson.version>
+        <jwt.version>3.8.1</jwt.version>
+        <servlet.api.version>4.0.1</servlet.api.version>
     </properties>
 
     <!-- 定义依赖 -->
@@ -120,11 +122,11 @@
                 <version>${aspect.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>com.fasterxml.jackson.core</groupId>-->
+                <!--<artifactId>jackson-databind</artifactId>-->
+                <!--<version>${jackson.version}</version>-->
+            <!--</dependency>-->
             <!--fastjson-->
             <dependency>
                 <groupId>com.alibaba</groupId>
@@ -193,6 +195,22 @@
                 <artifactId>gson</artifactId>
                 <version>${gson.version}</version>
             </dependency>
+
+            <!-- https://mvnrepository.com/artifact/com.auth0/java-jwt -->
+            <dependency>
+                <groupId>com.auth0</groupId>
+                <artifactId>java-jwt</artifactId>
+                <version>${jwt.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${servlet.api.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+
 
         </dependencies>
     </dependencyManagement>

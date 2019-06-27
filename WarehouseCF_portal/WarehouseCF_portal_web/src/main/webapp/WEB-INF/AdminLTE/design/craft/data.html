@@ -398,7 +398,7 @@
       serverSide: true,
       //ajax请求
       ajax: {
-        url:"/mainPage/goDesign/craft",
+        url:"/mainPage/goDesign/craft.go",
         dataType:"json",
         cache:false
       },
@@ -514,7 +514,7 @@
     var craftName  = $("#editCraftName").val();
     var craftDes  = $("#editCraftDes").val();
     $.ajax({
-      url:"/mainPage/goDesign/craft/edit",
+      url:"/mainPage/goDesign/craft/edit.go",
       type:"post",
       data:{"craftId":craftId,"craftName":craftName,"craftDes":craftDes},
       success:function(data){
@@ -551,7 +551,7 @@
     // console.log(deleteParam);
     if(deleteParam != null){
       $.ajax({
-        url:"/mainPage/goDesign/craft/delete",
+        url:"/mainPage/goDesign/craft/delete.go",
         type:"post",
         traditional:true,
         dataType:"json",
@@ -576,7 +576,7 @@
       var craftDes  = $("#addCraftDes").val();
       // var colorPid = $("#add-select").val();
       $.ajax({
-        url:"/mainPage/goDesign/craft/add",
+        url:"/mainPage/goDesign/craft/add.go",
         type:"post",
         traditional:true,
         dataType:"json",

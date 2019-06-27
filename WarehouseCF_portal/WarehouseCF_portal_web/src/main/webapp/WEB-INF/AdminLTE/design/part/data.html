@@ -398,7 +398,7 @@
       serverSide: true,
       //ajax请求
       ajax: {
-        url:"/mainPage/goDesign/part",
+        url:"/mainPage/goDesign/part.go",
         dataType:"json",
         cache:false
       },
@@ -514,7 +514,7 @@
     var partName  = $("#editPartName").val();
     var partDes  = $("#editPartDes").val();
     $.ajax({
-      url:"/mainPage/goDesign/part/edit",
+      url:"/mainPage/goDesign/part/edit.go",
       type:"post",
       data:{"partId":partId,"partName":partName,"partDes":partDes},
       success:function(data){
@@ -551,7 +551,7 @@
     // console.log(deleteParam);
     if(deleteParam != null){
       $.ajax({
-        url:"/mainPage/goDesign/part/delete",
+        url:"/mainPage/goDesign/part/delete.go",
         type:"post",
         traditional:true,
         dataType:"json",
@@ -576,7 +576,7 @@
       var partDes  = $("#addPartDes").val();
       // var colorPid = $("#add-select").val();
       $.ajax({
-        url:"/mainPage/goDesign/part/add",
+        url:"/mainPage/goDesign/part/add.go",
         type:"post",
         traditional:true,
         dataType:"json",

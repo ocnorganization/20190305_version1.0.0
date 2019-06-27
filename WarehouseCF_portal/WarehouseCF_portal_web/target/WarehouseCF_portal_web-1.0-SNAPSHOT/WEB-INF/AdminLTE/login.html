@@ -37,90 +37,75 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition login-page" style="background-color: #0a0a0a">
-<div class="wrapper">
-  <section class="content">
-    <div class="row">
-      <div class="col-xs-6">
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+    <a href="../../index2.html"><b>CN</b>System</a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="login-box-body">
+    <p class="login-box-msg">请登录以获取完整服务体验</p>
+
+    <form id="loginForm" class="required-validate"action="/login/to/index.go" method="post">
+      <!--<form class="" action="/login/to/index.go" method="post" onsubmit="return loginCheck(this);">-->
+      <div class="form-group has-feedback">
+        <input type="user" id="userName" class="form-control" placeholder="用户名" name="userName">
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
-      <div class="col-xs-4">
-        <div class="box box-warning">
-          <div class="box-header">
-            <h3 class="box-title">登录</h3>
-          </div>
-          <div class="box-body">
-            <form class="form-horizontal" id="editForm">
-              <div class="form-group">
-                <label for="editBrandId" class="col-sm-2 control-label">品牌编号</label>
-                <div class="col-sm-10">
-                  <input type="input" disabled="disabled" class="form-control" id="editBrandId">
-                </div>
-              </div>
-              <div class="form-group">
-                <!--<input type="hidden" class="form-control" id="addColorBranchNameHidden" name="addColorHidden">-->
-                <label for="editBrandName" class="col-sm-2 control-label">品牌名称</label>
-                <div class="col-sm-10">
-                  <input type="input"  class="form-control" id="editBrandName" name="editBrand">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="editBrandDes" class="col-sm-2 control-label">品牌描述</label>
-                <div class="col-sm-10">
-                  <input type="input"  class="form-control" id="editBrandDes" name="editDes">
-                </div>
-              </div>
-            </form>
+      <div class="form-group has-feedback">
+        <input type="password" id="passWord" class="form-control" placeholder="密码" name="passWord">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+      <input type="hidden"  class="form-control" name="tokenObj" id="tokenHidden">
+      <input type="hidden"  class="form-control" name="staffID" id="idHidden">
+      <div class="row">
+        <div class="col-xs-8">
+          <div class="checkbox icheck">
+            <label>
+              <input type="checkbox"> 记住我
+            </label>
           </div>
         </div>
+        <!-- /.col -->
+        <div class="col-xs-4">
+          <button id="" type="submit" class="btn btn-primary btn-block btn-flat" onclick="return loginCheck()">登录</button>
+          <!--<button id="test" onclick="onlyTest()"type="button" class="btn btn-primary btn-block btn-flat">测试</button>-->
+        </div>
+        <!-- /.col -->
       </div>
-      <div class="col-xs-2">
-      </div>
+    </form>
+
+    <div class="social-auth-links text-center">
+      <p>- OR -</p>
+      <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-refresh"></i>忘记密码</a>
+      <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa  fa-users"></i>注册</a>
     </div>
-    <div class="row">
-      <div class="col-xs-9">
-      </div>
-    </div>
-  </section>
+    <!-- /.social-auth-links -->
+
+    <!--<a href="#">I forgot my password</a><br>-->
+    <!--<a href="register.html" class="text-center">Register a new membership</a>-->
+
+  </div>
+  <!-- /.login-box-body -->
 </div>
-<!--<div class="login-box">-->
-  <!--<div class="login-logo">-->
-    <!--<a href="../../index2.html"><b>CN</b>System</a>-->
-  <!--</div>-->
-  <!--&lt;!&ndash; /.login-logo &ndash;&gt;-->
-  <!--<div class="login-box-body">-->
-
-    <!--<form id="loginForm" action="#" method="post">-->
-      <!--<div class="form-group has-feedback">-->
-        <!--<input type="email" class="form-control" placeholder="用户名" name="userName">-->
-        <!--<span class="glyphicon glyphicon-user form-control-feedback" style="text-align: left"></span>-->
-      <!--</div>-->
-      <!--<div class="form-group has-feedback">-->
-        <!--<input type="password" class="form-control" placeholder="密码" name="passWord">-->
-        <!--<span class="glyphicon glyphicon-lock form-control-feedback"></span>-->
-      <!--</div>-->
-      <!--<div class="row">-->
-        <!--<div class="col-xs-8">-->
-          <!--<div class="checkbox icheck">-->
-            <!--<label>-->
-              <!--<input type="checkbox"> 记住我-->
-            <!--</label>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="col-xs-4">-->
-          <!--<button type="submit" class="btn btn-primary btn-block btn-flat">登录</button>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</form>-->
-
-
-    <!--<a href="#">忘记密码</a><br>-->
-    <!--<a href="register.html" class="text-center">向管理员提出注册申请</a>-->
-
-  <!--</div>-->
-  <!--&lt;!&ndash; /.login-box-body &ndash;&gt;-->
-<!--</div>-->
 <!-- /.login-box -->
-
+<!-- 通知弹窗 -->
+<div class="modal modal-danger fade" id="infoModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">通知</h4>
+      </div>
+      <div class="modal-body">
+        <p>用户名或密码错误！</p>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
 <!-- jQuery 3 -->
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
@@ -132,7 +117,7 @@
 <script>
   $(document).ready(function() {
     //验证输入
-    $('#loginForm').bootstrapValidator({
+    $("form.required-validate").bootstrapValidator({
       message: 'This value is not valid',
       excluded : [':disabled'],
       feedbackIcons: {
@@ -159,8 +144,6 @@
         }
       }
     });
-    $('#loginForm').data('bootstrapValidator').validate();
-
   });
   $(function () {
     $('input').iCheck({
@@ -169,6 +152,37 @@
       increaseArea: '20%' /* optional */
     });
   });
+  function loginCheck() {
+    console.log("进入方法");
+    $("form.required-validate").bootstrapValidator('validate');
+    if($("form.required-validate").data('bootstrapValidator').isValid()){
+      $.ajax({
+        url:"/login/ckeck.go",
+        type:"post",
+        cache:false,
+        data:{"userName":$('#userName').val(),"passWord":$('#passWord').val()},
+        success:function(data){
+          if(data.resultMessage==true){
+            sessionStorage.setItem("tokenObj",data.tokenObj);
+            $('#tokenHidden').val(sessionStorage.getItem("tokenObj"));
+            $('#idHidden').val($('#userName').val());
+            document.getElementById("loginForm").submit();
+            return true;
+          }else{
+            return false;
+          }
+        },
+        error:function(e){
+          alert("ajax提交错误！！请重试");
+        }
+      });
+    }else {
+      return false;
+    }
+  }
+  function onlyTest() {
+    $('#infoModal').modal('show');
+  }
 </script>
 </body>
 </html>

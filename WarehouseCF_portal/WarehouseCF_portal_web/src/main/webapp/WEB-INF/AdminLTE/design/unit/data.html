@@ -398,7 +398,7 @@
       serverSide: true,
       //ajax请求
       ajax: {
-        url:"/mainPage/goDesign/unit",
+        url:"/mainPage/goDesign/unit.go",
         dataType:"json",
         cache:false
       },
@@ -514,7 +514,7 @@
     var unitName  = $("#editUnitName").val();
     var unitDes  = $("#editUnitDes").val();
     $.ajax({
-      url:"/mainPage/goDesign/unit/edit",
+      url:"/mainPage/goDesign/unit/edit.go",
       type:"post",
       data:{"unitId":unitId,"unitName":unitName,"unitDes":unitDes},
       success:function(data){
@@ -551,7 +551,7 @@
     // console.log(deleteParam);
     if(deleteParam != null){
       $.ajax({
-        url:"/mainPage/goDesign/unit/delete",
+        url:"/mainPage/goDesign/unit/delete.go",
         type:"post",
         traditional:true,
         dataType:"json",
@@ -576,7 +576,7 @@
       var unitDes  = $("#addUnitDes").val();
       // var colorPid = $("#add-select").val();
       $.ajax({
-        url:"/mainPage/goDesign/unit/add",
+        url:"/mainPage/goDesign/unit/add.go",
         type:"post",
         traditional:true,
         dataType:"json",

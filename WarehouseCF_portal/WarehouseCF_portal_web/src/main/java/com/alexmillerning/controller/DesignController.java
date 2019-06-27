@@ -41,6 +41,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 public class DesignController {
     final Logger logger = Logger.getLogger(DesignController.class);
+    @RequestMapping("/design/color/data.html")
+    public String color(){
+        return "data";
+    }
     /**
      * 设计元素/颜色
      */
@@ -49,18 +53,18 @@ public class DesignController {
     /**
      * @description 设计元素/颜色/颜色大类下拉列表数据
      */
-    @RequestMapping("/mainPage/goDesign/colorParent")
+    @RequestMapping("/mainPage/goDesign/colorParent.go")
     @ResponseBody
     public BasicColorfDrop getColorParent() {
         if(logger.isDebugEnabled()){
-            logger.debug("页面请求[/mainPage/goDesign/colorParent]");
+            logger.debug("页面请求[/mainPage/goDesign/colorParent.go]");
         }
         return colorClientService.getBasicColorfDrop();
     }
     /**
      * @description 设计元素/颜色/颜色子类表格数据
      */
-    @RequestMapping("/mainPage/goDesign/color")
+    @RequestMapping("/mainPage/goDesign/color.go")
     @ResponseBody
     public BrunchColorfTable getColor(@RequestParam(value="colorPid",required = false) String colorPid,
                                       @RequestParam(value="draw") String draw,
@@ -68,7 +72,7 @@ public class DesignController {
                                       @RequestParam(value="length") String length,
                                       @RequestParam(value="search",required = false) String searchParam) {
         if (logger.isDebugEnabled()) {
-            logger.debug("页面请求[/mainPage/goDesign/color]请求 请求参数为draw:[" + draw + "] start:[" + start + "] length:[" + length + "] colorPid:[" + colorPid + "] search:[" + searchParam + "]");
+            logger.debug("页面请求[/mainPage/goDesign/color.go]请求 请求参数为draw:[" + draw + "] start:[" + start + "] length:[" + length + "] colorPid:[" + colorPid + "] search:[" + searchParam + "]");
         }
         Integer offSet = Integer.parseInt(start);
         Integer limit = Integer.parseInt(length);
@@ -87,7 +91,7 @@ public class DesignController {
     /**
      * @description 设计元素/颜色/颜色子类表格数据删除方法
      */
-    @RequestMapping("/mainPage/goDesign/color/delete")
+    @RequestMapping("/mainPage/goDesign/color/delete.go")
     @ResponseBody
     public MessageToInterface deleteBrunchColor(@RequestParam(value="deleteParam") Integer[] deleteParamArray){
         if(logger.isDebugEnabled()) {
@@ -95,7 +99,7 @@ public class DesignController {
             for(int i =0;i<deleteParamArray.length;i++){
                 stringBuilder.append(deleteParamArray[i]+",");
             }
-            logger.debug("页面请求[/mainPage/goDesign/color/edit] 请求参数为deleteParam:["+stringBuilder+"]");
+            logger.debug("页面请求[/mainPage/goDesign/color/edit.go] 请求参数为deleteParam:["+stringBuilder+"]");
         }
         BrunchColorDeleteReqParam brunchColorDeleteReqParam = new BrunchColorDeleteReqParam();
         brunchColorDeleteReqParam.setDeleteArray(deleteParamArray);
@@ -110,11 +114,11 @@ public class DesignController {
      * @return
      * @description 设计元素/颜色/颜色子类表格数据新增方法
      */
-    @RequestMapping("/mainPage/goDesign/color/add")
+    @RequestMapping("/mainPage/goDesign/color/add.go")
     @ResponseBody
     public MessageToInterface addBrunchColor(@RequestParam(value="colorName") String colorName,@RequestParam(value="colorPid") String colorPid){
         if(logger.isDebugEnabled()) {
-            logger.debug("页面请求[/mainPage/goDesign/color/add] 请求参数为colorName:[" + colorName + "] colorPid:[" + colorPid + "]");
+            logger.debug("页面请求[/mainPage/goDesign/color/add.go] 请求参数为colorName:[" + colorName + "] colorPid:[" + colorPid + "]");
         }
         BrunchColorAddReqParam brunchColorAddReqParam = new BrunchColorAddReqParam();
         brunchColorAddReqParam.setColorName(colorName);
@@ -131,13 +135,13 @@ public class DesignController {
      * @return
      * @description 设计元素/颜色/颜色子类表格数据编辑方法
      */
-    @RequestMapping("/mainPage/goDesign/color/edit")
+    @RequestMapping("/mainPage/goDesign/color/edit.go")
     @ResponseBody
     public MessageToInterface editBrunchColor(@RequestParam(value="colorBranchId") String colorBranchId,
                                               @RequestParam(value="colorBranchName") String colorBranchName,
                                               @RequestParam(value="colorName") String colorName){
         if(logger.isDebugEnabled()){
-            logger.debug("页面请求[/mainPage/goDesign/color/edit] colorBranchId:["+colorBranchId+"] colorBranchName:["+colorBranchName+"] colorName:["+colorName+"]");
+            logger.debug("页面请求[/mainPage/goDesign/color/edit.go] colorBranchId:["+colorBranchId+"] colorBranchName:["+colorBranchName+"] colorName:["+colorName+"]");
         }
         BrunchColorEditReqParam brunchColorEditReqParam = new BrunchColorEditReqParam();
         brunchColorEditReqParam.setColorBranchId(colorBranchId);
@@ -154,14 +158,14 @@ public class DesignController {
     /**
      * @description 设计元素/品牌/品牌表格数据
      */
-    @RequestMapping("/mainPage/goDesign/brand")
+    @RequestMapping("/mainPage/goDesign/brand.go")
     @ResponseBody
     public BrandfTable getBrand(@RequestParam(value="draw") String draw,
                                 @RequestParam(value="start") String start,
                                 @RequestParam(value="length") String length,
                                 @RequestParam(value="search",required = false) String searchParam){
         if (logger.isDebugEnabled()) {
-            logger.debug("页面请求[/mainPage/goDesign/color] 请求参数为draw:[" + draw + "] start:[" + start + "] length:[" + length + "]  search:[" + searchParam + "]");
+            logger.debug("页面请求[/mainPage/goDesign/color.go] 请求参数为draw:[" + draw + "] start:[" + start + "] length:[" + length + "]  search:[" + searchParam + "]");
         }
         Integer offSet = Integer.parseInt(start);
         Integer limit = Integer.parseInt(length);
@@ -180,7 +184,7 @@ public class DesignController {
     /**
      * @description 设计元素/品牌/品牌表格数据删除方法
      */
-    @RequestMapping("/mainPage/goDesign/brand/delete")
+    @RequestMapping("/mainPage/goDesign/brand/delete.go")
     @ResponseBody
     public MessageToInterface deleteBrand(@RequestParam(value="deleteParam") Integer[] deleteParamArray){
         if(logger.isDebugEnabled()) {
@@ -188,7 +192,7 @@ public class DesignController {
             for(int i =0;i<deleteParamArray.length;i++){
                 stringBuilder.append(deleteParamArray[i]+",");
             }
-            logger.debug("页面请求[/mainPage/goDesign/color/edit] 请求参数为deleteParam:["+stringBuilder+"]");
+            logger.debug("页面请求[/mainPage/goDesign/color/edit.go] 请求参数为deleteParam:["+stringBuilder+"]");
         }
         BrandDeleteReqParam brandDeleteReqParam = new BrandDeleteReqParam();
         brandDeleteReqParam.setDeleteArray(deleteParamArray);
@@ -199,11 +203,11 @@ public class DesignController {
     /**
      * @description 设计元素/品牌/品牌表格数据新增方法
      */
-    @RequestMapping("/mainPage/goDesign/brand/add")
+    @RequestMapping("/mainPage/goDesign/brand/add.go")
     @ResponseBody
     public MessageToInterface addBrand(@RequestParam(value="brandName") String brandName,@RequestParam(value="brandDes") String brandDes){
         if(logger.isDebugEnabled()) {
-            logger.debug("页面请求[/mainPage/goDesign/brand/add] 请求参数为brandName:[" + brandName + "] brandDes:[" + brandDes + "]");
+            logger.debug("页面请求[/mainPage/goDesign/brand/add.go] 请求参数为brandName:[" + brandName + "] brandDes:[" + brandDes + "]");
         }
         BrandAddReqParam brandAddReqParam = new BrandAddReqParam();
         brandAddReqParam.setBrandName(brandName);
@@ -214,13 +218,13 @@ public class DesignController {
     /**
      * @description 设计元素/品牌/品牌表格数据编辑方法
      */
-    @RequestMapping("/mainPage/goDesign/brand/edit")
+    @RequestMapping("/mainPage/goDesign/brand/edit.go")
     @ResponseBody
     public MessageToInterface editBrand(@RequestParam(value="brandId") String brandId,
                                               @RequestParam(value="brandName") String brandName,
                                               @RequestParam(value="brandDes") String brandDes){
         if(logger.isDebugEnabled()){
-            logger.debug("页面请求[/mainPage/goDesign/brand/edit] brandId:["+brandId+"] brandName:["+brandName+"] brandDes:["+brandDes+"]");
+            logger.debug("页面请求[/mainPage/goDesign/brand/edit.go] brandId:["+brandId+"] brandName:["+brandName+"] brandDes:["+brandDes+"]");
         }
         BrandEditReqParam brandEditReqParam = new BrandEditReqParam();
         brandEditReqParam.setBrandId(brandId);
@@ -237,18 +241,18 @@ public class DesignController {
     /**
      * @description 设计元素/尺寸/尺寸大类下拉列表数据
      */
-    @RequestMapping("/mainPage/goDesign/sizeParent")
+    @RequestMapping("/mainPage/goDesign/sizeParent.go")
     @ResponseBody
     public SizefDrop getSizeParent() {
         if(logger.isDebugEnabled()){
-            logger.debug("页面请求[/mainPage/goDesign/sizeParent]");
+            logger.debug("页面请求[/mainPage/goDesign/sizeParent.go]");
         }
         return sizeClientService.getBasicSizefDrop();
     }
     /**
      * @description 设计元素/尺寸/尺寸子类表格数据
      */
-    @RequestMapping("/mainPage/goDesign/branchSize")
+    @RequestMapping("/mainPage/goDesign/branchSize.go")
     @ResponseBody
     public BranchSizefTable getSize(@RequestParam(value="sizePid",required = false) String sizePid,
                                     @RequestParam(value="draw") String draw,
@@ -256,7 +260,7 @@ public class DesignController {
                                     @RequestParam(value="length") String length,
                                     @RequestParam(value="search",required = false) String searchParam) {
         if (logger.isDebugEnabled()) {
-            logger.debug("页面请求[/mainPage/goDesign/branchSize]请求 请求参数为draw:[" + draw + "] start:[" + start + "] length:[" + length + "] sizePid:[" + sizePid + "] search:[" + searchParam + "]");
+            logger.debug("页面请求[/mainPage/goDesign/branchSize.go]请求 请求参数为draw:[" + draw + "] start:[" + start + "] length:[" + length + "] sizePid:[" + sizePid + "] search:[" + searchParam + "]");
         }
         Integer offSet = Integer.parseInt(start);
         Integer limit = Integer.parseInt(length);
@@ -275,7 +279,7 @@ public class DesignController {
     /**
      * @description 设计元素/尺寸/尺寸子类表格数据删除方法
      */
-    @RequestMapping("/mainPage/goDesign/branchSize/delete")
+    @RequestMapping("/mainPage/goDesign/branchSize/delete.go")
     @ResponseBody
     public MessageToInterface deleteBranchSize(@RequestParam(value="deleteParam") Integer[] deleteParamArray){
         if(logger.isDebugEnabled()) {
@@ -283,7 +287,7 @@ public class DesignController {
             for(int i =0;i<deleteParamArray.length;i++){
                 stringBuilder.append(deleteParamArray[i]+",");
             }
-            logger.debug("页面请求[/mainPage/goDesign/branchSize/delete] 请求参数为deleteParam:["+stringBuilder+"]");
+            logger.debug("页面请求[/mainPage/goDesign/branchSize/delete.go] 请求参数为deleteParam:["+stringBuilder+"]");
         }
         BranchSizeDeleteReqParam branchSizeDeleteReqParam = new BranchSizeDeleteReqParam();
         branchSizeDeleteReqParam.setDeleteArray(deleteParamArray);
@@ -294,11 +298,11 @@ public class DesignController {
     /**
      * @description 设计元素/尺寸/尺寸子类表格数据新增方法
      */
-    @RequestMapping("/mainPage/goDesign/branchSize/add")
+    @RequestMapping("/mainPage/goDesign/branchSize/add.go")
     @ResponseBody
     public MessageToInterface addBranchSize(@RequestParam(value="sizeName") String sizeName,@RequestParam(value="sizePid") int sizePid){
         if(logger.isDebugEnabled()) {
-            logger.debug("页面请求[/mainPage/goDesign/branchSize/add] 请求参数为sizeName:[" + sizeName + "] sizePid:[" + sizePid + "]");
+            logger.debug("页面请求[/mainPage/goDesign/branchSize/add.go] 请求参数为sizeName:[" + sizeName + "] sizePid:[" + sizePid + "]");
         }
         BranchSizeAddReqParam branchSizeAddReqParam = new BranchSizeAddReqParam();
         branchSizeAddReqParam.setBranchSizeName(sizeName);
@@ -310,13 +314,13 @@ public class DesignController {
     /**
      * @description 设计元素/尺寸/尺寸子类表格数据编辑方法
      */
-    @RequestMapping("/mainPage/goDesign/branchSize/edit")
+    @RequestMapping("/mainPage/goDesign/branchSize/edit.go")
     @ResponseBody
     public MessageToInterface editBranchSize(@RequestParam(value="sizeBranchId") int sizeBranchId,
                                               @RequestParam(value="sizeBranchName") String sizeBranchName,
                                               @RequestParam(value="sizeName") String sizeName){
         if(logger.isDebugEnabled()){
-            logger.debug("页面请求[/mainPage/goDesign/branchSize/edit] sizeBranchId:["+sizeBranchId+"] sizeBranchName:["+sizeBranchName+"] sizeName:["+sizeName+"]");
+            logger.debug("页面请求[/mainPage/goDesign/branchSize/edit.go] sizeBranchId:["+sizeBranchId+"] sizeBranchName:["+sizeBranchName+"] sizeName:["+sizeName+"]");
         }
         BranchSizeEditReqParam branchSizeEditReqParam = new BranchSizeEditReqParam();
         branchSizeEditReqParam.setBranchSizeId(sizeBranchId);
@@ -333,7 +337,7 @@ public class DesignController {
     /**
      * @description 设计元素/工艺/工艺子类表格数据
      */
-    @RequestMapping("/mainPage/goDesign/craft")
+    @RequestMapping("/mainPage/goDesign/craft.go")
     @ResponseBody
     public CraftfTable getCraft(
             @RequestParam(value="draw") String draw,
@@ -341,7 +345,7 @@ public class DesignController {
             @RequestParam(value="length") String length,
             @RequestParam(value="search",required = false) String searchParam) {
         if (logger.isDebugEnabled()) {
-            logger.debug("页面请求[/mainPage/goDesign/craft]请求 请求参数为draw:[" + draw + "] start:[" + start + "] length:[" + length + "] search:[" + searchParam + "]");
+            logger.debug("页面请求[/mainPage/goDesign/craft.go]请求 请求参数为draw:[" + draw + "] start:[" + start + "] length:[" + length + "] search:[" + searchParam + "]");
         }
         Integer offSet = Integer.parseInt(start);
         Integer limit = Integer.parseInt(length);
@@ -359,7 +363,7 @@ public class DesignController {
     /**
      * @description 设计元素/工艺/工艺子类表格数据删除方法
      */
-    @RequestMapping("/mainPage/goDesign/craft/delete")
+    @RequestMapping("/mainPage/goDesign/craft/delete.go")
     @ResponseBody
     public MessageToInterface deleteCraft(@RequestParam(value="deleteParam") Integer[] deleteParamArray){
         if(logger.isDebugEnabled()) {
@@ -367,7 +371,7 @@ public class DesignController {
             for(int i =0;i<deleteParamArray.length;i++){
                 stringBuilder.append(deleteParamArray[i]+",");
             }
-            logger.debug("页面请求[/mainPage/goDesign/craft/delete] 请求参数为deleteParam:["+stringBuilder+"]");
+            logger.debug("页面请求[/mainPage/goDesign/craft/delete.go] 请求参数为deleteParam:["+stringBuilder+"]");
         }
         CraftDeleteReqParam craftDeleteReqParam = new CraftDeleteReqParam();
         craftDeleteReqParam.setDeleteArray(deleteParamArray);
@@ -378,11 +382,11 @@ public class DesignController {
     /**
      * @description 设计元素/工艺/工艺子类表格数据新增方法
      */
-    @RequestMapping("/mainPage/goDesign/craft/add")
+    @RequestMapping("/mainPage/goDesign/craft/add.go")
     @ResponseBody
     public MessageToInterface addCraft(@RequestParam(value="craftName") String craftName,@RequestParam(value="craftDes") String craftDes){
         if(logger.isDebugEnabled()) {
-            logger.debug("页面请求[/mainPage/goDesign/craft/add] 请求参数为craftName:[" + craftName + "] craftDes:[" + craftDes + "]");
+            logger.debug("页面请求[/mainPage/goDesign/craft/add.go] 请求参数为craftName:[" + craftName + "] craftDes:[" + craftDes + "]");
         }
         CraftAddReqParam craftAddReqParam = new CraftAddReqParam();
         craftAddReqParam.setCraftName(craftName);
@@ -394,13 +398,13 @@ public class DesignController {
     /**
      * @description 设计元素/工艺/工艺子类表格数据编辑方法
      */
-    @RequestMapping("/mainPage/goDesign/craft/edit")
+    @RequestMapping("/mainPage/goDesign/craft/edit.go")
     @ResponseBody
     public MessageToInterface editCraft(@RequestParam(value="craftId") int craftId,
                                         @RequestParam(value="craftName") String craftName,
                                         @RequestParam(value="craftDes") String craftDes){
         if(logger.isDebugEnabled()){
-            logger.debug("页面请求[/mainPage/goDesign/craft/edit] craftId:["+craftId+"] craftName:["+craftName+"] craftDes:["+craftDes+"]");
+            logger.debug("页面请求[/mainPage/goDesign/craft/edit.go] craftId:["+craftId+"] craftName:["+craftName+"] craftDes:["+craftDes+"]");
         }
         CraftEditReqParam craftEditReqParam = new CraftEditReqParam();
         craftEditReqParam.setCraftId(craftId);
@@ -417,7 +421,7 @@ public class DesignController {
     /**
      * @description 设计元素/季节/季节子类表格数据
      */
-    @RequestMapping("/mainPage/goDesign/season")
+    @RequestMapping("/mainPage/goDesign/season.go")
     @ResponseBody
     public SeasonfTable getSeason(
             @RequestParam(value="draw") String draw,
@@ -425,7 +429,7 @@ public class DesignController {
             @RequestParam(value="length") String length,
             @RequestParam(value="search",required = false) String searchParam) {
         if (logger.isDebugEnabled()) {
-            logger.debug("页面请求[/mainPage/goDesign/season]请求 请求参数为draw:[" + draw + "] start:[" + start + "] length:[" + length + "] search:[" + searchParam + "]");
+            logger.debug("页面请求[/mainPage/goDesign/season.go]请求 请求参数为draw:[" + draw + "] start:[" + start + "] length:[" + length + "] search:[" + searchParam + "]");
         }
         Integer offSet = Integer.parseInt(start);
         Integer limit = Integer.parseInt(length);
@@ -443,7 +447,7 @@ public class DesignController {
     /**
      * @description 设计元素/季节/季节子类表格数据删除方法
      */
-    @RequestMapping("/mainPage/goDesign/season/delete")
+    @RequestMapping("/mainPage/goDesign/season/delete.go")
     @ResponseBody
     public MessageToInterface deleteSeason(@RequestParam(value="deleteParam") Integer[] deleteParamArray){
         if(logger.isDebugEnabled()) {
@@ -451,7 +455,7 @@ public class DesignController {
             for(int i =0;i<deleteParamArray.length;i++){
                 stringBuilder.append(deleteParamArray[i]+",");
             }
-            logger.debug("页面请求[/mainPage/goDesign/season/delete] 请求参数为deleteParam:["+stringBuilder+"]");
+            logger.debug("页面请求[/mainPage/goDesign/season/delete.go] 请求参数为deleteParam:["+stringBuilder+"]");
         }
         SeasonDeleteReqParam seasonDeleteReqParam = new SeasonDeleteReqParam();
         seasonDeleteReqParam.setDeleteArray(deleteParamArray);
@@ -462,11 +466,11 @@ public class DesignController {
     /**
      * @description 设计元素/季节/季节子类表格数据新增方法
      */
-    @RequestMapping("/mainPage/goDesign/season/add")
+    @RequestMapping("/mainPage/goDesign/season/add.go")
     @ResponseBody
     public MessageToInterface addSeason(@RequestParam(value="seasonName") String seasonName){
         if(logger.isDebugEnabled()) {
-            logger.debug("页面请求[/mainPage/goDesign/season/add] 请求参数为seasonName:[" + seasonName + "]");
+            logger.debug("页面请求[/mainPage/goDesign/season/add.go] 请求参数为seasonName:[" + seasonName + "]");
         }
         SeasonAddReqParam seasonAddReqParam = new SeasonAddReqParam();
         seasonAddReqParam.setSeasonName(seasonName);
@@ -477,12 +481,12 @@ public class DesignController {
     /**
      * @description 设计元素/季节/季节子类表格数据编辑方法
      */
-    @RequestMapping("/mainPage/goDesign/season/edit")
+    @RequestMapping("/mainPage/goDesign/season/edit.go")
     @ResponseBody
     public MessageToInterface editSeason(@RequestParam(value="seasonId") int seasonId,
                                          @RequestParam(value="seasonName") String seasonName){
         if(logger.isDebugEnabled()){
-            logger.debug("页面请求[/mainPage/goDesign/season/edit] seasonId:["+seasonId+"] seasonName:["+seasonName+"]");
+            logger.debug("页面请求[/mainPage/goDesign/season/edit.go] seasonId:["+seasonId+"] seasonName:["+seasonName+"]");
         }
         SeasonEditReqParam seasonEditReqParam = new SeasonEditReqParam();
         seasonEditReqParam.setSeasonId(seasonId);
@@ -498,7 +502,7 @@ public class DesignController {
     /**
      * @description 设计元素/部位/部位子类表格数据
      */
-    @RequestMapping("/mainPage/goDesign/part")
+    @RequestMapping("/mainPage/goDesign/part.go")
     @ResponseBody
     public PartfTable getPart(
             @RequestParam(value="draw") String draw,
@@ -506,7 +510,7 @@ public class DesignController {
             @RequestParam(value="length") String length,
             @RequestParam(value="search",required = false) String searchParam) {
         if (logger.isDebugEnabled()) {
-            logger.debug("页面请求[/mainPage/goDesign/part]请求 请求参数为draw:[" + draw + "] start:[" + start + "] length:[" + length + "] search:[" + searchParam + "]");
+            logger.debug("页面请求[/mainPage/goDesign/part.go]请求 请求参数为draw:[" + draw + "] start:[" + start + "] length:[" + length + "] search:[" + searchParam + "]");
         }
         Integer offSet = Integer.parseInt(start);
         Integer limit = Integer.parseInt(length);
@@ -524,7 +528,7 @@ public class DesignController {
     /**
      * @description 设计元素/部位/部位子类表格数据删除方法
      */
-    @RequestMapping("/mainPage/goDesign/part/delete")
+    @RequestMapping("/mainPage/goDesign/part/delete.go")
     @ResponseBody
     public MessageToInterface deletePart(@RequestParam(value="deleteParam") Integer[] deleteParamArray){
         if(logger.isDebugEnabled()) {
@@ -532,7 +536,7 @@ public class DesignController {
             for(int i =0;i<deleteParamArray.length;i++){
                 stringBuilder.append(deleteParamArray[i]+",");
             }
-            logger.debug("页面请求[/mainPage/goDesign/part/delete] 请求参数为deleteParam:["+stringBuilder+"]");
+            logger.debug("页面请求[/mainPage/goDesign/part/delete.go] 请求参数为deleteParam:["+stringBuilder+"]");
         }
         PartDeleteReqParam partDeleteReqParam = new PartDeleteReqParam();
         partDeleteReqParam.setDeleteArray(deleteParamArray);
@@ -543,11 +547,11 @@ public class DesignController {
     /**
      * @description 设计元素/部位/部位子类表格数据新增方法
      */
-    @RequestMapping("/mainPage/goDesign/part/add")
+    @RequestMapping("/mainPage/goDesign/part/add.go")
     @ResponseBody
     public MessageToInterface addPart(@RequestParam(value="partName") String partName,@RequestParam(value="partDes") String partDes){
         if(logger.isDebugEnabled()) {
-            logger.debug("页面请求[/mainPage/goDesign/part/add] 请求参数为partName:[" + partName + "] partDes:[" + partDes + "]");
+            logger.debug("页面请求[/mainPage/goDesign/part/add.go] 请求参数为partName:[" + partName + "] partDes:[" + partDes + "]");
         }
         PartAddReqParam partAddReqParam = new PartAddReqParam();
         partAddReqParam.setPartName(partName);
@@ -559,13 +563,13 @@ public class DesignController {
     /**
      * @description 设计元素/部位/部位子类表格数据编辑方法
      */
-    @RequestMapping("/mainPage/goDesign/part/edit")
+    @RequestMapping("/mainPage/goDesign/part/edit.go")
     @ResponseBody
     public MessageToInterface editPart(@RequestParam(value="partId") int partId,
                                        @RequestParam(value="partName") String partName,
                                        @RequestParam(value="partDes") String partDes){
         if(logger.isDebugEnabled()){
-            logger.debug("页面请求[/mainPage/goDesign/part/edit] partId:["+partId+"] partName:["+partName+"] partDes:["+partDes+"]");
+            logger.debug("页面请求[/mainPage/goDesign/part/edit.go] partId:["+partId+"] partName:["+partName+"] partDes:["+partDes+"]");
         }
         PartEditReqParam partEditReqParam = new PartEditReqParam();
         partEditReqParam.setPartId(partId);
@@ -582,7 +586,7 @@ public class DesignController {
     /**
      * @description 设计元素/单位/单位子类表格数据
      */
-    @RequestMapping("/mainPage/goDesign/unit")
+    @RequestMapping("/mainPage/goDesign/unit.go")
     @ResponseBody
     public UnitfTable getUnit(
             @RequestParam(value="draw") String draw,
@@ -590,7 +594,7 @@ public class DesignController {
             @RequestParam(value="length") String length,
             @RequestParam(value="search",required = false) String searchParam) {
         if (logger.isDebugEnabled()) {
-            logger.debug("页面请求[/mainPage/goDesign/unit]请求 请求参数为draw:[" + draw + "] start:[" + start + "] length:[" + length + "] search:[" + searchParam + "]");
+            logger.debug("页面请求[/mainPage/goDesign/unit.go]请求 请求参数为draw:[" + draw + "] start:[" + start + "] length:[" + length + "] search:[" + searchParam + "]");
         }
         Integer offSet = Integer.parseInt(start);
         Integer limit = Integer.parseInt(length);
@@ -608,7 +612,7 @@ public class DesignController {
     /**
      * @description 设计元素/单位/单位子类表格数据删除方法
      */
-    @RequestMapping("/mainPage/goDesign/unit/delete")
+    @RequestMapping("/mainPage/goDesign/unit/delete.go")
     @ResponseBody
     public MessageToInterface deleteUnit(@RequestParam(value="deleteParam") Integer[] deleteParamArray){
         if(logger.isDebugEnabled()) {
@@ -616,7 +620,7 @@ public class DesignController {
             for(int i =0;i<deleteParamArray.length;i++){
                 stringBuilder.append(deleteParamArray[i]+",");
             }
-            logger.debug("页面请求[/mainPage/goDesign/unit/delete] 请求参数为deleteParam:["+stringBuilder+"]");
+            logger.debug("页面请求[/mainPage/goDesign/unit/delete.go] 请求参数为deleteParam:["+stringBuilder+"]");
         }
         UnitDeleteReqParam unitDeleteReqParam = new UnitDeleteReqParam();
         unitDeleteReqParam.setDeleteArray(deleteParamArray);
@@ -627,11 +631,11 @@ public class DesignController {
     /**
      * @description 设计元素/单位/单位子类表格数据新增方法
      */
-    @RequestMapping("/mainPage/goDesign/unit/add")
+    @RequestMapping("/mainPage/goDesign/unit/add.go")
     @ResponseBody
     public MessageToInterface addUnit(@RequestParam(value="unitName") String unitName,@RequestParam(value="unitDes") String unitDes){
         if(logger.isDebugEnabled()) {
-            logger.debug("页面请求[/mainPage/goDesign/unit/add] 请求参数为unitName:[" + unitName + "] unitDes:[" + unitDes + "]");
+            logger.debug("页面请求[/mainPage/goDesign/unit/add.go] 请求参数为unitName:[" + unitName + "] unitDes:[" + unitDes + "]");
         }
         UnitAddReqParam unitAddReqParam = new UnitAddReqParam();
         unitAddReqParam.setUnitName(unitName);
@@ -643,13 +647,13 @@ public class DesignController {
     /**
      * @description 设计元素/单位/单位子类表格数据编辑方法
      */
-    @RequestMapping("/mainPage/goDesign/unit/edit")
+    @RequestMapping("/mainPage/goDesign/unit/edit.go")
     @ResponseBody
     public MessageToInterface editUnit(@RequestParam(value="unitId") int unitId,
                                        @RequestParam(value="unitName") String unitName,
                                        @RequestParam(value="unitDes") String unitDes){
         if(logger.isDebugEnabled()){
-            logger.debug("页面请求[/mainPage/goDesign/unit/edit] unitId:["+unitId+"] unitName:["+unitName+"] unitDes:["+unitDes+"]");
+            logger.debug("页面请求[/mainPage/goDesign/unit/edit.go] unitId:["+unitId+"] unitName:["+unitName+"] unitDes:["+unitDes+"]");
         }
         UnitEditReqParam unitEditReqParam = new UnitEditReqParam();
         unitEditReqParam.setUnitId(unitId);

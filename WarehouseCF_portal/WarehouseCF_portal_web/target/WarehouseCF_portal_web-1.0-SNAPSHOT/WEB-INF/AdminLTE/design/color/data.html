@@ -232,6 +232,26 @@
       </div>
     </div>
   </div>
+  <!-- 信息通知页面 -->
+  <div class="modal modal-warning fade" id="inforModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">通知</h4>
+        </div>
+        <div class="modal-body">
+         <div>
+           ${(msg)!''}
+         </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" data-dismiss="modal" class="btn btn-outline">确认</button>
+        </div>
+      </div>
+    </div>
+  </div>
 <!-- jQuery 3 -->
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
@@ -281,7 +301,7 @@
         callback(data);
       },
       ajax: {
-        url: '/mainPage/goDesign/colorParent',
+        url: '/mainPage/goDesign/colorParent.go',
         dataType: 'json',
       }
     });
@@ -320,7 +340,7 @@
     $("#add-select").select2({
       placeholder:'请选择颜色父类',
       ajax: {
-        url: '/mainPage/goDesign/colorParent',
+        url: '/mainPage/goDesign/colorParent.go',
         dataType: 'json',
         cache:false
       }
@@ -349,7 +369,7 @@
   //初始化
   $(document).ready(function() {
     //表格初始化
-    $('#example').DataTable( {
+    var table= $('#example').DataTable( {
       //表格重绘时重新加载iCheck样式
       drawCallback: function( settings ) {
         //勾选框
@@ -399,9 +419,25 @@
       serverSide: true,
       //ajax请求
       ajax: {
-        url:"/mainPage/goDesign/color",
+        url:"/mainPage/goDesign/color.go",
+        // type:"POST",
         dataType:"json",
-        cache:false
+        cache:false,
+        data:{"staffID":1,"tokenObj":sessionStorage.getItem("tokenObj")},
+        // success:function(result){
+        //   console.log("成功"+result.error);
+        //   // $('#example').DataTable( {
+        //   //
+        //   // });
+        //   // if(result.resultMessage==true){
+        //   //
+        //   // }else{
+        //   //   return false;
+        //   // }
+        // },
+        // error:function(e){
+        //   alert("ajax提交错误！！请重试");
+        // }
       },
       //表格列
       columns: [
@@ -464,7 +500,7 @@
         $("#table-select").select2({
           placeholder: '基础颜色',
           ajax: {
-            url: '/mainPage/goDesign/colorParent',
+            url: '/mainPage/goDesign/colorParent.go',
             dataType: 'json',
           }
         });
@@ -474,8 +510,27 @@
           searchBranchColor();
         });
       }
+
+
     } );
+    //判断状态
+    table.on('xhr.dt',function (e, settings, json, xhr) {
+      // console.log("e");
+      // console.log("setting"+settings)
+      // console.log("json"+json);
+      if (xhr.status != 200) {
+        //自己的代码
+        // console.log("404");
+        $('#inforModal').modal('show');
+      } else {
+        //自己的代码
+      }
+    });
   } );
+  $.fn.dataTable.ext.errMode = function( settings, tn, msg){
+//打印msg，和tn来判断，进了这个方法都是ajax走了error才会到这里来
+    console.log(msg)
+  }
   //表格上方搜索按钮搜索
   $.fn.dataTable.ext.buttons.search = {
     text: '<i class="glyphicon glyphicon-search" title="搜索"></i>',
@@ -528,7 +583,7 @@
     var colorName  = $("#edit-select").val();
     console.log("colorName:"+colorName)
     $.ajax({
-      url:"/mainPage/goDesign/color/edit",
+      url:"/mainPage/goDesign/color/edit.go",
       type:"post",
       data:{"colorBranchId":colorBranchId,"colorBranchName":colorBranchName,"colorName":colorName},
       success:function(data){
@@ -564,7 +619,7 @@
     var deleteParam = deleteColorBranchId;
     if(deleteParam != null){
       $.ajax({
-        url:"/mainPage/goDesign/color/delete",
+        url:"/mainPage/goDesign/color/delete.go",
         type:"post",
         traditional:true,
         dataType:"json",
@@ -585,7 +640,7 @@
       var colorName  = $("#addColorBranchName").val();
       var colorPid = $("#add-select").val();
       $.ajax({
-        url:"/mainPage/goDesign/color/add",
+        url:"/mainPage/goDesign/color/add.go",
         type:"post",
         traditional:true,
         dataType:"json",

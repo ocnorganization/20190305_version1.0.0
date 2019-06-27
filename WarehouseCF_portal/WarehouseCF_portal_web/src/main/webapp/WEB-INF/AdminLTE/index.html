@@ -71,7 +71,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <!-- User image -->
               <img src="/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">郑途</span>
+              <span class="hidden-xs">${(error)!'郑'}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -159,7 +159,7 @@
     <section class="content">
       <div class="row">
         <div class="col-md-12">
-          <iframe id="menuFrame" name="menuFrame" src="./welcome/welcome.html" style="overflow:visible;" scrolling="yes" frameborder="no" height="800px" width="100%"></iframe>
+          <iframe id="menuFrame" name="menuFrame" src="/welcome/welcome.html" style="overflow:visible;" scrolling="yes" frameborder="no" height="800px" width="100%"></iframe>
         </div>
       </div>
     </section>
@@ -183,23 +183,7 @@
 <!-- jQuery UI 1.11.4 -->
 <script src="/bower_components/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
 
-    // function setIframeHeight(iframe) {
-    //   if (iframe) {
-    //     var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
-    //     if (iframeWin.document.body) {
-    //       iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
-    //     }
-    //   }
-    // };
-    //
-    // window.onload = function () {
-    //   setIframeHeight(document.getElementById('menuFrame'));
-    // };
-
-
-</script>
 <!-- Bootstrap 3.3.7 -->
 <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Morris.js charts -->
@@ -226,8 +210,10 @@
 <!-- AdminLTE App -->
 <script src="/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="/dist/js/pages/dashboard.js"></script>
+<!--<script src="/dist/js/pages/dashboard.js"></script>-->
 <!-- AdminLTE for demo purposes -->
-<script src="/dist/js/demo.js"></script>
+<!--<script src="/dist/js/demo.js"></script>-->
+<script>
+</script>
 </body>
 </html>

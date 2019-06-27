@@ -398,7 +398,7 @@
       serverSide: true,
       //ajax请求
       ajax: {
-        url:"/mainPage/goDesign/brand",
+        url:"/mainPage/goDesign/brand.go",
         dataType:"json",
         cache:false
       },
@@ -514,7 +514,7 @@
     var brandName  = $("#editBrandName").val();
     var brandDes  = $("#editBrandDes").val();
     $.ajax({
-      url:"/mainPage/goDesign/brand/edit",
+      url:"/mainPage/goDesign/brand/edit.go",
       type:"post",
       data:{"brandId":brandId,"brandName":brandName,"brandDes":brandDes},
       success:function(data){
@@ -551,7 +551,7 @@
     // console.log(deleteParam);
     if(deleteParam != null){
       $.ajax({
-        url:"/mainPage/goDesign/brand/delete",
+        url:"/mainPage/goDesign/brand/delete.go",
         type:"post",
         traditional:true,
         dataType:"json",
@@ -576,7 +576,7 @@
       var brandDes  = $("#addBrandDes").val();
       // var colorPid = $("#add-select").val();
       $.ajax({
-        url:"/mainPage/goDesign/brand/add",
+        url:"/mainPage/goDesign/brand/add.go",
         type:"post",
         traditional:true,
         dataType:"json",

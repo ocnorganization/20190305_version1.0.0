@@ -397,7 +397,7 @@
       serverSide: true,
       //ajax请求
       ajax: {
-        url:"/mainPage/goDesign/season",
+        url:"/mainPage/goDesign/season.go",
         dataType:"json",
         cache:false
       },
@@ -512,7 +512,7 @@
     var seasonName  = $("#editSeasonName").val();
     // var seasonDes  = $("#editSeasonDes").val();
     $.ajax({
-      url:"/mainPage/goDesign/season/edit",
+      url:"/mainPage/goDesign/season/edit.go",
       type:"post",
       data:{"seasonId":seasonId,"seasonName":seasonName},
       success:function(data){
@@ -549,7 +549,7 @@
     // console.log(deleteParam);
     if(deleteParam != null){
       $.ajax({
-        url:"/mainPage/goDesign/season/delete",
+        url:"/mainPage/goDesign/season/delete.go",
         type:"post",
         traditional:true,
         dataType:"json",
@@ -574,7 +574,7 @@
       // var seasonDes  = $("#addSeasonDes").val();
       // var colorPid = $("#add-select").val();
       $.ajax({
-        url:"/mainPage/goDesign/season/add",
+        url:"/mainPage/goDesign/season/add.go",
         type:"post",
         traditional:true,
         dataType:"json",
