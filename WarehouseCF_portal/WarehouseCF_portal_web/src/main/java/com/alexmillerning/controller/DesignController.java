@@ -43,7 +43,52 @@ public class DesignController {
     final Logger logger = Logger.getLogger(DesignController.class);
     @RequestMapping("/design/color/data.html")
     public String color(){
-        return "data";
+        if(logger.isDebugEnabled()){
+            logger.debug("页面请求[/design/color/data.html]");
+        }
+        return "color/data";
+    }
+    @RequestMapping("/design/brand/data.html")
+    public String brand(){
+        if(logger.isDebugEnabled()){
+            logger.debug("页面请求[/design/brand/data.html]");
+        }
+        return "brand/data";
+    }
+    @RequestMapping("/design/craft/data.html")
+    public String craft(){
+        if(logger.isDebugEnabled()){
+            logger.debug("页面请求[/design/craft/data.html]");
+        }
+        return "craft/data";
+    }
+    @RequestMapping("/design/part/data.html")
+    public String part(){
+        if(logger.isDebugEnabled()){
+            logger.debug("页面请求[/design/part/data.html]");
+        }
+        return "part/data";
+    }
+    @RequestMapping("/design/season/data.html")
+    public String season(){
+        if(logger.isDebugEnabled()){
+            logger.debug("页面请求[/design/season/data.html]");
+        }
+        return "season/data";
+    }
+    @RequestMapping("/design/size/data.html")
+    public String size(){
+        if(logger.isDebugEnabled()){
+            logger.debug("页面请求[/design/size/data.html]");
+        }
+        return "size/data";
+    }
+    @RequestMapping("/design/unit/data.html")
+    public String unit(){
+        if(logger.isDebugEnabled()){
+            logger.debug("页面请求[/design/unit/data.html]");
+        }
+        return "unit/data";
     }
     /**
      * 设计元素/颜色

@@ -88,7 +88,7 @@
                   <a href="#" class="btn btn-default btn-flat">个人资料</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">退出登录</a>
+                  <a href="/logout" class="btn btn-default btn-flat" onclick="return logout()">退出登录</a>
                 </div>
               </li>
             </ul>
@@ -176,6 +176,26 @@
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
 </div>
+<!-- 删除多个确认页面 -->
+<div class="modal modal-danger fade" id="logoutModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">警告</h4>
+      </div>
+      <div class="modal-body">
+        <p>是否要退出登录?</p>
+        <input type="hidden"  class="form-control" id="logoutFlag">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">取消</button>
+        <button type="button" onclick="$('#deleteAllColorBranchId').val('true')" data-dismiss="modal" class="btn btn-outline">退出登录</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- ./wrapper -->
 
 <!-- jQuery 3 -->
@@ -214,6 +234,16 @@
 <!-- AdminLTE for demo purposes -->
 <!--<script src="/dist/js/demo.js"></script>-->
 <script>
+  function logout() {
+    //弹出模态框,并校验,返回true/false
+    $('#logoutModal').modal('show');
+    var flag = $('#deleteAllColorBranchId').val()
+    if(flag==true){
+      return true;
+    }else {
+      return false;
+    }
+  }
 </script>
 </body>
 </html>

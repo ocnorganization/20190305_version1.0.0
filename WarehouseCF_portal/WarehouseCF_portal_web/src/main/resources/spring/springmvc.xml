@@ -32,13 +32,11 @@
     <bean id="FreeMarkerConfigurer" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
         <property name="templateLoaderPaths">
             <list>
-                <value>/WEB-INF/AdminLTE/design/color/</value>
+                <value>/WEB-INF/AdminLTE/design/</value>
                 <value>/WEB-INF/AdminLTE/</value>
-                <value>/WEB-INF/AdminLTE/design/brand/</value>
-                <value>/WEB-INF/AdminLTE/design/craft/</value>
-                <value>/WEB-INF/AdminLTE/design/part/</value>
-
-
+                <!--<value>/WEB-INF/AdminLTE/design/brand/</value>-->
+                <!--<value>/WEB-INF/AdminLTE/design/craft/</value>-->
+                <!--<value>/WEB-INF/AdminLTE/design/part/</value>-->
             </list>
         </property>
     </bean>

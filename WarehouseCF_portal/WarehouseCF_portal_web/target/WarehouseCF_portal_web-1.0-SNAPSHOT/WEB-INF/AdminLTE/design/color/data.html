@@ -242,9 +242,6 @@
           <h4 class="modal-title">通知</h4>
         </div>
         <div class="modal-body">
-         <div>
-           ${(msg)!''}
-         </div>
         </div>
         <div class="modal-footer">
           <button type="button" data-dismiss="modal" class="btn btn-outline">确认</button>
@@ -515,16 +512,23 @@
     } );
     //判断状态
     table.on('xhr.dt',function (e, settings, json, xhr) {
-      // console.log("e");
+      // console.log(e);
+      // console.log(xhr);
       // console.log("setting"+settings)
-      // console.log("json"+json);
-      if (xhr.status != 200) {
-        //自己的代码
-        // console.log("404");
+      // console.log(json.msg);
+      if(json.code != null){
+        // console.log(json.msg);
+        // var model =
+        $('#inforModal').find('.modal-body').text("加载数据失败!错误码:["+json.code+"] 错误信息:["+json.msg+"]");
         $('#inforModal').modal('show');
-      } else {
-        //自己的代码
       }
+      // if (xhr.status != 200) {
+      //   //自己的代码
+      //   // console.log("404");
+      //   $('#inforModal').modal('show');
+      // } else {
+      //   //自己的代码
+      // }
     });
   } );
   $.fn.dataTable.ext.errMode = function( settings, tn, msg){

@@ -300,6 +300,9 @@
       ajax: {
         url: '/mainPage/goDesign/colorParent.go',
         dataType: 'json',
+        cache:false,
+        data:{"tokenObj":sessionStorage.getItem("tokenObj")},
+
       }
     });
   });
@@ -339,7 +342,8 @@
       ajax: {
         url: '/mainPage/goDesign/colorParent.go',
         dataType: 'json',
-        cache:false
+        cache:false,
+        data:{"tokenObj":sessionStorage.getItem("tokenObj")},
       }
     });
     //打开模态框时校验必输项
@@ -420,7 +424,7 @@
         // type:"POST",
         dataType:"json",
         cache:false,
-        data:{"staffID":1,"tokenObj":sessionStorage.getItem("tokenObj")},
+        data:{"tokenObj":sessionStorage.getItem("tokenObj")},
         // success:function(result){
         //   console.log("成功"+result.error);
         //   // $('#example').DataTable( {
@@ -499,6 +503,8 @@
           ajax: {
             url: '/mainPage/goDesign/colorParent.go',
             dataType: 'json',
+            cache: false,
+            data:{"tokenObj":sessionStorage.getItem("tokenObj")},
           }
         });
         //下拉菜单点击处理事件
@@ -589,7 +595,8 @@
     $.ajax({
       url:"/mainPage/goDesign/color/edit.go",
       type:"post",
-      data:{"colorBranchId":colorBranchId,"colorBranchName":colorBranchName,"colorName":colorName},
+      cache:false,
+      data:{"colorBranchId":colorBranchId,"colorBranchName":colorBranchName,"colorName":colorName, "tokenObj":sessionStorage.getItem("tokenObj")},
       success:function(data){
         $('#editModal').modal('hide');
         alert(data.resultMessage);
@@ -627,7 +634,8 @@
         type:"post",
         traditional:true,
         dataType:"json",
-        data : {"deleteParam":deleteParam},
+        cache: false,
+        data : {"deleteParam":deleteParam, "tokenObj":sessionStorage.getItem("tokenObj")},
         success:function(data){
           alert(data.resultMessage);
           reloadTable();
@@ -648,7 +656,8 @@
         type:"post",
         traditional:true,
         dataType:"json",
-        data : {"colorName":colorName,"colorPid":colorPid},
+        cache: false,
+        data : {"colorName":colorName,"colorPid":colorPid, "tokenObj":sessionStorage.getItem("tokenObj")},
         success:function(data){
           alert(data.resultMessage);
           $('#addModal').modal('hide');

@@ -19,22 +19,35 @@ public enum ResultCode {
      */
     UNKNOWN_ERROR("0x10001", "未知错误"),
     /**
-     * 用户名或密码错误
+     * token验证错误0x3开头
      */
-    USERINFO_ERROR("0x10002", "用户名或密码错误"),
     /**
      * token生成失败
      */
-    TOKENCREATE_ERROR("0x10003", "token生成失败"),
+    TOKENCREATE_ERROR("0x30003", "token生成失败"),
     /**
      * token验证失败
      */
-    TOKENVERIFY_ERROR("0x10004", "token验证失败"),
+    TOKENVERIFY_ERROR("0x30004", "token验证失败"),
     /**
-     * token验证失败
+     * token为空
      */
-    USERPOWER_ERROR("0x10005", "用户权限不足");
-//    TOKENVERIFY_ERROR("0x10004", "token校验失败");
+    TOKENNULL_ERROR("0x30005", "token为空"),
+    /**
+     * token与用户不匹配
+     */
+    TOKENUNMATCH_ERROR("0x30006", "token与用户不匹配"),
+    /**
+     * 用户权限错误0x2开头
+     */
+    /**
+     * 用户权限不足
+     */
+    USERPOWER_ERROR("0x2000", "用户权限不足"),
+    /**
+     * 用户名或密码错误
+     */
+    USERINFO_ERROR("0x20002", "用户名或密码错误");
     /**
      * 结果码
      */

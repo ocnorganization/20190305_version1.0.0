@@ -15,34 +15,40 @@ import org.apache.log4j.Logger;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 public class TokenInterceptor implements HandlerInterceptor {
     static final Logger logger = Logger.getLogger(TokenInterceptor.class);
     @Override
-//    @ExceptionHandler
     public boolean preHandle(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response, Object handler){
         if(logger.isDebugEnabled()){
             logger.debug("进入拦截器,开始校验");
         }
         String token = request.getParameter("tokenObj");
-        String staffID = request.getParameter("staffID");
+        HttpSession session = request.getSession();
+        String staffID = session.getAttribute("staffID").toString();
+//        String staffID = request.getParameter("staffID");
         if(logger.isDebugEnabled()){
             logger.debug("staffID:["+staffID+"] token:["+token+"]");
         }
-        Map<String, String> flag = null;
-        flag = JWTUtils.verifyToken(token);
-        if(null != flag){
-            if(staffID.equals(flag.get("userName"))){
-                return true;
+        if(null != token){
+            Map<String, String> flag = null;
+            flag = JWTUtils.verifyToken(token);
+            if(null != flag){
+                if(staffID.equals(flag.get("staffID"))){
+                    if(logger.isDebugEnabled()){
+                        logger.debug("token验证通过");
+                    }
+                    return true;
+                }else {
+                    throw new BusinessRuntimeException(ResultCode.TOKENUNMATCH_ERROR);
+                }
             }else {
-                //需要写全局异常
-                return false;
+                throw new BusinessRuntimeException(ResultCode.TOKENVERIFY_ERROR);
             }
         }else {
-//            throw new JWTVerificationException("token验证失败");
-            throw new BusinessRuntimeException(ResultCode.TOKENVERIFY_ERROR);
-//            return false;
+            throw new BusinessRuntimeException(ResultCode.TOKENNULL_ERROR);
         }
     }
 

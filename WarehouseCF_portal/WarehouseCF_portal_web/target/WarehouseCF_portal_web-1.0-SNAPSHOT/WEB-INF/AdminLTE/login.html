@@ -153,7 +153,7 @@
     });
   });
   function loginCheck() {
-    console.log("进入方法");
+    // console.log("进入方法");
     $("form.required-validate").bootstrapValidator('validate');
     if($("form.required-validate").data('bootstrapValidator').isValid()){
       $.ajax({
@@ -165,7 +165,7 @@
           if(data.resultMessage==true){
             sessionStorage.setItem("tokenObj",data.tokenObj);
             $('#tokenHidden').val(sessionStorage.getItem("tokenObj"));
-            $('#idHidden').val($('#userName').val());
+            // $('#idHidden').val($('#userName').val());
             document.getElementById("loginForm").submit();
             return true;
           }else{
