@@ -88,7 +88,7 @@
                   <a href="#" class="btn btn-default btn-flat">个人资料</a>
                 </div>
                 <div class="pull-right">
-                  <a href="/logout" class="btn btn-default btn-flat" onclick="return logout()">退出登录</a>
+                  <a href="javascript:void(0)" class="btn btn-default btn-flat" onclick="logout()">退出登录</a>
                 </div>
               </li>
             </ul>
@@ -131,6 +131,7 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">主菜单</li>
         <li id="tree" class="treeview">
+          <#if menuTree??>
           <#list menuTree.menus as m1>
           <a href="#">
             <i class="fa ${m1.menuicon}"></i> <span>${m1.menuname}</span>
@@ -144,6 +145,7 @@
             </#list>
           </ul>
           </#list>
+          </#if>
         </li>
       </ul>
     </section>
@@ -176,7 +178,7 @@
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
 </div>
-<!-- 删除多个确认页面 -->
+<!-- 退出登录 -->
 <div class="modal modal-danger fade" id="logoutModal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -191,7 +193,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">取消</button>
-        <button type="button" onclick="$('#deleteAllColorBranchId').val('true')" data-dismiss="modal" class="btn btn-outline">退出登录</button>
+        <button type="button" onclick="logoutConfirm()" data-dismiss="modal" class="btn btn-outline">退出登录</button>
       </div>
     </div>
   </div>
@@ -234,15 +236,26 @@
 <!-- AdminLTE for demo purposes -->
 <!--<script src="/dist/js/demo.js"></script>-->
 <script>
+  // $(document).ready(function() {
+  //   $.ajax({
+  //     url:"/login/to/index.go",
+  //     type:"post",
+  //     cache:false,
+  //     data:{"tokenObj":sessionStorage.getItem("tokenObj")},
+  //     success:function(data){
+  //     },
+  //     error:function(e){
+  //       alert("ajax提交错误！！请重试");
+  //     }
+  //   });
+  // });
+
   function logout() {
     //弹出模态框,并校验,返回true/false
     $('#logoutModal').modal('show');
-    var flag = $('#deleteAllColorBranchId').val()
-    if(flag==true){
-      return true;
-    }else {
-      return false;
-    }
+  }
+  function logoutConfirm(){
+    window.location.href = '/logout';
   }
 </script>
 </body>

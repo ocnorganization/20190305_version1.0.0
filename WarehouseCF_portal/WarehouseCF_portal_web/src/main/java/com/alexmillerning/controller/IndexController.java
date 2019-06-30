@@ -25,6 +25,10 @@ public class IndexController {
     MenuClientService menuClientService;
     @Autowired
     LoginCheckClientService loginCheckClientService;
+//    @RequestMapping("/index")
+//    public String index(){
+//        return "index";
+//    }
     @RequestMapping("/login/to/index.go")
 //@RequestMapping("/")
     /**
@@ -43,4 +47,13 @@ public class IndexController {
             modelMap.addAttribute("menuTree",menuTree);
             return "index";
     }
+    //警告:待解决freemarker在ajax刷新后显示
+//    public String  menuTree(ModelMap modelMap){
+//        if(logger.isDebugEnabled()){
+//            logger.debug("页面请求[/login/to/index.go]");
+//        }
+//            MenuTree menuTree = menuClientService.getMenuTree();
+//            modelMap.addAttribute("menuTree",menuTree);
+//            return "index";
+//    }
 }

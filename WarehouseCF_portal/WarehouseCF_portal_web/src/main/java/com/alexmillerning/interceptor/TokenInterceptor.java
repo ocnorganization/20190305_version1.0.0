@@ -27,28 +27,32 @@ public class TokenInterceptor implements HandlerInterceptor {
         }
         String token = request.getParameter("tokenObj");
         HttpSession session = request.getSession();
-        String staffID = session.getAttribute("staffID").toString();
-//        String staffID = request.getParameter("staffID");
-        if(logger.isDebugEnabled()){
-            logger.debug("staffID:["+staffID+"] token:["+token+"]");
-        }
-        if(null != token){
-            Map<String, String> flag = null;
-            flag = JWTUtils.verifyToken(token);
-            if(null != flag){
-                if(staffID.equals(flag.get("staffID"))){
-                    if(logger.isDebugEnabled()){
-                        logger.debug("token验证通过");
+        Object staffIDObj = session.getAttribute("staffID");
+        if(null != staffIDObj){
+            String staffID = staffIDObj.toString();
+            if(logger.isDebugEnabled()){
+                logger.debug("staffID:["+staffID+"] token:["+token+"]");
+            }
+            if(null != token){
+                Map<String, String> flag = null;
+                flag = JWTUtils.verifyToken(token);
+                if(null != flag){
+                    if(staffID.equals(flag.get("staffID"))){
+                        if(logger.isDebugEnabled()){
+                            logger.debug("token验证通过");
+                        }
+                        return true;
+                    }else {
+                        throw new BusinessRuntimeException(ResultCode.TOKENUNMATCH_ERROR);
                     }
-                    return true;
                 }else {
-                    throw new BusinessRuntimeException(ResultCode.TOKENUNMATCH_ERROR);
+                    throw new BusinessRuntimeException(ResultCode.TOKENVERIFY_ERROR);
                 }
             }else {
-                throw new BusinessRuntimeException(ResultCode.TOKENVERIFY_ERROR);
+                throw new BusinessRuntimeException(ResultCode.TOKENNULL_ERROR);
             }
         }else {
-            throw new BusinessRuntimeException(ResultCode.TOKENNULL_ERROR);
+            throw new BusinessRuntimeException(ResultCode.SESSIONEXP_ERROR);
         }
     }
 

@@ -26,7 +26,7 @@
     <!--主要作用于@Controller激活该模式下面是一种简写形式
           它会自动注册DefaultAnnotationHandlerMapping与AnnotationMethodHandlerAdapter，
           是spring MVC为@Controllers分发请求所必须的   -->
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven ignore-default-model-on-redirect="true"/>
     <!--<mvc:default-servlet-handler/>-->
      <!--FreeMarker -->
     <bean id="FreeMarkerConfigurer" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
@@ -62,6 +62,7 @@
             <!--<mvc:exclude-mapping path="/data.html" />-->
 
             <mvc:exclude-mapping path="/login" />
+            <mvc:exclude-mapping path="/logout" />
             <mvc:exclude-mapping path="/**/login/ckeck.go" />
             <mvc:exclude-mapping path="/**/design/**" />
             <mvc:exclude-mapping path="/**/bower_components/**" />
@@ -90,4 +91,6 @@
     <!--<mvc:resources mapping="**/design/**" location="/WEB-INF/AdminLTE/"/>-->
     <mvc:resources mapping="**/welcome/**" location="/WEB-INF/AdminLTE/"/>
     <!--<bean id="exceptionHandler" class="com.alexmillerning.handlerException.BasicHandlerExceptionResolver"/>-->
+
+    <!--<mvc:annotation-driven ignoreDefaultModelOnRedirect="true"/>-->
 </beans>

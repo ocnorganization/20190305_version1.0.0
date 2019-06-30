@@ -47,7 +47,11 @@ public enum ResultCode {
     /**
      * 用户名或密码错误
      */
-    USERINFO_ERROR("0x20002", "用户名或密码错误");
+    USERINFO_ERROR("0x20002", "用户名或密码错误"),
+    /**
+     * 回话超时0x4
+     */
+    SESSIONEXP_ERROR("0x40002", "会话超时,请重新登录");
     /**
      * 结果码
      */

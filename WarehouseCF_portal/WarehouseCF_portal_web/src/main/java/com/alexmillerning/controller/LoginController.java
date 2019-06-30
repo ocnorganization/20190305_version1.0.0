@@ -37,6 +37,9 @@ public class LoginController {
     LoginCheckClientService loginCheckClientService;
     @RequestMapping("/login")
     public String loginPage(){
+//        if(sessionStatus.isComplete()){
+//            sessionStatus.setComplete();
+//        }
         return "login";
     }
     @RequestMapping("/login/ckeck.go")
@@ -79,6 +82,9 @@ public class LoginController {
     @RequestMapping("/logout")
     public String logout(SessionStatus sessionStatus){
         sessionStatus.setComplete();
-        return "/login";
+        if(logger.isDebugEnabled()){
+            logger.debug("退出登录并清除session");
+        }
+        return "redirect:/login";
     }
 }
